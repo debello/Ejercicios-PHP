@@ -29,24 +29,22 @@ for ($i = 0; $i < sizeof($textoarray) -1; $i++) {
 
     if (substr($textoarray[$i], 0, 1) !== $vocales) {
         $reempla = str_replace($var, "", $textoarray[$i]);
-        echo $reempla ;
+       
         $newarray[$i] = $reempla;
         //
         if (substr($textoarray[$i], 0, 2) !== $vocales) {
             $reempla = str_replace($var, "", $textoarray[$i]);
-            echo $reempla ;
+            
             $newarray[$i] = $reempla;
         }
-        else {
-            $newarray[$i] = $reempla;
+        else { /// CONSEGUIR QUE NO CORTE VOCALES EN LA PRIMERA LETRA DE LA PALABRA
+            $newarray[$i] = $textoarray[$i];
         }
     }
-    else 
-        $newarray[$i] = $reempla;
+    else {$newarray[$i] = $texotarray[$i];}
+        
     
-}
-
-;
+};
 
 $reTexto = implode(" ", $newarray);
 echo "<br> $reTexto <br>";
