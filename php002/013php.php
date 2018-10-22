@@ -14,40 +14,58 @@ $textoarray = explode(" ", $texto);
 // sustituir consonantes? solo si es la primera
 // sustituir
 $vocales = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+$vocalesstring = "aeiouAEIOU";
 
 // -> IDEA
 //if strpost $textoarray[$i] 0 IS NOT $vocales then
   //          sustituir por "" (eliminar la consonante)
+echo $textoarray[1] . "<br>";
+echo $textoarray[2][1]. "<br>";
+$textoarray[2][0] = "&";
+echo $textoarray[2] . "<br>";
+
+echo $textoarray[3] . "<br>";
+echo $textoarray[4] . "<br>";
+echo $textoarray[5] . "<br>";
+echo "nada" . "<br>";
+echo substr($textoarray[1], 0, 1) . "<br>";
+
+for ($i = 0; $i < sizeof($textoarray) ; $i++) {
+    $var = substr($textoarray[$i], 0, 1);
+    $var2 = substr($textoarray[$i], 1, 1);
 
     
 
 
-for ($i = 0; $i < sizeof($textoarray) -1; $i++) {
-    $var = substr($textoarray[$i], 0, 1);
-    // PODEMOS USAR WHILE HASTA QUE NO ENCU_ENTRE VOCALES
-   
-
-    if (substr($textoarray[$i], 0, 1) !== $vocales) {
-        $reempla = str_replace($var, "", $textoarray[$i]);
-       
-        $newarray[$i] = $reempla;
-        //
-        if (substr($textoarray[$i], 0, 2) !== $vocales) {
-            $reempla = str_replace($var, "", $textoarray[$i]);
-            
-            $newarray[$i] = $reempla;
-        }
-        else { /// CONSEGUIR QUE NO CORTE VOCALES EN LA PRIMERA LETRA DE LA PALABRA
+    if (strpos($vocalesstring, $var) === false) {      
+        
+        if (strpos($vocalesstring, $var2) === false) {
+            $textoarray[$i][0] = "&";
+            $textoarray[$i][1] = "&";
             $newarray[$i] = $textoarray[$i];
+            }
+        
+        else {
+            $textoarray[$i][0] = "&";
+            $newarray[$i] = $textoarray[$i];  
         }
     }
-    else {$newarray[$i] = $texotarray[$i];}
         
-    
-};
+        else { 
+            $newarray[$i] = $textoarray[$i];  
+
+            }
+    }
+   
+    ;
+$reReTexto = preg_replace('/&/', "", $newarray);
 
 $reTexto = implode(" ", $newarray);
+$reReTexto = preg_replace('/&/', "", $reTexto);
+// HASTA AQUI tenemos un array con && en lugar de las consonantes al principio de palabra
 echo "<br> $reTexto <br>";
+echo "<br> $reReTexto <br>";
+
 
 
 ?>
