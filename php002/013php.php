@@ -27,24 +27,26 @@ for ($i = 0; $i < sizeof($textoarray) -1; $i++) {
     // PODEMOS USAR WHILE HASTA QUE NO ENCU_ENTRE VOCALES
    
 
-    if (substr($textoarray[$i], 0, strlen($textoarray[$i])) !== $vocales) {
-        if
-        (substr($textoarray[$i], 0, 2) !== $vocales) {
-        // reemplazar espacios las consonante
+    if (substr($textoarray[$i], 0, 1) !== $vocales) {
+        $reempla = str_replace($var, "", $textoarray[$i]);
+        echo $reempla ;
+        $newarray[$i] = $reempla;
+        //
+        if (substr($textoarray[$i], 0, 2) !== $vocales) {
             $reempla = str_replace($var, "", $textoarray[$i]);
             echo $reempla ;
             $newarray[$i] = $reempla;
         }
-        else { echo " test"; 
-             }
+        else {
+            $newarray[$i] = $reempla;
+        }
     }
+    else 
+        $newarray[$i] = $reempla;
     
-    else {
-        echo "textoelse ";
-    }
-        echo "<br>";
+}
 
-};
+;
 
 $reTexto = implode(" ", $newarray);
 echo "<br> $reTexto <br>";
