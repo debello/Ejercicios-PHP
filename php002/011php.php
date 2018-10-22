@@ -25,15 +25,18 @@ $siete4 = rtrim($siete3, "&"); //quita & de atrás
 echo "esto es rtrim (sobre el anterior) " . $siete4 . "<br>";
 
 $siete5 = preg_replace("/[1-68-9]/", "", $siete4); //quita números del 1 al 6 en el string y del 8 al 9
-echo "esto es preg_replace quitando numeros excepto 7 " . $siete5 . "<br>";
+echo "esto es preg_replace quitando numeros excepto los sietes: " . $siete5 . "<br>";
 
 $siete6 = preg_replace('/\D/', '', $siete);
 echo "esto es pre_replace quitando \t \r etc de cualquier parte " . $siete . "<br>";
 
-$siete6 = str_replace("\r\r&&", "", $siete); // reemplaza dichos elementos por espacios
+$siete6 = str_replace("\r\r&&\t\r111124", "", $siete); // reemplaza dichos elementos por espacios
 echo "esto es str_replace " . $siete6 . "<br>";
 
-echo str_replace("\r\r&&\t\r", "", str_replace("1", "", str_replace("2", "", str_replace("4", "", str_replace("9", "", str_replace("3", "", str_replace("&&\r\r", "", $siete)))))));
+echo "una fantasía en bucle 'infinito' " . str_replace("\r\r&&\t\r", "", str_replace("1", "", str_replace("2", "", str_replace("4", "", str_replace("9", "", str_replace("3", "", str_replace("&&\r\r", "", $siete))))))) . "<br>";
+
+$siete7 = chop($siete, "\t\n&&\r\r"); //quita & de atrás
+echo "esto es Chop(rtrim) de la parte derecha" . $siete7 . "<br>";
 
 
 

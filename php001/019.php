@@ -29,16 +29,6 @@ $numarray = [$a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11, $a12, $a13
 $numarraycuadrado = [];
 $numarraycubo = [];
 
-// Con un loop rellenamos los dos arrays anteriores
-// de 0 a 19 (20 números), copiarán los números del array de num. naturales
-// y los irán almacenando en el mismo orden
-// mientras aplican la fórmula escogida (**2 como elevar al cuadrado y **3 al cubo)
-for ($i = 0; $i < 20; $i++) {
-    
-    $numarraycuadrado[$i] = ($numarray[$i]**2);
-    $numarraycubo[$i] = ($numarray[$i]**3);
-}
-
 
 echo "<table border='1' cellspacing='2'>
  
@@ -51,6 +41,11 @@ echo "<table border='1' cellspacing='2'>
 // Publicaremos en fila el primer número de los 3 arrays 
     // Por ejemplo, 3 como núm natural, 9 como cuadrado y 27 como cubo
 for ($i=0;$i<20;$i++) {
+    // Añadimos a los arrays vacíos (cuadrado, cubo) su contenido, en cada hueco (0, 1...)
+    $numarraycuadrado[$i] = ($numarray[$i]**2);
+    $numarraycubo[$i] = ($numarray[$i]**3);
+    
+    // Creamos la tabla en fila: Natural -> Cuadrado -> Cubo y cerramos nuestra fila
     echo "<tr>"; 
 
     	echo "<td>" .$numarray[$i].  "</td> ";
