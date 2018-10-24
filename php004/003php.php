@@ -12,7 +12,7 @@ Pista --> asort
 */
 $europa = array("Italia"=>"Roma", "Luxemburgo"=>"Luxembourgo", "Bélxica"=> "Bruselas", "Holanda"=>"Amsterdam");
 $test = [1, 2, 3];
-echo $test[1] . " " . $europa[0];
+echo $test[1] . " ";
 asort($europa);
 
 foreach ($europa as $valor => $clave) {
@@ -22,12 +22,15 @@ foreach ($europa as $valor => $clave) {
 // OPTION DOS // no funciona!!!! linea 21
 echo "echo europa 1 " . $europa[1] . "<br>";
 
+$keys = array_keys($europa);
 $values = array_values($europa);
 foreach ($values as $a) {
     echo $a . "<br>";
 }
     
 echo "echo values " . $values[1]  . "<br>";
+echo "echo keys " . $keys[1]  . "<br>";
+
 //OPTION 3
 
 ///????
