@@ -16,6 +16,7 @@ $gustoinvertido = strrev($buengusto);
 echo $gustoinvertido . "<br>";
 
 echo $buengusto . strtoupper($nombre) . $gustoinvertido . "<br>";
+
 $nombre[3] = "ito" . "<br>";
 echo $nombre . "<br>";
 $ito = "itoxxx";

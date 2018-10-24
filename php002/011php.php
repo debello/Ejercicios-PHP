@@ -9,6 +9,7 @@ Coger una cadena donde haya varios puntos (github.io.com) y escoger la primera, 
 //1
 // Dado una serie de números '&&\t\r1111247331111\t\n&&' queremos eliminar todos los pares, quedándonos con los números impares del medio 7 y 5
 // uso de TRIM, CHOP, Preg_Replace
+// pistas: trim, preg_replace...
 
 $siete = "\r\r&&\t\r111124779331111\t\n&&\r\r";
 $num = 1234;

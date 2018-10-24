@@ -9,4 +9,5 @@ E que usando os valores dese array mostre:
 $cor = array('branco', 'verde', 'vermello', 'azul');
 array_push($cor, 'negro');
 echo "O ceo $cor[3] estaba cuberto por algunhas nubes de cor $cor[4], e outras de cor $cor[0] , que ameazaban con chorar sobre o $cor[1] campo"
+
 ?>
