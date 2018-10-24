@@ -1,6 +1,11 @@
 <?php
+/**
+Cadeas 2
+Divida a cadea separando por dous puntos (o que puidera ser un formato hh:mm_ss)
+Exemplo de entrada : '092402' --> 	Exemplo de saída : 09:24:02
+*/
 
-$number = 438934;
+$number = 438923242;
 
 echo "Divida la cadena $number separando por dos puntos (ex: 190239 -> 19:02:39) <br>"; 
 
@@ -9,9 +14,14 @@ $newnumber = // Obtenemos los dos primeros números de
                 // El primer tercio (89)
                 // El segundo tercio (34)
             // Y ponemos un espacio entre las tres partes
-     substr($number, (strlen($number)*0.01), 2) . " " .
-     substr($number, (strlen($number)*0.34), 2) . " " . 
-     substr($number, (strlen($number)*0.67), 2) . "<br>";
+/* Formula:         
+    Substraer del nuestro número: // substr($number...
+        Desde la posición 'El primer tercio de todo el numero
+        Un tercio de numeros de toda la longitud
+    */
+     substr($number, (strlen($number)*0.01), (strlen($number)/3)) . " " .
+     substr($number, (strlen($number)*0.34), (strlen($number)/3)) . " " . 
+     substr($number, (strlen($number)*0.67), ceil(strlen($number)/3)) . "<br>";
 
 echo "Primero dividimos el número en tres partes intercaladas con un espacio: $newnumber " . "<br>";
 
