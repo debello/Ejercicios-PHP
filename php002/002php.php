@@ -19,9 +19,9 @@ $newnumber = // Obtenemos los dos primeros números de
         Desde la posición 'El primer tercio de todo el numero
         Un tercio de numeros de toda la longitud
     */
-     substr($number, (strlen($number)*0.01), (strlen($number)/3)) . " " .
-     substr($number, (strlen($number)*0.34), (strlen($number)/3)) . " " . 
-     substr($number, (strlen($number)*0.67), ceil(strlen($number)/3)) . "<br>";
+    substr($number, (strlen($number)*0.01), (strlen($number)/3)) . " " .
+    substr($number, (strlen($number)*0.34), (strlen($number)/3)) . " " . 
+    substr($number, (strlen($number)*0.67), ceil(strlen($number)/3)) . "<br>";
 
 echo "Primero dividimos el número en tres partes intercaladas con un espacio: $newnumber " . "<br>";
 
