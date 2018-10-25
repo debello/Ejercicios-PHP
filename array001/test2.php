@@ -42,9 +42,9 @@ foreach ($tres as $trese => $keyese) { /// PRINTEA EL ARRAY DENTRO DE $A
     echo "foreach de $ A[3] " . $trese . " y " . $keyese . "<br>";
 }}
 
-echo $oneKey . "<br>";
+echo " onekey " . $oneKey . "<br>";
 
-echo $keysA[0] . "<br>";
+echo " keysa " . $keysA[0] . "<br>";
 echo $keysA[1] . "<br>";
 echo $keysA[2] . "<br>";
 echo $keysA[3] . "<br>";

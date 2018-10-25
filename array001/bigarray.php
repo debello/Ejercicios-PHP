@@ -46,38 +46,125 @@ $al03 = array('ID: ' => 'A03',
             'Lingua: ' => 6, 
             'Mates' => 10));
 
+$listaAl = [$al01, $al02, $al03];
 
 function alGenerator($notas) {
-echo "empezamos " . "<br>" ;
+
 for ($i = 0; $i < 3; $i++) {
     if ($i === 0) {
         echo "<tr><td>";
-        echo array_search($notas["ID: "], $notas) .  $notas['ID: '] . "<br> </td>"; /////// PRINTEA EL VALOR Y LUEGO LA CLAVE!
+        echo array_search($notas["ID: "], $notas) .  $notas['ID: '] . "<br> </td>"; 
     }
-    echo "<br>";
+    
     if ($i === 1) {
-          echo "<td>";
-        foreach ($notas['Datos'] as $trese => $keyese) { /// PRINTEA EL ARRAY DENTRO DE $A
+        echo "<td>";
+        foreach ($notas['Datos'] as $trese => $keyese) {
         
-        echo "Datos " . $trese . " y " . $keyese . "<br>";
+        echo $trese . $keyese . "<br>";
        
         }
          echo "</td>";
     }
-    echo "<br>";
+    
     if ($i === 2) {
         
         foreach ($notas['Materias'] as $Ae => $keyo) {
             echo "<td>";
-    echo "Materias " . $keyo . "<br>"; ///PRINTEA el $A sin [3]
+    echo "  " . $keyo . "<br>"; 
             echo "</td>";
 } 
     }
 }
     };
+alGenerator($al01);
+alGenerator($al02);
 alGenerator($al03);
 
     
 echo "</table>";
+/**
+A nota mais alta do grupo en lingua é 9, obtida por o alumno Marcos Mundstock
+ a nota mais alta do grupo en mates é 10, correspondente ao alumno Carlos Lopez
+o alumno coa media mais alta do grupo é Daniel Rabinovich, coa nota media de 8,5
+*/
+
+// MATERIAS:
+// sort ($notas['Materias') clave ()notas en orden mas a menos por cada una
+// hacer media y luego = sort same pero haciendo media entre ambas y en orden
+
+
+
+
+echo "<br>" . $al01['Materias']['Mates'] . "<br>"; // Print 9
+function mate() {
+$al01Keys = array_keys($al01); 
+echo " $al01Keys[2]" . "<br>"; // Print Id, Datos MATERIAs 0 1 2
+
+$materias = array_keys($al01[$al01Keys[2]]); 
+echo " $materias[1]" . "<br>"; // Print MATERIAs Lingua y Mates 0 1
+
+$hola3 = array_keys($al01[$al01Keys[1]]) ; 
+echo " $hola3[1]" . "<br>"; // Print Nome Apelidos Idade
+}
+
+
+//foreach ($notas['Materias'] as $Mat => $Num) {
+  //  echo "<br> a nota máis alta do grupo en $Mat es de un $Num <br>";
+//}
+//}
+
+///// ORDEN ALFABETICO 
+function Alphanum($alum1, $alum2, $alum3) {
+    $alumName = $alum1['Datos']['Nome: '] . " " . 
+                $alum1['Datos']['Apelidos: '] . ", " . 
+                $alum2['Datos']['Nome: '] . " " . 
+                $alum2['Datos']['Apelidos: '] . ", " . 
+                $alum3['Datos']['Nome: '] . " " . 
+                $alum3['Datos']['Apelidos: '];   
+    
+    $exploded = explode(", ", $alumName);
+    sort($exploded);
+    $imploded = implode(", ", $exploded);
+    return $imploded . ".";
+    
+}
+
+echo "El orden alfabético de los alumnos es: " . Alphanum($al01, $al02, $al03) . "<br>";
+///////////////////
+/////////////////// ORDEN NOTA
+
+echo "A nota máis alta do grupo en $materias[0] é ". $al01['Materias'][$materias[0]] . ", obtida por o alumno __"; //// EXAMPLE
+//Ahora en funcion
+function notAlta($alum1, $alum2, $alum3) {
+    $alumNotas =  
+            $alum1['Materias']['Lingua: '] . ", " . 
+            $alum2['Materias']['Lingua: '] . ", " . 
+            $alum3['Materias']['Lingua: '];  
+    $exploded = explode(", ", $alumNotas);
+    echo $exploded[0] . "<br>";
+    rsort($exploded);
+        echo $exploded[0]. "<br>";
+
+    
+    $listaAl = [$alum1, $alum2, $alum3];
+  
+    for ($i = 0; $i < 3; $i++){
+    if ($exploded[0] == $listaAl[$i]['Materias']['Lingua: ']) {
+        //echo "lolecho " . $listaAl[$i]['Materias']['Lingua: '] . " " . $listaAl[$i]['Datos']['Nome: '];
+        
+   
+        
+        return $listaAl[$i]['Materias']['Lingua: '] . " obtida por " . $listaAl[$i]['Datos']['Nome: '] . " " . $listaAl[$i]['Datos']['Apelidos: '];
+
+    
+    }
+        
+    }
+    
+}
+ 
+echo "A nota máis alta do grupo en $materias[0] é " . notAlta($al01, $al02, $al03);
+
+
 
 ?>
