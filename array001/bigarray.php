@@ -3,12 +3,23 @@
 <head>
 <meta charset="UTF-8">
     <style>
-    td { text-align: center;
+        table {
+            border: 1px solid black;
+            
+        }
+    td, th { text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+        width: 100px;
+        
+        
+        
     }
+
     #data { text-align: left;
         
         }
-    
+
     </style>
 </head>
 <body>
@@ -23,7 +34,7 @@ $encabezado = ['cod_alumno', 'Datos Persoais', 'Lingua', 'Mates'];
 
 
  
-echo "<table border='1' cellspacing='1' align='center'>";
+echo "<table id='test' border='1' align='center'>";
 // LLamamos encabezado con foreach
 echo "<tr>";
     foreach ($encabezado as $cabeza) {
@@ -33,43 +44,61 @@ echo "<tr>";
 echo "</tr>";
 
 
-$al01 = array('ID: ' => 'A01', 
+$al01 = array('ID' => 'A01', 
         'Datos' => array(
-            'Nome: ' => 'Daniel',
-            'Apelidos: ' => 'Rabinovich', 
-            'Idade: ' => '17'), 
+            'Nome' => 'Daniel',
+            'Apelidos' => 'Rabinovich', 
+            'Idade' => '17'), 
         'Materias' => array(
-            'Lingua: ' => 8, 
+            'Lingua' => 8, 
             'Mates' => 9));
 
 
-$al02 = array('ID: ' => 'A02', 
+$al02 = array('ID' => 'A02', 
         'Datos' => array(
-            'Nome: ' => 'Marcos',
-            'Apelidos: '=>'Mundstock', 
-            'Idade: '=>'18'), 
+            'Nome' => 'Marcos',
+            'Apelidos'=>'Mundstock', 
+            'Idade'=>'18'), 
         'Materias' => array(
-            'Lingua: '=> 9, 
+            'Lingua'=> 9, 
             'Mates'=> 7));
 
 
-$al03 = array('ID: ' => 'A03', 
+$al03 = array('ID' => 'A03', 
         'Datos' => array(
-            'Nome: ' => 'Carlos',
-            'Apelidos: ' => 'Loper Puccio', 
-            'Idade: ' => '16'), 
+            'Nome' => 'Carlos',
+            'Apelidos' => 'Loper Puccio', 
+            'Idade' => '16'), 
         'Materias' => array(
-            'Lingua: ' => 6, 
+            'Lingua' => 6, 
             'Mates' => 10));
 
 $listaAl = [$al01, $al02, $al03];
 
 function alGenerator($notas) {
+    $notasDatosKey = array_keys($notas['Datos']);
+    $notasDatosValues = array_values($notas['Datos']);
+    
+    echo "<tr><td rowspan='3'>";
+    echo array_search($notas["ID"], $notas) . ": " .  $notas['ID'] . "<br> </td>";
 
+    echo "<td id='data'>" . $notasDatosKey[0] . ": " . $notasDatosValues[0] . "</td>";
+
+    foreach ($notas['Materias'] as $Ae => $keyo) {
+            echo "<td rowspan='3'>";
+    echo "  " . $keyo . "<br>"; 
+            echo "</td>";
+        }
+    echo "<tr><td id='data'>" . $notasDatosKey[1] . ": " . $notasDatosValues[1] . "</td></tr>";
+    echo "<tr><td id='data'>" . $notasDatosKey[2] . ": " . $notasDatosValues[2] . "</td></tr>";
+    };
+    
+/**  //////////////////////// MISMA TABLA SIN ROWSPAN, SOLO BR EN Datos Persoais
+////////////////////////////
 for ($i = 0; $i < 3; $i++) {
     if ($i === 0) {
         echo "<tr><td>";
-        echo array_search($notas["ID: "], $notas) .  $notas['ID: '] . "<br> </td>"; 
+        echo array_search($notas["ID"], $notas) .  $notas['ID'] . "<br> </td>"; 
     }
     
     if ($i === 1) {
@@ -91,7 +120,8 @@ for ($i = 0; $i < 3; $i++) {
 } 
     }
 }
-    };
+ */   
+
 alGenerator($al01);
 alGenerator($al02);
 alGenerator($al03);
@@ -125,12 +155,12 @@ echo " $hola3[1]" . "<br>"; // Print Nome Apelidos Idade
 
 ///// ORDEN ALFABETICO 
 function Alphanum($alum1, $alum2, $alum3) {
-    $alumName = $alum1['Datos']['Nome: '] . " " . 
-                $alum1['Datos']['Apelidos: '] . ", " . 
-                $alum2['Datos']['Nome: '] . " " . 
-                $alum2['Datos']['Apelidos: '] . ", " . 
-                $alum3['Datos']['Nome: '] . " " . 
-                $alum3['Datos']['Apelidos: '];   
+    $alumName = $alum1['Datos']['Nome'] . " " . 
+                $alum1['Datos']['Apelidos'] . ", " . 
+                $alum2['Datos']['Nome'] . " " . 
+                $alum2['Datos']['Apelidos'] . ", " . 
+                $alum3['Datos']['Nome'] . " " . 
+                $alum3['Datos']['Apelidos'];   
     
     $exploded = explode(", ", $alumName);
     sort($exploded);
@@ -145,11 +175,12 @@ echo "El orden alfabético de los alumnos es: " . Alphanum($al01, $al02, $al03) 
 
 
 //Ahora en funcion
-function notAlta($alum1, $alum2, $alum3) {
+function notAltaLingua($alum1, $alum2, $alum3, $asignatura) {
+    
     $alumNotas =  
-            $alum1['Materias']['Lingua: '] . ", " . 
-            $alum2['Materias']['Lingua: '] . ", " . 
-            $alum3['Materias']['Lingua: '];  
+            $alum1['Materias'][$asignatura] . ", " . 
+            $alum2['Materias'][$asignatura] . ", " . 
+            $alum3['Materias'][$asignatura];  
     $exploded = explode(", ", $alumNotas);
     
     rsort($exploded);
@@ -159,12 +190,12 @@ function notAlta($alum1, $alum2, $alum3) {
     $listaAl = [$alum1, $alum2, $alum3];
   
     for ($i = 0; $i < 3; $i++){
-    if ($exploded[0] == $listaAl[$i]['Materias']['Lingua: ']) {
-        //echo "lolecho " . $listaAl[$i]['Materias']['Lingua: '] . " " . $listaAl[$i]['Datos']['Nome: '];
+    if ($exploded[0] == $listaAl[$i]['Materias'][$asignatura]) {
+        //echo "lolecho " . $listaAl[$i]['Materias']['Lingua'] . " " . $listaAl[$i]['Datos']['Nome'];
         
    
         
-        return $listaAl[$i]['Materias']['Lingua: '] . " obtida por " . $listaAl[$i]['Datos']['Nome: '] . " " . $listaAl[$i]['Datos']['Apelidos: '];
+        return $listaAl[$i]['Materias'][$asignatura] . " obtida por " . $listaAl[$i]['Datos']['Nome'] . " " . $listaAl[$i]['Datos']['Apelidos'] . "<br>";
 
     
     }
@@ -173,7 +204,9 @@ function notAlta($alum1, $alum2, $alum3) {
     
 }
  
-echo "A nota máis alta do grupo en $materias[0] é " . notAlta($al01, $al02, $al03);
+echo "A nota máis alta do grupo en $materias[0] é " . notAltaLingua($al01, $al02, $al03, 'Lingua');
+echo "A nota máis alta do grupo en $materias[1] é " . notAltaLingua($al01, $al02, $al03, 'Mates');
+
 
 
 
