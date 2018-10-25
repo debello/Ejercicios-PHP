@@ -11,21 +11,30 @@ A  capital de Italia é Roma
 Pista --> asort
 */
 $europa = array("Italia"=>"Roma", "Luxemburgo"=>"Luxembourgo", "Bélxica"=> "Bruselas", "Holanda"=>"Amsterdam");
-$test = [1, 2, 3];
-echo $test[1] . " ";
 asort($europa);
 
+
+    echo "<br> <strong>métdodo 1 for eache con valor y clave </strong> <br>" ;
 foreach ($europa as $valor => $clave) {
     echo "A  capital de $valor é $clave <br>";
 }
 
 // OPTION DOS // no funciona!!!! linea 21
-echo "echo europa 1 " . $europa[1] . "<br>";
-
+echo "<br> <strong>métdodo 2 forloop </strong> <br>" ;
 $keys = array_keys($europa);
 $values = array_values($europa);
+
+for ($i = 0; $i < 4;$i++) {
+    echo "A capital de $keys[$i] é $values[$i] <br>";
+}
+
+echo "<br> <strong>métdodo 3 for eaches </strong> <br>" ;
+
+foreach ($keys as $b) {
+    echo "echo a array keys " . $b . "<br>";
+}
 foreach ($values as $a) {
-    echo $a . "<br>";
+    echo "echo a array values " . $a . "<br>";
 }
     
 echo "echo values " . $values[1]  . "<br>";
