@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <style>
+    td { text-align: center;
+    }
+    #data { text-align: left;
+        
+        }
+    
+    </style>
+</head>
+<body>
+
+
 <?php
 
 $encabezado = ['cod_alumno', 'Datos Persoais', 'Lingua', 'Mates'];
@@ -7,7 +23,7 @@ $encabezado = ['cod_alumno', 'Datos Persoais', 'Lingua', 'Mates'];
 
 
  
-echo "<table border='1' cellspacing='1'>";
+echo "<table border='1' cellspacing='1' align='center'>";
 // LLamamos encabezado con foreach
 echo "<tr>";
     foreach ($encabezado as $cabeza) {
@@ -57,7 +73,7 @@ for ($i = 0; $i < 3; $i++) {
     }
     
     if ($i === 1) {
-        echo "<td>";
+        echo "<td id='data'>";
         foreach ($notas['Datos'] as $trese => $keyese) {
         
         echo $trese . $keyese . "<br>";
@@ -88,24 +104,18 @@ A nota mais alta do grupo en lingua é 9, obtida por o alumno Marcos Mundstock
 o alumno coa media mais alta do grupo é Daniel Rabinovich, coa nota media de 8,5
 */
 
-// MATERIAS:
-// sort ($notas['Materias') clave ()notas en orden mas a menos por cada una
-// hacer media y luego = sort same pero haciendo media entre ambas y en orden
-
-
-
 
 echo "<br>" . $al01['Materias']['Mates'] . "<br>"; // Print 9
-function mate() {
-$al01Keys = array_keys($al01); 
-echo " $al01Keys[2]" . "<br>"; // Print Id, Datos MATERIAs 0 1 2
 
-$materias = array_keys($al01[$al01Keys[2]]); 
-echo " $materias[1]" . "<br>"; // Print MATERIAs Lingua y Mates 0 1
+$alKey = array_keys($al01); 
+echo " tost $alKey[2]" . "<br>"; // Print Id, Datos MATERIAs 0 1 2
 
-$hola3 = array_keys($al01[$al01Keys[1]]) ; 
+$materias = array_keys($al01[$alKey[2]]); // Busca 3er puesto de las primeras keys
+echo " tes $materias[1]" . "<br>"; // Print MATERIAs Lingua y Mates 0 1
+
+$hola3 = array_keys($al01[$alKey[1]]) ; 
 echo " $hola3[1]" . "<br>"; // Print Nome Apelidos Idade
-}
+
 
 
 //foreach ($notas['Materias'] as $Mat => $Num) {
@@ -133,7 +143,7 @@ echo "El orden alfabético de los alumnos es: " . Alphanum($al01, $al02, $al03) 
 ///////////////////
 /////////////////// ORDEN NOTA
 
-echo "A nota máis alta do grupo en $materias[0] é ". $al01['Materias'][$materias[0]] . ", obtida por o alumno __"; //// EXAMPLE
+
 //Ahora en funcion
 function notAlta($alum1, $alum2, $alum3) {
     $alumNotas =  
@@ -141,9 +151,9 @@ function notAlta($alum1, $alum2, $alum3) {
             $alum2['Materias']['Lingua: '] . ", " . 
             $alum3['Materias']['Lingua: '];  
     $exploded = explode(", ", $alumNotas);
-    echo $exploded[0] . "<br>";
+    
     rsort($exploded);
-        echo $exploded[0]. "<br>";
+        
 
     
     $listaAl = [$alum1, $alum2, $alum3];
@@ -168,3 +178,7 @@ echo "A nota máis alta do grupo en $materias[0] é " . notAlta($al01, $al02, $a
 
 
 ?>
+
+
+</body>
+</html>
