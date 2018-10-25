@@ -1,0 +1,68 @@
+Arrays 1
+Declare e inicialice o array cor así:
+$cor = array(‘branco', 'verde', 'vermello', 'azul');
+E que usando os valores dese array mostre:
+“O ceo azul estaba cuberto por algunhas nubes de cor negro, e outras de cor branco, que ameazaban con chorar sobre o verde campo”
+
+Arrays 2
+Declare e inicialice o array cor así:
+$cor = array(‘branco', 'verde', 'vermello', 'azul');
+Debe mostrar como saída
+* azul
+* branco
+* verde
+* vermello
+
+Arrays 3
+Declare e inicialice o array euopa así:
+$europa = array( "Italia"=>"Roma", "Luxemburgo"=>"Luxembourgo", "Bélxica"=> "Bruselas", "Holanda"=> "Amsterdam")
+Debe mostrar como saída:
+A  capital de Holanda é Amsterdam
+A  capital de Bélxica é Bruselas
+A capital de Luxemburgo é Luxemburgo
+A  capital de Italia é Roma
+
+Pista --> asort
+
+
+Arrays 4
+Investiga qué é JSON
+Explica que fai o seguinte código:
+“<?php
+function w3rfunction($value,$key)
+{
+echo "$key : $value"."\n";
+}
+$a = '{"Title": "PHP Unit",
+"Author": "Sebastian Bergmann",
+"Detail":
+{ 
+"Publisher": "Autoedicion"
+ }
+  }';
+$j1 = json_decode($a,true);
+array_walk_recursive($j1,"w3rfunction");
+?>”
+
+
+Arrays 5
+Declare e inicialice o array así:
+$array=array("Sofia"=>"31","Jacobo"=>"41","William"=>"39","Raul"=>"40");
+Debe mostrar o array odeado:
+a) ascendentemente por valor --> asort
+b) ascendentemente por clave  --> ksort
+c) descendentemente por valor --> arsort
+d) ascendentemente por clave --> krsort
+
+Arrays 6
+Mostre os números entre 200 e 250 divisbles entre catro, sen usar bucles
+Saída: 200,204,208,212,216,220,224,228,232,236,240,244,248
+Pista: implode
+
+Arrays 7
+Elimina entrada duplicadas dun array o que se lle indica o valor a examinar
+Exemplo de entrada : $numbers = array(4, 5, 6, 7, 4, 7, 8); Preguntase polo 7
+Exemplo de saída: 4,5,6,4,8
+
+Arrays 8 a 10
+Propón e soluciona tres exercicios nos que se faga uso de funcións relacionadas con Arrays. Creatividade ó poder!
