@@ -1,67 +1,32 @@
+
 <?php
-$al01 = array('ID ' => 'A01', 
-        'Datos' => array(
-            'Nome: ' => 'Daniel',
-            'Apelidos: ' => 'Rabinovich', 
-            'Idade: ' => '17'), 
-        'Materias' => array(
-            'Lingua: ' => 8, 
-            'Mates' => 9));
 
+ for( $b = 0; $b < 3; $b++ ) { // Loop nivel 3
+	 for( $a = 0; $a < 5; $a++ ) { // Loop nivel 2
+         echo " publish nivel 2 \$a  " . $a . "<br>";
+         for( $i = 0; $i < 10; $i++ ) { // Loop nivel 1
+              echo " publish nivel 1 \$i  " . $i . "<br>";
+                 if ($i == 2) {
+                     break 2; // Break detiene, desde $i == 2, toda ejecución del loop nivel 1
+                     echo "\$i de nivel 1: " . $i . "<br>";
+                 } 
+             echo "fuera IF \$i de nivel 1: " . $i . "<br>";
+         }
+        echo "\$a de nivel 2: " . $a . "<br>";
+		echo "end of loop <br>"; // Se sigue ejecutando esta linea que pertenece a loop nivel 2
+ 	}
+     echo "\$b de nivel 3: " . $b . "<br>";
+ }
+echo "test magic quotes '' \"";
+/**
+Break 1 Desde la linea detiene todo el nivel 1 del BREAK para abajo
+Break 2 Desde la linea detiene todo el nivel 2 del BREAK para abajo
+Break 3 Desde la linea detiene todo el nivel 3 del BREAK para abajo
 
-$al02 = array('ID ' => 'A02', 
-        'Datos' => array(
-            'Nome: ' => 'Marcos',
-            'Apelidos: '=>'Mundstock', 
-            'Idade: '=>'18'), 
-        'Materias' => array(
-            'Lingua: '=> 9, 
-            'Mates'=> 7));
-
-
-$al03 = array('ID ' => 'A03', 
-        'Datos' => array(
-            'Nome: ' => 'Carlos',
-            'Apelidos: ' => 'Loper Puccio', 
-            'Idade: ' => '16'), 
-        'Materias' => array(
-            'Lingua: ' => 6, 
-            'Mates' => 10));
-
-
-function alGenerator($a01) {
-echo "empezamos " . "<br>" ;
-for ($i = 0; $i < 3; $i++) {
-    if ($i === 0) {
-        echo "<tr><td>";
-        echo "alumno ID: " . $a01['ID '] . " y test: " . array_search($a01["ID "], $a01) . "<br> </td>"; /////// PRINTEA EL VALOR Y LUEGO LA CLAVE!
-    }
-    echo "<br>";
-    if ($i === 1) {
-          echo "<td>";
-        foreach ($a01['Datos'] as $trese => $keyese) { /// PRINTEA EL ARRAY DENTRO DE $A
-        
-        echo "foreach de $ a01[1] " . $trese . " y " . $keyese . "<br>";
-       
-        }
-         echo "</td>";
-    }
-    echo "<br>";
-    if ($i === 2) {
-        
-        foreach ($a01['Materias'] as $Ae => $keyo) {
-            echo "<td>";
-    echo "foreach de $ ao1 key " . $keyo . "<br>"; ///PRINTEA el $A sin [3]
-            echo "</td>";
-} 
-    }
-}
-    };
-alGenerator($al03);
-
-
-
-
+Continue detiene la ejecución actual y continúa la siguiente del loop/nivel selecionado (1)
+Continue  === Continue 1
+Continue 2 Continue detiene la ejecución actual y continúa la siguiente del loop/nivel selecionado (2)
+*/
 
 
 ?>
