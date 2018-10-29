@@ -7,7 +7,6 @@ c) converte a primeira letra da oración en maiúscula
 d) converte a primeira letra de cada palabra da oración a maiúsculas
 */
 
-
 $a = "hola buenos dias";
 // Para pasar a mayúsculas usaremos 'strtoupper', para minúsculas 'strtolower'
 echo "a) " . strtoupper($a) . "<br>";
