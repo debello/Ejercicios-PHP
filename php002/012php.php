@@ -1,49 +1,47 @@
 <?php
 
-/*
-Chop Chop ; rtrim etc cortar cosas
+/**
 Messengizar el nombre: *__++***^^^¡¡¡'''PEpitoxx''''¡¡¡¡¡^^^^****_____+
-Cambiar texto de contenido por palabras (gatificar), sin vocales.... etc
-Coger una cadena donde haya varios puntos (github.io.com) y escoger la primera, media y ultima parte de forma separada, y las dos primeras y las dos ultimas
+Dado un nombre deberemos 'Messengizarlo' Osea escribirlo con alguna coletilla y también con símbolos distintos tanto en la izquierda como en la derecha del nombre
+ie: Dado el nombre Pepe conseguir '*__++***^^^¡¡¡'''PEpitoxx''''¡¡¡¡¡^^^^****_____+'
 */
 
 $nombre = "Pepe";
 $nombre1 = "Pepe";
-$buengusto = "__--++**^^!!";
+$prefijo = "__--++**^^!!";
+$sufijo = strrev($prefijo); // invertimos el prefijo, el cual usaremos como sufijo
 
-$gustoinvertido = strrev($buengusto);
+// Podemos poner stroupper para usar mayúsculas en todo el string
+echo "<strong>Primer ejemplo posible: </strong>" . $prefijo . strtoupper($nombre) . $sufijo . "<br>";
 
-echo $gustoinvertido . "<br>";
-
-echo $buengusto . strtoupper($nombre) . $gustoinvertido . "<br>";
-
-$nombre[3] = "ito" . "<br>";
-echo $nombre . "<br>";
 $ito = "itoxxx";
-
-    for ($i = 3; $i < strlen($ito) +3; $i++ ) {
+    // Por cada [Longitud de Pep + itoxxx], empezando desde 3(Pep)...
+    // Introducimos i t o x x x después de Pep
+    for ($i = 3; $i < strlen($ito) + strlen('Pep'); $i++ ) {
         $nombre[$i] = ($ito[$i - 3]) . "<br>";
 
         }
-echo $nombre . "<br>";
+echo "<strong>Nombre con itoxxx:</strong> $nombre <br><br>";
 
-// OTRA Forma de hacer lo anterior
+// ALTERNATIVA
+// Insertamos i t o x x x en $nombre1, [3], justo después de p de Pep
 $nombre1[3] = "i";
 $nombre1[4] = "t";
 $nombre1[5] = "o";
 $nombre1[6] = "x";
 $nombre1[7] = "x";
-echo $nombre1 . "<br>";
+echo "<strong>Alternativa - Nombre con itoxxx añadido elemento a elemento: </strong>$nombre1 <br>";
 
 // Sustituír letras (vocales) por otras (vocales mayúsculas)
 $vocalesnombre = ["e", "i", "o"];
 $vocalesMayus = ["E", "I", "O"];
-$ificado = str_replace($vocalesnombre, $vocalesMayus, $nombre);
-echo $ificado . "<br>";
+$mayusMenus = str_replace($vocalesnombre, $vocalesMayus, $nombre);
+echo "Nombre con las vocales Mayúsculas: " . $mayusMenus . "<br>";
 
 // Juntando todo
-echo $buengusto . strtoupper($nombre) . $gustoinvertido . "<br>";
-echo $buengusto . $ificado . $gustoinvertido . "<br>";
+echo "<br>Resultado final: <br>";
+echo $prefijo . strtoupper($nombre) . $sufijo . "<br>";
+echo $prefijo . $mayusMenus . $sufijo . "<br>";
 
 
 ?>
