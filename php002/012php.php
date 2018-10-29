@@ -1,6 +1,6 @@
 <?php
 
-/**
+/** EJERCICIO 2
 Messengizar el nombre: *__++***^^^¡¡¡'''PEpitoxx''''¡¡¡¡¡^^^^****_____+
 Dado un nombre deberemos 'Messengizarlo' Osea escribirlo con alguna coletilla y también con símbolos distintos tanto en la izquierda como en la derecha del nombre
 ie: Dado el nombre Pepe conseguir '*__++***^^^¡¡¡'''PEpitoxx''''¡¡¡¡¡^^^^****_____+'

@@ -10,7 +10,7 @@ $ruta = "Asociacionmadrid@gmail.es";
 $rutaArray = explode("@", $ruta);
 echo "<strong>Método explode:</strong> " . $rutaArray[0] . "<br>";
 
-// Alternativa
+// ALTERNATIVA
 $arrobaPos = strpos($ruta, "@"); // Localizamos posición del @
 // Substraemos desde el inicio hasta la posición del @
 echo "<strong>Método strpos + substr:</strong> " . substr($ruta, 0, $arrobaPos) . "<br>";

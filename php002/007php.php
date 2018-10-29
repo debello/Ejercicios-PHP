@@ -7,7 +7,6 @@ $cadenaArr = explode(" ", $cadena);
 
 // Sustituímos el primer elemento (Este) por Aquel
 $cadenaArr[0] = "Aquel"; // 
-echo "<br>";
 
 // Reconvertimos en String otra vez
 $cadenaAgain = implode(" ", $cadenaArr);

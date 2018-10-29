@@ -27,6 +27,8 @@ Continue detiene la ejecución actual y continúa la siguiente del loop/nivel se
 Continue  === Continue 1
 Continue 2 Continue detiene la ejecución actual y continúa la siguiente del loop/nivel selecionado (2)
 */
+sdfsadf;asdfasdfsadfuidsfa dfas
+    echo hola 
 
 
 ?>
