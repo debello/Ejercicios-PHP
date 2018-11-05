@@ -1,5 +1,5 @@
 <?php
-    setcookie("last_visit", date("c"), (time() + 60 * 60 * 24 * 30);
+    setcookie("last_visit", "primero", (time() + 60 * 60 * 24 * 30));
     
 
 ?>
