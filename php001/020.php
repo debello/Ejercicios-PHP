@@ -14,8 +14,13 @@ $a10 = $_GET['a10'];
 // Después de obtener los 10 input (números) escogidos por el cliente, los añadimos a un array llamado $num
 $num = [$a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10];
 
+if (in_array("", $num)) { 
+    echo "valor no introducido";
+    }
+else {
 // Imprimimos los 10 números
 for ($i = 0; $i<10; $i++) {
+
 
 // Si el num máximo del los 10 del array $num coincide con el $num que se está imprimiendo en este momento ($num[$i])...
 // Imprime "Es el máximo" junto a dicho numero
@@ -33,5 +38,8 @@ for ($i = 0; $i<10; $i++) {
        echo $num[$i] . "<br>";
     }
 }
+}
+    
+
 
 ?>

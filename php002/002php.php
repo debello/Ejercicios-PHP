@@ -5,7 +5,7 @@ Divida a cadea separando por dous puntos (o que puidera ser un formato hh:mm_ss)
 Exemplo de entrada : '092402' --> 	Exemplo de saída : 09:24:02
 */
 
-$number = 438923242;
+$number = 438923;
 
 echo "Divida la cadena $number separando por dos puntos (ex: 190239 -> 19:02:39) <br>"; 
 
