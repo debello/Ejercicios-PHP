@@ -31,8 +31,4 @@ foreach ($array as $value => $clave) {
     echo $value . "=>" . $clave . "<br>";
 }
 
-<<<<<<< HEAD
-?>
-=======
-?>
->>>>>>> cf9787488b58bb74f50f648a928a0080590e655f
+
