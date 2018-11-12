@@ -12,6 +12,7 @@ echo "<br><strong> Aquí tenemos el array principal </strong><br>";
 foreach ($numbors as $n) {
     echo " $n ";
 }
+echo "<br>";
 
 // Array para el futuro. Registraremos en qué partes del array localizamos los 7.
 $location = [];
@@ -48,19 +49,37 @@ foreach ($new as $n) {
     echo " $n ";
 }
 
-// No está perfecto! Sigue teniendo la clave 3 (donde había un 7) unexistente
-// Recolocamos $new en una nueva variable $newo para que las claves cuenten de de 0 a 5 sin que falte ningun número
-
-foreach ($new as $n) {
-    $newo[] = $n;
-}
-echo "<br>";
-echo "<br>Esta es \$new (el <strong>Resultado</strong>), cuya <strong>clave 3 no existe: </strong>";
-print_r($new);
-echo "<br>Esta es \$newo, con las claves ordenadas de 0 a 5: ";
-print_r($newo);
 
     
 // NOTA: Probablemente haya una forma más fácil de hacerlo...
+
+
+
+
+// OPTION 2 :
+
+$num2 = [2, 5, 62, 5, 7, 42, 7, 7, 52, 48, 6, 6, 6, 6, 7, 5, 10, 10, 7, 5];
+
+function BorrarDuplicado($x, $array) {
+// La primera repetición del número deseado (Esta NO la borraremos)
+$firstDuplicate = array_search("$x", $array);
+$num2Length = (count($array) -1);
+
+
+for ($i = 0; $i < $num2Length; $i++){
+    // Si los elementos del array NO son 7 ni es la primera repetición del 7, los quitamos
+     if ($array[$i] === $x && $i != $firstDuplicate){
+        unset($array[$i]);
+     }
+}
+    return $array;
+}
+$num2Limpio = BorrarDuplicado(7, $num2);
+
+echo "<br> <br> <strong>OPCION 2</strong>: <br>";
+foreach ($num2Limpio as $l) {
+    echo "$l ";
+}
+
 
 ?>
