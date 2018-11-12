@@ -71,7 +71,7 @@ for ($i = 0; $i < $num2Length; $i++){
      if ($array[$i] === $x && $i != $firstDuplicate){
         unset($array[$i]);
      }
-}
+}   
     return $array;
 }
 $num2Limpio = BorrarDuplicado(7, $num2);
@@ -80,6 +80,7 @@ echo "<br> <br> <strong>OPCION 2</strong>: <br>";
 foreach ($num2Limpio as $l) {
     echo "$l ";
 }
+
 
 
 ?>
