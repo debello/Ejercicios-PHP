@@ -7,7 +7,7 @@ FUNCTION - BORRA UN NUMERO DUPLICADO ESCOGIDO DENTRO DE UN ARRAY
 
 
 // El array que usaremos
-$numbors = [2, 5, 62, 5, 42, 52, 48, 6, 6, 6, 6, 7, 5, 10, 10, 5];
+$numbors = [2, 5, 62, 5, 7, 42, 7, 7, 52, 48, 6, 6, 6, 6, 7, 5, 10, 10, 7, 5];
 echo "<br><strong> Aquí tenemos el array principal </strong><br>";
 foreach ($numbors as $n) {
     echo " $n ";
@@ -63,7 +63,7 @@ $num2 = [2, 5, 62, 5, 7, 42, 7, 7, 52, 48, 6, 6, 6, 6, 7, 5, 10, 10, 7, 5];
 function BorrarDuplicado($x, $array) {
 // La primera repetición del número deseado (Esta NO la borraremos)
 $firstDuplicate = array_search("$x", $array);
-$num2Length = (count($array) -1);
+$num2Length = (count($array));
 
 
 for ($i = 0; $i < $num2Length; $i++){
@@ -74,7 +74,7 @@ for ($i = 0; $i < $num2Length; $i++){
 }
     return $array;
 }
-$num2Limpio = BorrarDuplicado(7, $num2);
+$num2Limpio = BorrarDuplicado(5, $num2);
 
 echo "<br> <br> <strong>OPCION 2</strong>: <br>";
 foreach ($num2Limpio as $l) {
