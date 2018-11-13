@@ -9,8 +9,8 @@ Debe mostrar como saída
 * vermello
 */
 $cor = array('branco', 'verde', 'vermello', 'azul');
-$corOrden = [3, 0, 1, 2]; // Sólo se usa en OPCION 2
 
+echo "<strong>OPCION 1</strong><br>";
 // Creamos un for para usar $i que incrementaré de 0 a 4
 for ($i = 0; $i < sizeof($cor); $i++) {
     // Switch para escoger, en cada incremento de 0 a 4, qué imprimiremos
@@ -31,6 +31,8 @@ for ($i = 0; $i < sizeof($cor); $i++) {
 }
 
 // OPCION 2
+echo "<br><br><strong>OPCION 2</strong><br>";
+$corOrden = [3, 0, 1, 2]; // De 0 a 3, asignamos cada número al orden que usaremos
 
 for ($i = 0; $i < sizeof($cor); $i++) {
     // Imprimimos el array cor en el orden (3, 0, 1, 2) el cual definimos anteriormente

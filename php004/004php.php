@@ -30,8 +30,4 @@ array_walk_recursive($j1,"w3rfunction");
 
 
 
-
-
-
-
 ?>

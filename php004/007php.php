@@ -8,13 +8,13 @@ FUNCTION - BORRA UN NUMERO DUPLICADO ESCOGIDO DENTRO DE UN ARRAY
 
 // El array que usaremos
 $numbors = [2, 5, 62, 5, 7, 42, 7, 7, 52, 48, 6, 6, 6, 6, 7, 5, 10, 10, 7, 5];
-echo "<br><strong> Aquí tenemos el array principal </strong><br>";
+echo "<br><strong> Aquí tenemos el array principal (Buscamos eliminar los 5) </strong><br>";
 foreach ($numbors as $n) {
     echo " $n ";
 }
 echo "<br>";
 
-// Array para el futuro. Registraremos en qué partes del array localizamos los 7.
+// Array para más adelante. Registraremos en qué partes del array localizamos los 5.
 $location = [];
 
 function ReducirDuplicadoSeleccionado($x, &$numbers){
@@ -37,7 +37,7 @@ function ReducirDuplicadoSeleccionado($x, &$numbers){
             $numbers[$location[sizeof($location)-1]] = $x;
         }
 
-    ksort($numbers);
+    ksort($numbers); // Ordenamos las casillas del array
     return $numbers;
     
 }
@@ -50,24 +50,21 @@ foreach ($new as $n) {
 }
 
 
-    
-// NOTA: Probablemente haya una forma más fácil de hacerlo...
 
-
-
-
-// OPTION 2 :
+///////// OPCION 2 
+////////
 
 $num2 = [2, 5, 62, 5, 7, 42, 7, 7, 52, 48, 6, 6, 6, 6, 7, 5, 10, 10, 7, 5];
 
 function BorrarDuplicado($x, $array) {
-// La primera repetición del número deseado (Esta NO la borraremos)
+    
+// La primera repetición del número escogido (Esta NO la borraremos)
 $firstDuplicate = array_search("$x", $array);
-$num2Length = (count($array));
+$num2Length = (count($array)); // Almaceno esto en una variable aparte porque puesto dentro del for loop me da problemas...
 
 
 for ($i = 0; $i < $num2Length; $i++){
-    // Si los elementos del array NO son 7 ni es la primera repetición del 7, los quitamos
+    // Si los elementos del array SON 7 Y si NO es la primera repetición del 5, los quitamos
      if ($array[$i] === $x && $i != $firstDuplicate){
         unset($array[$i]);
      }

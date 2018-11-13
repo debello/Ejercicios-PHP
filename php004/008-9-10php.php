@@ -1,8 +1,9 @@
 <?php
 
 /** EJERCICIO 8:
-En un multiarray, consigue la clave y el valor de cada array
+En un multiarray, consigue la clave y el valor de cada array y muéstralo por separado
 */
+
 echo "<br><strong>EJERCICIO 8: </strong></br>";
 $arr = [   
         "Nombre_Completo" => 
@@ -17,9 +18,9 @@ $arr = [
 
 
 // Obtenemos las claves (Nombre_Completo, Colores..., Animales... Lenguas...)
-$arrKeys = array_keys($arr); //obtenemos las keys
+$arrKeys = array_keys($arr); 
 
-echo "<br> ArrKeys: <br>";
+echo "<strong>ArrKeys:</strong> <br>";
 foreach($arrKeys as $a) {
     echo "$a, ";
 }
@@ -55,12 +56,12 @@ foreach($arrValuesLenguas as $a) {
 
 
 /** EJERCICIO 9:
-Hundir la flota - inserta valores (numeros )en una matriz (nuestro barco)
-Sustituye, de forma aleatoria "disparando" al array, cada número por la palabra HUNDIDO.
-Contar cuántas veces has necesitado "disparar" para sustituír todo el array.
+Hundir la flota - inserta valores (numeros)en una matriz (nuestro barco)
+Sustituye cada elemento de forma aleatoria por la palabra HUNDIDO.
+Contar cuántas veces has necesitado "disparar"(sustituír cada elemento) para sustituír todo el array.
 Ejemplo:
 Tenemos el array(2, 2, 2, 2, 2, 2, 2, 2, )
-Lo sustituímos por = array/(hundido, hundido, hundido, hundido, hundido, hundido, hundido...)
+Lo sustituímos por array(hundido, hundido, hundido, hundido, hundido, hundido, hundido, hundido)
 Contamos cuántas veces hemos usado array_rand para sustituír todos los números del array
 
 */
@@ -100,6 +101,8 @@ $muestra = [Caballo, BMW, Servidores, Cliente, Ferrari, Gato, Perro, Interfaz, P
 $animales = [Caballo, Gato, Perro];
 $coches = [BMW, Ferrari, Peugeot];
 $asignaturas = [Servidores, Cliente, Interfaz];
+
+Queremos como resultado el array de $muestra pero ordenado por orden de Animales, Coches y Asignaturas
 */
 
 $muestra = ['Caballo', 'BMW', 'Servidores', 'Cliente', 'Ferrari', 'Gato', 'Perro', 'Interfaz', 'Peugeot'];
@@ -120,7 +123,6 @@ $cubo = []; // Aqui Recogeremos dónde se localiza cada Animal, Coche y Asignatu
         }
 
             
-  
         for ($a = 0; $a < 3; $a++){
         $cubo[] = array_search($asignaturas[$a], $muestra); ;
         }
