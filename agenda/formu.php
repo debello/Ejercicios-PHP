@@ -1,27 +1,22 @@
 <?php
-$nome = '';
-$var = 'a';
+    if (!empty($_POST['personas'])) {
+        echo "POST personas is set";
+        $array = explode(", ", $_POST['personas']);
+        echo "<br> array: $array[0] $array[1]";
+    }
+    else {
+        echo "POST personas is NOT set";
+        $array = [];
+        $pos = 0;
+    }
 
-if (isset($_GET[$var])) {
-$_GET['gat'] = $_GET[$var];
-$_GET[rand(0,1000)] =  $_GET[$var];
-$una = $_GET["gat"];
+        echo "<br> nombre:" . $_POST['nombre'];
 
-           echo "<br>test GET_GAT " . $_GET["gat"] . "and name1: " . $una;
-    echo "<br>get var: $_GET[$var]<br>" . " and var: $var";
-
-    //$_GET['got'] = $name1;
-    //$name1 = rand(0,1000);
-    //$var = rand(0,1000);
-    //echo "test " . $_GET["gat"], $name1;
-}
-
-/**    $nome = $_GET['nombre1'];
-    $test[] = $nome;
-    echo "$test[0] y $test[1]";
-    unset($_GET['nombre1']);
-**/
-    
+//foreach ($_SESSION as $k) {
+//    echo "<br> $k, <br>"; 
+//}
+ 
+$nome = $_POST['nombre'];
 
 ?>
 
@@ -39,40 +34,22 @@ $una = $_GET["gat"];
 <h3>AGENDA</h3>
 
 
-    <form action="" method="GET">
+
+    <form action="" method="POST">
 
         
 
         <p> Introduzca un Nombre</p>
-                <input type="text" name="<?php echo $var; ?>" value="<?php echo $nome; ?>" /><br>
+                <input type="text" name="nombre"/><br>
+                <input type="hidden" name="personas" value="<?php echo $nome; ?>" /><br>
             
-        <input type="submit" name="sub" />
+            <input type="submit" name="sub" />
     </form>
 
 
 <?php
-
-// la variable seteada $var en ABC por ejemplo
-// Guardamos ese valor en $name1
-    
-echo "<br>get var: $_GET[$var]<br>" . " and var: $var";
-$name1 = $_GET[$var];
-$_GET[$var] = "lol";
-$var = rand(0, 10000);
-
-
-// convertimos $var en un num random    
-    
-/**    
-$_SESSION['word'] = $_GET['nombre1'];
-$test1 = $_SESSION['word'];
-       unset($_GET['nombre1']);
-echo "test testuno " . $test1 . "<br>";
-  echo "$test[0] y $test[1]";
-      $nome = $_GET['nombre1'];
-echo "test nome : $nome";
-**/
-
+$test = $_POST['nombre'];
+$_POST['personas'] = $test;
 
 
 
