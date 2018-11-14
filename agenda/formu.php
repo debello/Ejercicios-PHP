@@ -9,6 +9,8 @@
         foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
             $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
         }
+        
+        
         $countArray = count($array1);
         // Separamos Nombres de Teléfonos
         for ($i = 0; $i < $countArray; $i++){
@@ -24,6 +26,7 @@
         
         // Combinamos ambos para que quede Clave -> Valor (Nombre -> Telefono)
         $arrayEnd = array_combine($arrayNames, $arrayNumbers);
+        $arrayEnd2 = $arrayEnd;
     
     }
 
@@ -149,31 +152,54 @@ echo "<tr>
         <th>Nombre</th>
         <th>Telefono</th>
       <tr>";
+// SI es un nombre Repetido, copia y pega el valor en la primera casilla
 
-    foreach ($arrayEnd as $k => $v) {
-        if (empty($k)){
-            echo "casilla vacia";
-            break;
-        }
+uksort($arrayEnd, 'strnatcasecmp');
+
+$keys = array_keys($arrayEnd); // 0, 1, 2 : b c a (orden of insert)
+$values = array_values($arrayEnd); // 0, 1: a b c
+    
+$keys1 = array_keys($arrayEnd2);    
+$values1 = array_values($arrayEnd2);    
+
+    
+for ($i = 0; $i < $numGets; $i++){
+    // if empty key[]
+    if (empty($keys1[$i])){
         
-        else {
-            if (!empty($k) && !empty($v)) {
-                if (in_array($k, $arrayNames, true)) {
-                    $searcho = array_search($k, $arrayNames);
-                    print_r($searcho);
-                    echo " test <br> ";
-                    print_r($arrayEnd[$searcho]);
-                    unset($arrayEnd[$searcho]);
-                    echo "<tr><td>$k</td><td>$v</td></tr>";
-                }
-                else {
-                    echo "<tr><td>teso$k</td><td>$v</td></tr>";
-                    
-                }
-        }
     }
-}
+    if (!empty($keys1[$i])){
+        $keyo = $_POST['nombre'];
+        $valuo = $_POST['telf'];
+        
+        if ($keyo === $keys[$i]) {
+            $values[$i] = $valuo;
+            echo "coincide<br> echo values $values[$i] y tambien $valuo";
+        }    
+                echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>"; 
+               
+            }
+        }
+    
+        //echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";   
+        
 
+     // unset key
+    // if not empty
+     // imprimimos
+
+    
+    
+    
+
+print_r($keys);
+echo "<br>";
+print_r($values);
+echo "<br>";
+print_r($keys1);
+echo "<br>";
+print_r($values1);
+    
 
 
 echo "</table>";
@@ -198,5 +224,6 @@ echo "</table>";
 ?>
 </body>
 </html>
+
 
 
