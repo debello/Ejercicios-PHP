@@ -1,29 +1,34 @@
 <?php
 
-    if (!empty($_POST['nombre']) && !empty($_POST['telf'])) { // Si hemos introducido un valor en la casilla...
+    if (!empty($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
 
         
         foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
             $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
         }
         $countArray = count($array1);
+        // Separamos Nombres de Teléfonos
         for ($i = 0; $i < $countArray; $i++){
-            if ($i % 2 === 0) {
+            if ($i % 2 === 0) { // Los pares serán nombres. Los pasamos a $arrayNames
                 $arrayNames[] = $array1[$i];
             }
-            else {
+            else { // Quedan los impares. Los pasamos a $arrayNumbers
                 $arrayNumbers[] = $array1[$i];
             }
         }
-
-        $arrayEnd = array_combine($arrayNames, $arrayNumbers);
-        foreach ($arrayEnd as $k => $v) {
-            echo "$k to $v, <br>";
+        if (in_array(null, $arrayNames, true)){
+            echo "hay uncampo vacio";
         }
+        // Combinamos ambos para que quede Clave -> Valor (Nombre -> Telefono)
+        $arrayEnd = array_combine($arrayNames, $arrayNumbers);
     }
 
+
+
+
     else { // Recién entremos en la página. 
-        echo "POST personas is NOT set"; // Carga el array vacío para que simplemente el código no de problemas.
+        // Carga el array vacío para que simplemente el código no muestre avisos.
+        echo "Introduzca ambos campos";
         $array1 = [];
         $arrayEnd = [];
         
@@ -40,8 +45,22 @@
 <head>
 <meta charset="UTF-8">
 </head>
+    <style>
+        #test {
+            background-color: red;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+        }
+        .formu {
+            position: relative;
+            top: 20px;
+            left: 500px;
+        }
+    </style>
 <body>
-<h3>AGENDA</h3>
+<div class="formu">
+    <h3>AGENDA</h3>
 
 
 
@@ -51,17 +70,17 @@
         <input type="text" name="nombre"/><br>
         <input type="text" name="telf"/><br>
         <input type="submit" />
-        
+</div>        
     <?php
     
-    print_r($array1);
+    
         
 
     //Contador de cantidad de $_POST que tenemos. Empezamos por 2 y queremos que la cantidad sea 1 (Por eso le restamos 1).
-    $numGets = (count($_POST)) * 0.5 + 1; 
-    $numGets1 = $numGets - 1;
+    $numGets = (count($_POST)) * 0.5; 
+    
 
-print_r($numGets);
+
     /**
     Nuestra estrategia es;
 
@@ -80,7 +99,7 @@ print_r($numGets);
     $a = 0;
     $b = 1;
 
-    for ($i = 0; $i < $numGets1; $i++) { // Crearemos inputs "hidden" cada vez que introduzcamos un valor(aumentemos en uno la cantidad de $_POST[])
+    for ($i = 0; $i < $numGets; $i++) { // Crearemos inputs "hidden" cada vez que introduzcamos un valor(aumentemos en uno la cantidad de $_POST[])
         if ($i === 0) { // Empezamos enlazando la caja de texto con nuestro primer hidden
                         // name = person0 value = $POST 'nombre'
             echo "<input type='hidden'" . 
