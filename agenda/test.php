@@ -149,31 +149,27 @@ echo "<tr>
         <th>Nombre</th>
         <th>Telefono</th>
       <tr>";
+// SI es un nombre Repetido, copia y pega el valor en la primera casilla
+$keys = array_keys($arrayEnd);
+$values = array_values($arrayEnd);
 
-    foreach ($arrayEnd as $k => $v) {
-        if (empty($k)){
-            echo "casilla vacia";
-            break;
-        }
+for ($i = 0; $i < $numGets; $i++){
+    // if empty key[]
+    if (empty($keys[$i])){
         
-        else {
-            if (!empty($k) && !empty($v)) {
-                if (in_array($k, $arrayNames, true)) {
-                    $searcho = array_search($k, $arrayNames);
-                    print_r($searcho);
-                    echo " test <br> ";
-                    print_r($arrayEnd[$searcho]);
-                    unset($arrayEnd[$searcho]);
-                    echo "<tr><td>$k</td><td>$v</td></tr>";
-                }
-                else {
-                    echo "<tr><td>teso$k</td><td>$v</td></tr>";
-                    
-                }
-        }
     }
-}
+    if (!empty($keys[$i])){
+    echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";    
+    }
+     // unset key
+    // if not empty
+     // imprimimos
 
+    
+    
+    
+}
+print_r($keys);
 
 
 echo "</table>";
@@ -198,5 +194,6 @@ echo "</table>";
 ?>
 </body>
 </html>
+
 
 
