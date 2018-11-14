@@ -1,6 +1,9 @@
 <?php
 
-    if (!empty($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
+    if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
+    //    if (in_array("", $_POST, true)){
+      //      echo "hay un campo vacio";
+    //}
 
         
         foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
@@ -16,13 +19,13 @@
                 $arrayNumbers[] = $array1[$i];
             }
         }
-        if (in_array(null, $arrayNames, true)){
-            echo "hay uncampo vacio";
-        }
+    
+
+        
         // Combinamos ambos para que quede Clave -> Valor (Nombre -> Telefono)
         $arrayEnd = array_combine($arrayNames, $arrayNumbers);
+    
     }
-
 
 
 
@@ -32,7 +35,18 @@
         $array1 = [];
         $arrayEnd = [];
         
+    }/////////////////////////////////////////
+//////////////// DESDE AQUI !!!
+//////// Capturar cuando pongamos un espacio en blanco y....
+////////////????????? parar el programa??? pedir que se congele la insercion de array??? etc
+// tipo : if person[countoflastpersona-numGets99] = ""
+// then parar la creacion/insercion etc ???? 
+
+
+        if (in_array("", $arrayNames, true)){
+          echo "hay un campo vacio en names";
     }
+        
 
 
 
