@@ -1,5 +1,11 @@
 <?php
+/** 
+LINEA 170 ??
+Si el nombre está vacío, se mostrará una advertencia. [!!!!!!!!!!!!]
 
+Si el nombre que se introdujo ya existe en la agenda y no se indica número de teléfono, se eliminará de la agenda la entrada correspondiente a ese nombre.
+
+*/
     if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
     //    if (in_array("", $_POST, true)){
       //      echo "hay un campo vacio";
@@ -14,10 +20,10 @@
         $countArray = count($array1);
         // Separamos Nombres de Teléfonos
         for ($i = 0; $i < $countArray; $i++){
-            if ($i % 2 === 0) { // Los pares serán nombres. Los pasamos a $arrayNames
+            if ($i % 2 === 0 && !empty($array1[$i])) { // Los pares serán nombres. Los pasamos a $arrayNames
                 $arrayNames[] = $array1[$i];
             }
-            else { // Quedan los impares. Los pasamos a $arrayNumbers
+            else if ($i % 2 != 0 && !empty($array1[$i])) { // Quedan los impares. Los pasamos a $arrayNumbers
                 $arrayNumbers[] = $array1[$i];
             }
         }
@@ -162,24 +168,34 @@ $values = array_values($arrayEnd); // 0, 1: a b c
 $keys1 = array_keys($arrayEnd2);    
 $values1 = array_values($arrayEnd2);    
 
+        $keyo = $_POST['nombre'];
+        $valuo = $_POST['telf'];
+        print_r($arrayEnd2);
+    
     
 for ($i = 0; $i < $numGets; $i++){
     // if empty key[]
-    if (empty($keys1[$i])){
-        
-    }
-    if (!empty($keys1[$i])){
-        $keyo = $_POST['nombre'];
-        $valuo = $_POST['telf'];
+    //    if (empty($keys1[0])){
+  //          array_push($keys1, $keys1[0]);
+//            unset($keys1[0]);
+ //           array_pop($keys1);
+        if (empty($keys1[0])){
+
+            echo "array end<br>";
+            
+            
+        }
+
+
         
         if ($keyo === $keys[$i]) {
             $values[$i] = $valuo;
             echo "coincide<br> echo values $values[$i] y tambien $valuo";
         }    
                 echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>"; 
-               
-            }
-        }
+}
+            
+        
     
         //echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";   
         
