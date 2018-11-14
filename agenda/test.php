@@ -9,6 +9,8 @@
         foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
             $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
         }
+        
+        
         $countArray = count($array1);
         // Separamos Nombres de Teléfonos
         for ($i = 0; $i < $countArray; $i++){
@@ -24,6 +26,7 @@
         
         // Combinamos ambos para que quede Clave -> Valor (Nombre -> Telefono)
         $arrayEnd = array_combine($arrayNames, $arrayNumbers);
+        $arrayEnd2 = $arrayEnd;
     
     }
 
@@ -150,17 +153,42 @@ echo "<tr>
         <th>Telefono</th>
       <tr>";
 // SI es un nombre Repetido, copia y pega el valor en la primera casilla
-$keys = array_keys($arrayEnd);
-$values = array_values($arrayEnd);
 
+uksort($arrayEnd, 'strnatcasecmp');
+
+$keys = array_keys($arrayEnd); // 0, 1, 2 : b c a (orden of insert)
+$values = array_values($arrayEnd); // 0, 1: a b c
+    
+$keys1 = array_keys($arrayEnd2);    
+$values1 = array_values($arrayEnd2);    
+
+    
 for ($i = 0; $i < $numGets; $i++){
     // if empty key[]
-    if (empty($keys[$i])){
+    if (empty($keys1[$i])){
         
     }
-    if (!empty($keys[$i])){
-    echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";    
-    }
+    if (!empty($keys1[$i])){
+        for ($a = 1; $a < ($numGets); $a++){
+            if ($keys[$a] === 
+                $_POST['nombre']) {
+                $values1[$a] === $_POST['telf'];
+            echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>"; 
+            }
+        else {
+            
+        }
+        }
+        }
+        //echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";   
+        echo "check<br>";
+       
+
+            
+        
+       
+
+   }
      // unset key
     // if not empty
      // imprimimos
@@ -168,8 +196,15 @@ for ($i = 0; $i < $numGets; $i++){
     
     
     
-}
+
 print_r($keys);
+echo "<br>";
+print_r($keys1);
+    echo "<br>";
+print_r($values);
+    echo "<br>";
+print_r($values1);
+    
 
 
 echo "</table>";
