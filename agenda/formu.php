@@ -14,6 +14,9 @@ Si el nombre que se introdujo ya existe en la agenda y no se indica número de t
         foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
             $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
         }
+            foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
+            echo $k, $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
+        }
 
 
         echo "count posts: " . count($_POST) . "<br> and numgets: $numGets <br>";
@@ -205,21 +208,32 @@ for ($i = 0; $i < $numGets; $i++){
 //            unset($keys1[0]);
  //           array_pop($keys1);
 
+/**
+            if ($keyo === $keys[$i] && !isset($valuo)){
+                echo "testeando si se metio nombre pero no numero";
+            }
 
+*/
 
         
         if (isset($keys[$i])) {
-            if ($keyo === $keys[$i]){
-            $values[$i] = $valuo;
+            if ($keyo === $keys[$i]){ // Si el nombre introducido existe en la lista
+                if (isset($values[$i])) { // Y hay un valor en el sorted que buscamos
+            $values[$i] = $valuo; // Cambiamos el valor introducido
             echo "coincide<br> echo values $values[$i] y tambien $valuo";
-        }
+                }
+                if (empty($valuo)){
+                    echo "test: valuo not set";
+                }
+        }}
+        
             echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";     
     }
 
  
                 
         
-}
+
             
 /**
         $numGets = (count($_POST)) * 0.5; 

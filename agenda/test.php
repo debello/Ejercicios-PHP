@@ -1,5 +1,10 @@
 <?php
+/** 
+LINEA 170 ??
 
+Si el nombre que se introdujo ya existe en la agenda y no se indica número de teléfono, se eliminará de la agenda la entrada correspondiente a ese nombre.
+
+*/
     if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
     //    if (in_array("", $_POST, true)){
       //      echo "hay un campo vacio";
@@ -9,6 +14,28 @@
         foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
             $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
         }
+            foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
+            echo $k, $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
+        }
+
+
+        
+        
+        
+        $numGets = (count($_POST)) * 0.5; 
+        var_dump($numGets);
+        
+        if ($_POST['nombre'] != '' || $_POST['nombre'] != null){
+            echo "post";
+            
+        }
+        else if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+            
+            echo "nopost";
+           $numGets = ((count($_POST)) * 0.5)  ;
+        }
+        
+echo "<br>counNUMGETS $numGets <br>";
         
         
         $countArray = count($array1);
@@ -17,7 +44,7 @@
             if ($i % 2 === 0) { // Los pares serán nombres. Los pasamos a $arrayNames
                 $arrayNames[] = $array1[$i];
             }
-            else { // Quedan los impares. Los pasamos a $arrayNumbers
+            else if ($i % 2 != 0) { // Quedan los impares. Los pasamos a $arrayNumbers
                 $arrayNumbers[] = $array1[$i];
             }
         }
@@ -27,6 +54,7 @@
         // Combinamos ambos para que quede Clave -> Valor (Nombre -> Telefono)
         $arrayEnd = array_combine($arrayNames, $arrayNumbers);
         $arrayEnd2 = $arrayEnd;
+        print_r($arrayEnd);
     
     }
 
@@ -65,9 +93,9 @@
     <style>
         #test {
             background-color: red;
-            position: absolute;
+            position: relative;
             top: 20px;
-            left: 50px;
+            left: 100px;
         }
         .formu {
             position: relative;
@@ -93,8 +121,7 @@
     
         
 
-    //Contador de cantidad de $_POST que tenemos. Empezamos por 2 y queremos que la cantidad sea 1 (Por eso le restamos 1).
-    $numGets = (count($_POST)) * 0.5; 
+
     
 
 
@@ -146,7 +173,7 @@
             $b++;              
         }
     }   
-
+echo "<br> PROBANDO POSTS" .$_POST['telf3'];
 echo "<table id='test' border='1' align='center'>";
 echo "<tr>
         <th>Nombre</th>
@@ -162,33 +189,130 @@ $values = array_values($arrayEnd); // 0, 1: a b c
 $keys1 = array_keys($arrayEnd2);    
 $values1 = array_values($arrayEnd2);    
 
+        $keyo = $_POST['nombre'];
+        $valuo = $_POST['telf'];
+        print_r($arrayEnd2);
     
-for ($i = 0; $i < $numGets; $i++){
-    // if empty key[]
-    if (empty($keys1[$i])){
-        
-    }
-    if (!empty($keys1[$i])){
-        for ($a = 1; $a < ($numGets); $a++){
-            if ($keys[$a] === 
-                $_POST['nombre']) {
-                $values1[$a] === $_POST['telf'];
-            echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>"; 
+if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+            echo "ADVERTENCIA";
+}    
+  
+foreach ($keys as $k ) {
+    echo "<br> KEYS : $k";
+}    
+
+echo "<br> numgets: $numGets <br>";
+///////////
+////////// Sustituye el telefono sin problema
+    ////// Pero cuando queremos sustituir el telefono de otro nombre
+    ////// el telefono del anterior nombre cambia
+    
+    for ($i = 0; $i < $numGets; $i++){
+// BUSCAMOS SUSTITUIR
+    
+        /**
+        if (isset($keys[$i])) {
+            if ($keyo === $keys[$i]){ // Si el nombre introducido existe en la listasort
+                if (isset($values[$i])) { // Y hay un valor en el sorted que buscamos
+                    $values[$i] = $valuo; // Cambiamos el valor introducido
+                    $arrayEnd[$keys[$i]] = $values[$i];
+                    echo "coincide<br> echo values y tambien $valuo";
+                }
             }
-        else {
-            
         }
+    }
+*/
+        if (isset($keys[$i])) {
+            if ($keyo === $keys[$i]){ // Si el nombre introducido existe en la listasort
+                if (isset($values[$i])) { // Y hay un valor en el sorted que buscamos
+                    $values[$i] = $valuo; // Cambiamos el valor introducido
+                    $arrayEnd[$keys[$i]] = $values[$i];
+                    
+                    for ($a = 0; $a < $numGets; $a++){      
+                        $persone = "person$a";     
+                        $telfe = "telf$a"; 
+                        if ($_POST['nombre'] === $_POST[$persone]) {
+                            echo "matchEDEDEDEDEDE";
+                            
+                            $_POST[$telfe] = $values[$i];
+                        }
+                    }    
+                }
+            }
         }
-        }
-        //echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";   
-        echo "check<br>";
-       
-
-            
+    }
         
-       
+    echo "print array end";
+    print_r($arrayEnd);
+    
+    
+    foreach ($arrayEnd as $k => $v){
+        if (isset($k)) {
+            if ($keyo === $k && empty($valuo) && isset($keyo)){ // esta es para cuando NO PONGAMOS TELF y SI NOMBRE
+                        echo "test: valuo not set";
+                    }
+                
+                
+              
+        }
+        echo "<tr><td>$k</td><td>$v</td></tr>";  
+    }
+        // Aqui pasarían los numeros not setteds 
+    
+echo "print array end otra vez";
+    print_r($arrayEnd);
+        
+             
+    
 
-   }
+    /**
+    for ($i = 0; $i < $numGets; $i++){
+
+    
+        
+        if (isset($keys[$i])) {
+            if ($keyo === $keys[$i]){ // Si el nombre introducido existe en la lista
+                if (isset($values[$i])) { // Y hay un valor en el sorted que buscamos
+            $values[$i] = $valuo; // Cambiamos el valor introducido
+            $arrayEnd2[$i] = $values[$i];
+            echo "coincide<br> echo values y tambien $valuo";
+                }
+                if (empty($valuo)){
+                    echo "test: valuo not set";
+                }
+        
+        }
+                    echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";    
+}
+        
+             
+    }
+    */
+print_r($arrayEnd2);
+
+                
+        
+
+            
+/**
+        $numGets = (count($_POST)) * 0.5; 
+        var_dump($numGets);
+        
+        if ($_POST['nombre'] != '' || $_POST['nombre'] != null){
+            echo "post";
+            
+        }
+        else if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+            
+            echo "nopost";
+           $numGets = ((count($_POST)) * 0.5) - 1 ;
+        }
+        
+    */
+    
+        //echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";   
+        
+
      // unset key
     // if not empty
      // imprimimos
@@ -199,10 +323,10 @@ for ($i = 0; $i < $numGets; $i++){
 
 print_r($keys);
 echo "<br>";
-print_r($keys1);
-    echo "<br>";
 print_r($values);
-    echo "<br>";
+echo "<br>";
+print_r($keys1);
+echo "<br>";
 print_r($values1);
     
 
