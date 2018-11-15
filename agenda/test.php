@@ -15,10 +15,14 @@ Si el nombre que se introdujo ya existe en la agenda y no se indica número de t
             $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
         }
             foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
-            echo $k, $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
-        }
+            echo $v . "<br>"; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
+            if (isset($k) && isset($v)) {
+            //$postK[] = $k;
+            $postV[] = $v;
+        }}
+    }
 
-
+    
         
         
         
@@ -38,48 +42,10 @@ Si el nombre que se introdujo ya existe en la agenda y no se indica número de t
 echo "<br>counNUMGETS $numGets <br>";
         
         
-        $countArray = count($array1);
-        // Separamos Nombres de Teléfonos
-        for ($i = 0; $i < $countArray; $i++){
-            if ($i % 2 === 0) { // Los pares serán nombres. Los pasamos a $arrayNames
-                $arrayNames[] = $array1[$i];
-            }
-            else if ($i % 2 != 0) { // Quedan los impares. Los pasamos a $arrayNumbers
-                $arrayNumbers[] = $array1[$i];
-            }
-        }
+
     
 
         
-        // Combinamos ambos para que quede Clave -> Valor (Nombre -> Telefono)
-        $arrayEnd = array_combine($arrayNames, $arrayNumbers);
-        $arrayEnd2 = $arrayEnd;
-        print_r($arrayEnd);
-    
-    }
-
-
-
-    else { // Recién entremos en la página. 
-        // Carga el array vacío para que simplemente el código no muestre avisos.
-        echo "Introduzca ambos campos";
-        $array1 = [];
-        $arrayEnd = [];
-        
-    }/////////////////////////////////////////
-//////////////// DESDE AQUI !!!
-//////// Capturar cuando pongamos un espacio en blanco y....
-////////////????????? parar el programa??? pedir que se congele la insercion de array??? etc
-// tipo : if person[countoflastpersona-numGets99] = ""
-// then parar la creacion/insercion etc ???? 
-
-
-  //      if (in_array("", $arrayNames, true)){
-    //      echo "hay un campo vacio en names";
-    //}
-        
-
-
 
 
 ?>
@@ -181,143 +147,70 @@ echo "<tr>
       <tr>";
 // SI es un nombre Repetido, copia y pega el valor en la primera casilla
 
-uksort($arrayEnd, 'strnatcasecmp');
 
-$keys = array_keys($arrayEnd); // 0, 1, 2 : b c a (orden of insert)
-$values = array_values($arrayEnd); // 0, 1: a b c
-    
-$keys1 = array_keys($arrayEnd2);    
-$values1 = array_values($arrayEnd2);    
-
-        $keyo = $_POST['nombre'];
-        $valuo = $_POST['telf'];
-        print_r($arrayEnd2);
     
 if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
             echo "ADVERTENCIA";
 }    
   
-foreach ($keys as $k ) {
-    echo "<br> KEYS : $k";
-}    
+   
 
 echo "<br> numgets: $numGets <br>";
-///////////
-////////// Sustituye el telefono sin problema
-    ////// Pero cuando queremos sustituir el telefono de otro nombre
-    ////// el telefono del anterior nombre cambia
-    
-    for ($i = 0; $i < $numGets; $i++){
-// BUSCAMOS SUSTITUIR
-    
-        /**
-        if (isset($keys[$i])) {
-            if ($keyo === $keys[$i]){ // Si el nombre introducido existe en la listasort
-                if (isset($values[$i])) { // Y hay un valor en el sorted que buscamos
-                    $values[$i] = $valuo; // Cambiamos el valor introducido
-                    $arrayEnd[$keys[$i]] = $values[$i];
-                    echo "coincide<br> echo values y tambien $valuo";
-                }
-            }
-        }
-    }
-*/
-        if (isset($keys[$i])) {
-            if ($keyo === $keys[$i]){ // Si el nombre introducido existe en la listasort
-                if (isset($values[$i])) { // Y hay un valor en el sorted que buscamos
-                    $values[$i] = $valuo; // Cambiamos el valor introducido
-                    $arrayEnd[$keys[$i]] = $values[$i];
-                    
-                    for ($a = 0; $a < $numGets; $a++){      
-                        $persone = "person$a";     
-                        $telfe = "telf$a"; 
-                        if ($_POST['nombre'] === $_POST[$persone]) {
-                            echo "matchEDEDEDEDEDE";
-                            
-                            $_POST[$telfe] = $values[$i];
-                        }
-                    }    
-                }
-            }
-        }
-    }
-        
-    echo "print array end";
-    print_r($arrayEnd);
-    
-    
-    foreach ($arrayEnd as $k => $v){
-        if (isset($k)) {
-            if ($keyo === $k && empty($valuo) && isset($keyo)){ // esta es para cuando NO PONGAMOS TELF y SI NOMBRE
-                        echo "test: valuo not set";
-                    }
-                
-                
-              
-        }
-        echo "<tr><td>$k</td><td>$v</td></tr>";  
-    }
-        // Aqui pasarían los numeros not setteds 
-    
-echo "print array end otra vez";
-    print_r($arrayEnd);
-        
-             
-    
-
-    /**
-    for ($i = 0; $i < $numGets; $i++){
 
     
-        
-        if (isset($keys[$i])) {
-            if ($keyo === $keys[$i]){ // Si el nombre introducido existe en la lista
-                if (isset($values[$i])) { // Y hay un valor en el sorted que buscamos
-            $values[$i] = $valuo; // Cambiamos el valor introducido
-            $arrayEnd2[$i] = $values[$i];
-            echo "coincide<br> echo values y tambien $valuo";
-                }
-                if (empty($valuo)){
-                    echo "test: valuo not set";
-                }
-        
-        }
-                    echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";    
+$nome = $_POST['nombre'];
+$telf = $_POST['telf'];
+    
+foreach ($postV as $k => $v) { // PASAR NOMBRE Y TELF A ARRAYS DIFERENTES
+    
+    if ($k % 2 === 0) {
+        $postNombres[] = $v;
+    }
+    else if ($k % 2 != 0) {
+        $postTelfs[] = $v;
+    }
+    
+}
+for ($i = 0; $i < $numGets; $i++){ /// SUSTITUIR TELEFONO (pero nome y telf[0] es una repeticion)
+    for ($a = 0; $a < $numGets; $a++){
+        if($postNombres[$i] === $postNombres[$a]){
+            $postTelfs[$a] = $postTelfs[$i];
+            
+    }}
 }
         
-             
+
+
+    $postNombres = array_unique($postNombres);
+for ($i = 1; $i < $numGets; $i++){ // quitamos TELF con el NOMBRE
+if (!isset($postNombres[$i])) {
+    unset($postTelfs[$i]);
     }
-    */
+}
+
+    
+
+    
+    for ($i = 0; $i < $numGets; $i++){ // IMPRIMIR
+        if (isset($postNombres[$i]) && isset($postTelfs[$i])){
+        //if (isset($postNombres) && isset($postTelfs)){
+         echo "<tr><td>$postNombres[$i]</td><td>$postTelfs[$i]</td></tr>";
+    }
+}
+        
+    
+    
+    
+
+  
+    
+
+
 print_r($arrayEnd2);
 
                 
         
 
-            
-/**
-        $numGets = (count($_POST)) * 0.5; 
-        var_dump($numGets);
-        
-        if ($_POST['nombre'] != '' || $_POST['nombre'] != null){
-            echo "post";
-            
-        }
-        else if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
-            
-            echo "nopost";
-           $numGets = ((count($_POST)) * 0.5) - 1 ;
-        }
-        
-    */
-    
-        //echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";   
-        
-
-     // unset key
-    // if not empty
-     // imprimimos
-
-    
     
     
 
