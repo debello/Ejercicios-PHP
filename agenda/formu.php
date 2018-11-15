@@ -1,7 +1,6 @@
 <?php
 /** 
 LINEA 170 ??
-Si el nombre está vacío, se mostrará una advertencia. [!!!!!!!!!!!!]
 
 Si el nombre que se introdujo ya existe en la agenda y no se indica número de teléfono, se eliminará de la agenda la entrada correspondiente a ese nombre.
 
@@ -15,6 +14,25 @@ Si el nombre que se introdujo ya existe en la agenda y no se indica número de t
         foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
             $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
         }
+
+
+        echo "count posts: " . count($_POST) . "<br> and numgets: $numGets <br>";
+        
+        
+        $numGets = (count($_POST)) * 0.5; 
+        var_dump($numGets);
+        
+        if ($_POST['nombre'] != '' || $_POST['nombre'] != null){
+            echo "post";
+            
+        }
+        else if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+            
+            echo "nopost";
+           $numGets = ((count($_POST)) * 0.5)  ;
+        }
+        
+echo "<br>counNUMGETS $numGets <br>";
         
         
         $countArray = count($array1);
@@ -33,6 +51,7 @@ Si el nombre que se introdujo ya existe en la agenda y no se indica número de t
         // Combinamos ambos para que quede Clave -> Valor (Nombre -> Telefono)
         $arrayEnd = array_combine($arrayNames, $arrayNumbers);
         $arrayEnd2 = $arrayEnd;
+        print_r($arrayEnd);
     
     }
 
@@ -71,9 +90,9 @@ Si el nombre que se introdujo ya existe en la agenda y no se indica número de t
     <style>
         #test {
             background-color: red;
-            position: absolute;
+            position: relative;
             top: 20px;
-            left: 50px;
+            left: 100px;
         }
         .formu {
             position: relative;
@@ -99,8 +118,7 @@ Si el nombre que se introdujo ya existe en la agenda y no se indica número de t
     
         
 
-    //Contador de cantidad de $_POST que tenemos. Empezamos por 2 y queremos que la cantidad sea 1 (Por eso le restamos 1).
-    $numGets = (count($_POST)) * 0.5; 
+
     
 
 
@@ -171,31 +189,53 @@ $values1 = array_values($arrayEnd2);
         $keyo = $_POST['nombre'];
         $valuo = $_POST['telf'];
         print_r($arrayEnd2);
+if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+            echo "ADVERTENCIA";
+}    
+  
+foreach ($keys as $k ) {
+    echo "<br> KEYS : $k";
+}    
     
-    
+echo "<br> numgets: $numGets <br>";
 for ($i = 0; $i < $numGets; $i++){
     // if empty key[]
     //    if (empty($keys1[0])){
   //          array_push($keys1, $keys1[0]);
 //            unset($keys1[0]);
  //           array_pop($keys1);
-        if (empty($keys1[0])){
 
-            echo "array end<br>";
-            
-            
-        }
 
 
         
-        if ($keyo === $keys[$i]) {
+        if (isset($keys[$i])) {
+            if ($keyo === $keys[$i]){
             $values[$i] = $valuo;
             echo "coincide<br> echo values $values[$i] y tambien $valuo";
-        }    
-                echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>"; 
+        }
+            echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";     
+    }
+
+ 
+                
+        
 }
             
+/**
+        $numGets = (count($_POST)) * 0.5; 
+        var_dump($numGets);
         
+        if ($_POST['nombre'] != '' || $_POST['nombre'] != null){
+            echo "post";
+            
+        }
+        else if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+            
+            echo "nopost";
+           $numGets = ((count($_POST)) * 0.5) - 1 ;
+        }
+        
+    */
     
         //echo "<tr><td>$keys[$i]</td><td>$values[$i]</td></tr>";   
         
