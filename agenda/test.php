@@ -1,51 +1,125 @@
 <?php
 /** 
-LINEA 170 ??
 
-Si el nombre que se introdujo ya existe en la agenda y no se indica número de teléfono, se eliminará de la agenda la entrada correspondiente a ese nombre.
+AGENDA para Insertar contactos - Nombre y Teléfono
+
+[] - Guardamos las variables de POST en un array
+[] - Advertencia si no se inserta nombre
+[] - Pasando Nombre y Teléfonos a arrays diferentes respectivamente
+[] - For Loop para Sustitución y Borrado de nombres y teléfonos
+[] - Borrado de nombres parte 3 y 4
+[] - Else - Evitando que el programa nos de avisos
+
+[] - Creación de <input "hiddens" en cada valor insertado
+[] - Creación de las celdas
+
+
+
+
 
 */
-    if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
-    //    if (in_array("", $_POST, true)){
-      //      echo "hay un campo vacio";
-    //}
 
+if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
+//    if (in_array("", $_POST, true)){
+//      echo "hay un campo vacio";
+//}
+
+
+    foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
+    // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
+
+    //$postK[] = $k;
+    $postV[] = $v;
+}
+    
+    /**  
+         $numGets: 
+         Var que cuenta la cantidad de $_POST que tenemos
+         Nos interesa que esta cifra aumente de 1 en 1 cada vez que insertemos datos
+         Originalmente aumenta de 2 en 2 así que lo multiplicamos por la mitad
+         Para que aumente de 1 en 1
+    */
+    
+    $numGets = (count($_POST)) * 0.5; 
         
-        foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
-            $array1[] = $v; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
+    
+    // Si no introducimos un nombre, creamos una advertencia.
+    if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+                echo "<div id='adv'><p>ADVERTENCIA</p></div>";
+    }    
+
+    
+    // PASAR NOMBRE Y TELF A ARRAYS DIFERENTES
+    foreach ($postV as $k => $v) { 
+
+        if ($k % 2 === 0) { // Los pares (nombres) a una variabla
+            $postNombres[] = $v;
         }
-            foreach ($_POST as $k => $v) { // Metemos los valores de nuestros $_Post (inicialmente son 2) en $array
-            echo $v . "<br>"; // Deberíamos tener 2 valores: El introducido y el de por defecto Submit(Enviar)
-            if (isset($k) && isset($v)) {
-            //$postK[] = $k;
-            $postV[] = $v;
-        }}
+        else if ($k % 2 != 0) { // los impares (telefonos) a otra variable
+            $postTelfs[] = $v;
+        }
+    
+}
+    
+// SUSTITUCION(actualización) DEL TELEFONO
+// BORRADO DEL TELEFONO
+
+    for ($i = 0; $i < $numGets; $i++){ 
+        for ($a = 0; $a < $numGets; $a++){ 
+
+            // SUSTITUIR TELEFONO
+            // Si hay un nombre repetido 
+            // ... hemos escrito un teléfono en el formulario
+            // ... ... y el nombre NO está vacío Y/O es un espacio en blanco
+            if ($postNombres[$i] === $postNombres[$a] && !empty($postTelfs[$i]) && $postNombres[$i] != ''){
+            // Modificamos el teléfono escrito por el almacenado 
+                $postTelfs[$a] = $postTelfs[$i];
+
+
+            }
+
+            // BORRAR NOMBRE Y TELEFONO [Parte 1/4]
+            // Si hay un nombre repetido en la lista
+            // ... el teléfono enviado en el formulario está vacío
+            else if($postNombres[$i] === $postNombres[$a] && $postTelfs[$i] === ''){
+                // Sustituímos el teléfono del nombre repetivo por espacio en blanco
+                $postTelfs[$a] = '';
+            } 
+        }
+    }
+    
+// BORRAR NOMBRE Y TELEFONO [Parte 2/4]
+// Si un teléfono es un espacio en blanco, el nombre correspondiente tb será un espacio en blanco
+    for ($i = 0; $i < $numGets; $i++){ 
+        if($postTelfs[$i] === ''){
+            $postNombres[$i] = '';
+        }
     }
 
-    
+//  BORRAR NOMBRE Y TELEFONO [Parte 3/4]
+// Todos los nombres repetidos menos el primero (el que insertemos en el formulario) desaparecen, dejando casillas en blanco
+    $postNombres = array_unique($postNombres);            
         
         
+    }
+
+// Else que se inicia nada más abramos la aplicación web
+// Insertamos variables para que el programa no nos ponga avisos
+    else    { 
+        $postV = [];
+        $postNombres;
+        $numGets;
+}
         
-        $numGets = (count($_POST)) * 0.5; 
-        var_dump($numGets);
-        
-        if ($_POST['nombre'] != '' || $_POST['nombre'] != null){
-            echo "post";
-            
-        }
-        else if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
-            
-            echo "nopost";
-           $numGets = ((count($_POST)) * 0.5)  ;
-        }
-        
-echo "<br>counNUMGETS $numGets <br>";
-        
-        
+
 
     
 
-        
+
+
+
+
+      
 
 
 ?>
@@ -59,14 +133,14 @@ echo "<br>counNUMGETS $numGets <br>";
     <style>
         #test {
             background-color: red;
-            position: relative;
-            top: 20px;
-            left: 100px;
+            position: absolute;
+            top: 5%;
+            left: 5%;
         }
         .formu {
-            position: relative;
-            top: 20px;
-            left: 500px;
+            position: absolute;
+            top: 25%;
+            left: 35%;
         }
     </style>
 <body>
@@ -81,35 +155,28 @@ echo "<br>counNUMGETS $numGets <br>";
         <input type="text" name="nombre"/><br>
         <input type="text" name="telf"/><br>
         <input type="submit" />
+
+
 </div>        
-    <?php
+<?php
+   
     
-    
-        
-
-
-    
-
-
     /**
-    Nuestra estrategia es;
+        Nuestra estrategia es;
 
         Introducir una variable > El contador de $_POST crece una unidad > Nos permite crear un <input hidden $_POST 
-            Lo creamos automáticamente > Vuelta al inicio.
-                . 
-
-    0 Parámetros introducidos > 0 cantidad de $_POST
-    1 Parámetro introducido > 1 cantidad de $_POST (restaríamos el $_POST de Submit)
-    2 Parámetros introducidos > 2 cantidad de $_POST
-    ....
-
+        > Vuelta al inicio.
     */
-
-
+    
+    
+    $numGets = (count($_POST)) * 0.5;
     $a = 0;
     $b = 1;
 
-    for ($i = 0; $i < $numGets; $i++) { // Crearemos inputs "hidden" cada vez que introduzcamos un valor(aumentemos en uno la cantidad de $_POST[])
+    for ($i = 0; $i < $numGets; $i++) { 
+        // Crearemos inputs "hidden" cada vez que introduzcamos un valor
+        // Los valores insertados se pasarán de hidden a otro hidden y a la vez crearemos el hidden mientras insertamos dicho valor.
+        
         if ($i === 0) { // Empezamos enlazando la caja de texto con nuestro primer hidden
                         // name = person0 value = $POST 'nombre'
             echo "<input type='hidden'" . 
@@ -138,91 +205,36 @@ echo "<br>counNUMGETS $numGets <br>";
             $a++;
             $b++;              
         }
-    }   
-echo "<br> PROBANDO POSTS" .$_POST['telf3'];
+    }
+
+
+
+
+
+    
+
 echo "<table id='test' border='1' align='center'>";
 echo "<tr>
         <th>Nombre</th>
         <th>Telefono</th>
       <tr>";
-// SI es un nombre Repetido, copia y pega el valor en la primera casilla
-
 
     
-if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
-            echo "ADVERTENCIA";
-}    
-  
-   
+// Imprimimos las celdas
 
-echo "<br> numgets: $numGets <br>";
-
-    
-$nome = $_POST['nombre'];
-$telf = $_POST['telf'];
-    
-foreach ($postV as $k => $v) { // PASAR NOMBRE Y TELF A ARRAYS DIFERENTES
-    
-    if ($k % 2 === 0) {
-        $postNombres[] = $v;
-    }
-    else if ($k % 2 != 0) {
-        $postTelfs[] = $v;
-    }
-    
-}
-for ($i = 0; $i < $numGets; $i++){ /// SUSTITUIR TELEFONO (pero nome y telf[0] es una repeticion)
-    for ($a = 0; $a < $numGets; $a++){
-        if($postNombres[$i] === $postNombres[$a]){
-            $postTelfs[$a] = $postTelfs[$i];
-            
-    }}
-}
+    for ($i = 0; $i < $numGets; $i++){
         
-
-
-    $postNombres = array_unique($postNombres);
-for ($i = 1; $i < $numGets; $i++){ // quitamos TELF con el NOMBRE
-if (!isset($postNombres[$i])) {
-    unset($postTelfs[$i]);
-    }
-}
-
-    
-
-    
-    for ($i = 0; $i < $numGets; $i++){ // IMPRIMIR
-        if (isset($postNombres[$i]) && isset($postTelfs[$i])){
+        // BORRAR NOMBRE Y TELEFONO [Parte 4/4]
+        
+        // Si el nombre no está vacío ni tiene espacio en blanco ni el teléfono tiene un espacio en blanco... imprimimos celdas
+        // Realmente nunca llegamos a "borrar" ni "sustituír" nombres ni teléfonos 
+        
+       if (!empty($postNombres[$i]) && $postNombres[$i] != '' && $postTelfs[$i] != ''){
         //if (isset($postNombres) && isset($postTelfs)){
-         echo "<tr><td>$postNombres[$i]</td><td>$postTelfs[$i]</td></tr>";
+         echo "<tr id='idTR' ><td>$postNombres[$i]</td><td>$postTelfs[$i]</td></tr>";
     }
-}
-        
+}  
     
-    
-    
-
-  
-    
-
-
-print_r($arrayEnd2);
-
-                
-        
-
-    
-    
-
-print_r($keys);
-echo "<br>";
-print_r($values);
-echo "<br>";
-print_r($keys1);
-echo "<br>";
-print_r($values1);
-    
-
 
 echo "</table>";
 
