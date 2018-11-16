@@ -174,6 +174,7 @@ echo "<br>counNUMGETS $numGets <br>";
         }
     }   
 
+
 echo "<table id='test' border='1' align='center'>";
 echo "<tr>
         <th>Nombre</th>
