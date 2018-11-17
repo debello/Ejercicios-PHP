@@ -42,12 +42,21 @@ if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
     
     $numGets = (count($_POST)) * 0.5; 
         
+
+    
     
     // Si no introducimos un nombre, creamos una advertencia.
     if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
-                echo "<div id='adv'><p>ADVERTENCIA</p></div>";
-    }    
-
+                echo "<div id='adv'>
+                <p id='error'>Error:
+                <p id='datos'>Datos no introducidos.</p></div>";
+    }   
+    
+    
+    
+    
+    
+    
     
     // PASAR NOMBRE Y TELF A ARRAYS DIFERENTES
     foreach ($postV as $k => $v) { 
@@ -113,11 +122,6 @@ if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
         
 
 
-    
-
-
-
-
 
       
 
@@ -131,35 +135,148 @@ if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
 <meta charset="UTF-8">
 </head>
     <style>
+        body {
+            background-color: aqua;
+        }
+        
         #test {
+            table-layout: fixed;
+            border-collapse: collapse;
+            border: 2px ridge black;
             background-color: red;
             position: absolute;
-            top: 5%;
-            left: 5%;
+            top: 48%;
+            left: 70%;
+            z-index: 8;
+            width: 20%;
         }
+        
+        #encabezado {
+            border: 2px ridge black;
+            background-color: #D99339;
+            margin: 3px;
+    
+            
+            
+        }
+        
+        #cuerpo {
+            border: 2px ridge black;
+            background-color: #FFE4DC;
+            
+            
+        }
+                
+        .celda {
+          padding: 5px;
+            
+     
+        }
+        
+        #cuadrado {
+        width: 490px;
+        height: 312px;
+        border-style: dashed;
+        position: absolute;
+        background-color: bisque;
+        top: 42%;
+        left: 40%;
+        
+        z-index:7;
+        }
+        
         .formu {
             position: absolute;
-            top: 25%;
-            left: 35%;
+            z-index: 8;
+            top: 45%;
+            left: 45%;
+            
         }
+        .formu p {
+            font-size: 13px;
+            font-family: sans-serif;
+            font-style: italic;
+            border-width: -20px;
+            margin-bottom: 6px;
+            
+        }
+        .formu h3 {
+            font-size: 20px;
+            font-style: bold;
+            font-variant: small-caps;
+        }
+        
+        .formu input[type="text"]{
+            border: none;
+        
+            border-bottom: 1px solid #fff;
+            padding-top: -40px;
+            width: 80px;
+            position:absolute;
+            
+            
+            
+            
+        }
+        
+        .formu input[type="submit"]{
+            color:#fff;
+            padding:10px 20px;
+            margin-top: 8px;
+            outline:none;
+            font-size:10px;
+            font-weight: bold;
+            width: 70px;
+            height: 33px;
+            background:linear-gradient(to bottom,#d16c35, #c76235);
+            
+            }
+        #adv {
+            top: 83%;
+            left: 45%;
+            z-index: 8;
+            position:absolute;
+            font-weight: bold;
+            color: coral;
+            font-size: 15px;
+            font-family: "Arial Black";
+            margin-top: -4px;            
+        }
+        #adv #error {
+            letter-spacing: 2px;
+        }
+        #adv #datos {
+            margin-top: -15px;
+        }
+        
+        
+        
+        
     </style>
 <body>
-<div class="formu">
-    <h3>AGENDA</h3>
+    
 
-
+    <div id = "cuadrado"></div>
+    
+    <div class="formu">
+    <h3 id='agenda'>Agenda</h3>
+    
+    
 
     <form action="" method="POST">
 
-        <p>Introduzca un Nombre</p>
+        <p>Introduzca Nombre:</p>
         <input type="text" name="nombre"/><br>
+        <p>Introduzca Teléfono:</p>
         <input type="text" name="telf"/><br>
-        <input type="submit" />
+        <input type="submit"/>
 
 
 </div>        
 <?php
-   
+        
+
+
     
     /**
         Nuestra estrategia es;
@@ -213,10 +330,10 @@ if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
 
     
 
-echo "<table id='test' border='1' align='center'>";
-echo "<tr>
-        <th>Nombre</th>
-        <th>Telefono</th>
+echo "<table id='test'>";
+echo "<tr id='encabezado'>
+        <th id='nombre'>Nombre</th>
+        <th id='telefono'>Telefono</th>
       <tr>";
 
     
@@ -231,7 +348,7 @@ echo "<tr>
         
        if (!empty($postNombres[$i]) && $postNombres[$i] != '' && $postTelfs[$i] != ''){
         //if (isset($postNombres) && isset($postTelfs)){
-         echo "<tr id='idTR' ><td>$postNombres[$i]</td><td>$postTelfs[$i]</td></tr>";
+         echo "<tr id='cuerpo' ><td class='celda'>$postNombres[$i]</td><td class='celda'>$postTelfs[$i]</td></tr>";
     }
 }  
     
