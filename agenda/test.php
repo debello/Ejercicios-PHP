@@ -4,8 +4,9 @@
 AGENDA para Insertar contactos - Nombre y Teléfono
 
 [] - Guardamos las variables de POST en un array
-[] - Advertencia si no se inserta nombre
+[] - Contamos número de POSTS que tenemos y Advertencia si no se inserta nombre
 [] - Pasando Nombre y Teléfonos a arrays diferentes respectivamente
+
 [] - For Loop para Sustitución y Borrado de nombres y teléfonos
 [] - Borrado de nombres parte 3 y 4
 [] - Else - Evitando que el programa nos de avisos
@@ -14,10 +15,8 @@ AGENDA para Insertar contactos - Nombre y Teléfono
 [] - Creación de las celdas
 
 
-
-
-
 */
+
 
 if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
 //    if (in_array("", $_POST, true)){
@@ -43,7 +42,7 @@ if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
     $numGets = (count($_POST)) * 0.5; 
         
 
-    
+
     
     // Si no introducimos un nombre, creamos una advertencia.
     if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
@@ -133,126 +132,8 @@ if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
-    <style>
-        body {
-            background-color: aqua;
-        }
-        
-        #test {
-            table-layout: fixed;
-            border-collapse: collapse;
-            border: 2px ridge black;
-            background-color: red;
-            position: absolute;
-            top: 48%;
-            left: 70%;
-            z-index: 8;
-            width: 20%;
-        }
-        
-        #encabezado {
-            border: 2px ridge black;
-            background-color: #D99339;
-            margin: 3px;
-    
-            
-            
-        }
-        
-        #cuerpo {
-            border: 2px ridge black;
-            background-color: #FFE4DC;
-            
-            
-        }
-                
-        .celda {
-          padding: 5px;
-            
-     
-        }
-        
-        #cuadrado {
-        width: 490px;
-        height: 312px;
-        border-style: dashed;
-        position: absolute;
-        background-color: bisque;
-        top: 42%;
-        left: 40%;
-        
-        z-index:7;
-        }
-        
-        .formu {
-            position: absolute;
-            z-index: 8;
-            top: 45%;
-            left: 45%;
-            
-        }
-        .formu p {
-            font-size: 13px;
-            font-family: sans-serif;
-            font-style: italic;
-            border-width: -20px;
-            margin-bottom: 6px;
-            
-        }
-        .formu h3 {
-            font-size: 20px;
-            font-style: bold;
-            font-variant: small-caps;
-        }
-        
-        .formu input[type="text"]{
-            border: none;
-        
-            border-bottom: 1px solid #fff;
-            padding-top: -40px;
-            width: 80px;
-            position:absolute;
-            
-            
-            
-            
-        }
-        
-        .formu input[type="submit"]{
-            color:#fff;
-            padding:10px 20px;
-            margin-top: 8px;
-            outline:none;
-            font-size:10px;
-            font-weight: bold;
-            width: 70px;
-            height: 33px;
-            background:linear-gradient(to bottom,#d16c35, #c76235);
-            
-            }
-        #adv {
-            top: 83%;
-            left: 45%;
-            z-index: 8;
-            position:absolute;
-            font-weight: bold;
-            color: coral;
-            font-size: 15px;
-            font-family: "Arial Black";
-            margin-top: -4px;            
-        }
-        #adv #error {
-            letter-spacing: 2px;
-        }
-        #adv #datos {
-            margin-top: -15px;
-        }
-        
-        
-        
-        
-    </style>
 <body>
     
 
