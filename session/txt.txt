@@ -1,0 +1,34 @@
+1
+Mostre a nosa actriz e o noso actor favorito.  Podemos cambiar as nosas preferencias de tal xeito que a información permanece no disco, e así consérvanse os datos aínda que se reinicie o navegador, ou se apague e volva a acender o equipo
+
+Proba o exercicio en Chrome, Firefox e Edge, e amosa no navegador onde se pode visualizar a cookie.
+
+2
+Calcule a media dun conxunto de números positivos introducidos por teclado. O programa non coñece a priori cantos números se introducirán, e o usuario indicará que terminou de introducir os datos cando meta un número negativo. Utiliza sesións.
+
+3
+Pida números ata que se introduza un numero negativo e nos diga:
+Cantos números se introduciron
+A media dos impares
+E o maior dos pares. 
+
+O número negativo utilizase so  para indicar o final da introdución dos datos pero non computa para os cálculos. Utiliza sesións.
+
+4
+Implemente o sistema de autenticación que vimos nos vídeos na clase
+
+5
+Unha pantalla na que temos dúas variables a e b que podemos incrementar, decrementar ou poñer a cero. O valor
+desas variable gardase nunha sesión.
+
+6
+Implemente un algoritmo que solicite un número e nos diga si é capicúa.
+
+7
+Implemente un algoritmo que solicite un número N e nos visualice a suma de todos os números capicúa menores que N
+
+8
+Implemente un algoritmo que solicite un número N e visualice a suma de todos os números primos menores ou iguais que N.
+
+9
+Implemente un programa que solicite un número de DNI completo e nos diga si é un DNI correcto ou non. Un dni é correcto si a letra de control se corresponde co número
