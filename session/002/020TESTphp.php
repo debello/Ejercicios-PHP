@@ -1,37 +1,41 @@
 <?php
-
+/**
+    Ya guarda lo que escribamos en un array. 
+    Ese array lo pasamos a una SESSION[All]
+    Pero buscamos guardar directamente lo que escribimos en una Session...
+*/
 
 session_start();
 //session_destroy();
-if (!empty($_POST['oculto'])) {
-    
-    $array = explode(",", $_POST['oculto']);
-    echo "lul1: $array[0], lul2: $array[1]";
-    $a = 0;
-    $b = 1;
-    $c = 2;
-    $_SESSION["primero$a"] = $_POST['texto'];
-    $lol = $_POST['texto'];
+if (!empty($_POST['hola'])) {
     
 
+    $array[] =  $_POST['hola'];
+    $array1 = explode(",", $_POST['oculto']);
+    $pos = count($array1);
+    $nom = $_POST['hola'];
+    $array1[$pos] = $nom;
+    
+
+    
+
+echo "probaremos el ARRAY1:";
+foreach ($array1 as $k => $v) {
+    echo $k . " " . $v . "<br>";
+}
     $count = count($_SESSION);
     $count2 = $count - 1;
-    for ($i = 0; $i < $count; $i++){
-        if($i === 0){
-            $_SESSION["name$a"] = $lol;
-            echo "testiando si funcioa";
-        }
-        else {
-            $_SESSION["name$b"] = $_SESSION["name$a"];
-            $a++;
-            $b++;
-        }
+
+$_SESSION['All'] = $array; /// Insertamos los datos del array en una session
+    echo "test sesiones:" . $_SESSION['All'][0] ." y luego ". $_SESSION['All'][1];
     
-          
-         $array[] = $_POST['texto'];
-    }
-    echo $_SESSION["name0"] . "y tambien echo" . count($_SESSION);
+
+       
    
+echo "<br> HOW MANY POSTS: <br>";
+foreach ($_POST as $k => $v) {
+    echo $k . " " . $v . "<br>";
+}
 echo "<br> HOW MANY SESSIONS: <br>";
 foreach ($_SESSION as $k => $v) {
     echo $k . " " . $v . "<br>";
@@ -43,7 +47,9 @@ foreach ($_SESSION as $k => $v) {
     
 else {
     $array = [];
+    $array1 = array();
     $pos = 0;
+    echo "nada";
 }
   /**  for ($i = 0; $i < $count; $i++){
         
@@ -65,15 +71,17 @@ else {
     <form action="" method="POST">
         
     <p>Inserte un número</p>
-    <input type="text" name="texto"  /><br>
+    <input type="text" name="hola"  /><br>
+    <input type="hidden" name="oculto" value="<?php echo implode(", ", $array1)  ?>" /> <br>
 
-<input type="hidden" name="oculto" value="<?php 
-                           if (isset($array)) { 
-                                 echo implode(", ", $array); } ?>" /> <br>
+
 
     <input type="submit"/>
         
 <?php
+ /*   <input type="hidden" name="oculto" value="<?php 
+                           if (isset($array)) { 
+                                 echo implode(", ", $array); } ?>" /> <br>
 /*        
         // value="<?php $_SESSIO; ?>"
 
