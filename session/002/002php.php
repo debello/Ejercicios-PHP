@@ -8,15 +8,23 @@
 session_start();
 //session_destroy();
 if (!empty($_POST['hola'])) {
+
+        if ($_POST['hola'] < 0 || $_POST['hola'] === '' || empty($_POST['hola']) || $_POST['hola'] === null || $_POST['hola'] === 0) {
+        $_POST['hola'] = 0;
+    } 
+
+        
+    $pos = count($_SESSION['sesionex']);
+    $nom = $_POST['hola'];
+    $_SESSION['sesionex'][$pos] = $nom;
+    
+    
+    $numeros[] = $_SESSION['sesionex'];
     
 
-    $array[] =  $_POST['hola'];
-    $_SESSION['sesione'] = $_POST['oculto'];
-    $_SESSION['sesione'] = explode(",", $_POST['oculto']);
-    $pos = count($_SESSION['sesione']);
-    $nom = $_POST['hola'];
-    $_SESSION['sesione'][$pos] = $nom;
-    
+    foreach ($numeros[0] as $k){
+        echo "esto es numeros [0] :$k <br>";
+    }
 
     
 
@@ -28,8 +36,10 @@ if (!empty($_POST['hola'])) {
 //    $count2 = $count - 1;
 
 //$_SESSION['All'] = $array; /// Insertamos los datos del array en una session
-    //echo "test sesiones:";
-    foreach ($_SESSION['sesione'] as $k => $v) {
+    //echo "test sesionexs:";
+    
+echo "<br> HOW MANY $ SESSION SESIONEX <br>";
+    foreach ($_SESSION['sesionex'] as $k => $v) {
     echo $k . " " . $v . "<br>";
 }
  
@@ -53,6 +63,7 @@ else {
     $array1 = array();
     $pos = 0;
     echo "nada";
+    $_SESSION['sesionex'];
 }
   /**  for ($i = 0; $i < $count; $i++){
         
@@ -74,14 +85,32 @@ else {
     <form action="" method="POST">
         
     <p>Inserte un número</p>
-    <input type="text" name="hola"  /><br>
-    <input type="hidden" name="oculto" value="<?php echo implode(", ", $_SESSION['sesione'])  ?>" /> <br>
+    <input type="number" name="hola"  /><br>
+    <input type="hidden" name="oculto" value="<?php  if(isset($_SESSION['sesionex'])) echo implode(", ", $_SESSION['sesionex'])  ?>" /> <br>
 
 
 
     <input type="submit"/>
         
 <?php
+            $acumula = 0;
+           $countNum = count($_SESSION['sesionex']);
+           
+      
+           
+     
+           
+        if ($_POST['hola'] <= 0) {
+    for ($i = 0; $i< $countNum; $i++){
+        $acumula += $_SESSION['sesionex'][$i];
+    }
+    $media = $acumula * 0.5 ;
+echo "la media es $media";
+            
+        }
+           
+    else {echo "siga introduciendo numeros";}
+           
  /*   <input type="hidden" name="oculto" value="<?php 
                            if (isset($array)) { 
                                  echo implode(", ", $array); } ?>" /> <br>
