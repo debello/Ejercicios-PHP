@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
     App para saber cuánto tiempo pasas ESTUDIANDO y NO ESTUDIANDO:
     Cuando insertemos cualquier dato crearemos un punto de partida (fecha).
@@ -58,22 +58,6 @@ if (!empty($_POST['hola'])) {
 //    $count2 = $count - 1;
 echo "<br>Probando la resta de 0 y 1: " . $_SESSION['sesione'][0] - $_SESSION['sesione'][1];
 //$_SESSION['All'] = $array; /// Insertamos los datos del array en una session
-    //echo "test sesiones:";
-    foreach ($_SESSION['sesione'] as $k => $v) {
-    echo $k . " " . $v . "<br>";
-}
-
-
-       
-   
-echo "<br> HOW MANY POSTS: <br>";
-foreach ($_POST as $k => $v) {
-    echo $k . " " . $v . "<br>";
-}
-echo "<br> HOW MANY SESSIONS: <br>";
-foreach ($_SESSION as $k => $v) {
-    echo $k . " " . $v . "<br>";
-}
     
     
 
