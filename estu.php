@@ -46,7 +46,14 @@ if (!empty($_POST['hola'])) {
     $testPUlt = str_replace(":","", $testPUlt);
     
     // Restamos la última con la penúltima hora
-    echo "test testult" . ($testUlt - $testPUlt);
+    $total = ($testUlt - $testPUlt);
+    
+    if ($total < 60) {
+        echo "<br><strong>TIEMPO GASTADO: </strong>" . $total . " segundos.<br>";
+    }
+    else {
+        echo "<br><strong>TIEMPO GASTADO: </strong>" . round($total / 60, 2) . " minutos.<br>";
+    }
     
   
 
