@@ -32,6 +32,7 @@ $nem = $_POST['num'];
 
     
 function checkCapicua($nom) {
+$nom = (string)$nom;
 $length = strlen($nom);
 $length1 = strlen($nom) - 1; // Saber si es par o impar // Dividir por 100, 10...
 $len = strlen($nom) - 1;

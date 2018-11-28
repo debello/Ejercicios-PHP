@@ -7,6 +7,8 @@ $length1 = strlen($nem) - 1; // Saber si es par o impar // Dividir por 100, 10..
 $lon = $length*0.5-0.5;
 $len = strlen($nem) - 1;
 $a = [];
+
+echo "ekiando todo el nem:" . $nem[0], $nem[1], $nem[2];
     
     if ($length < 2){
         if ($length === 2){
