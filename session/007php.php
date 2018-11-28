@@ -1,13 +1,15 @@
 <?php
 session_start();
 if (!isset($_SESSION['num'])){
-    
-    //$_SESSION['num'] = $_POST['num'];
+    $a = 0;
+    $b = 0;
+    $_SESSION['num'] = $_POST['num'];
 }
 else {
     
    // echo "test: No está la session declarada?";
-   
+    $a;
+    $b;
 }
 ?>
 
@@ -25,25 +27,27 @@ else {
     </form>
 <?php
 $nem = $_POST['num'];
+$length = strlen($nem);
+$length1 = strlen($nem) - 1; // Saber si es par o impar // Dividir por 100, 10...
+$len = strlen($nem) - 1;
 
+echo $nem. ", " .$length;
+$pep = 200;
+    echo "<br> TEST SOLO: ".checkCapicua($pep);
 
-
-    echo "<br> TEST SOLO: el num 200 ".checkCapicua(200);
-
-    
 function checkCapicua($nom) {
-$length = strlen($nom);
-$length1 = strlen($nom) - 1; // Saber si es par o impar // Dividir por 100, 10...
-$len = strlen($nom) - 1;
-$a = [];
+    $length = strlen($nom);
+    $length1 = strlen($nom) - 1; // Saber si es par o impar // Dividir por 100, 10...
+    $len = strlen($nom) - 1;
+    $a = [];
     
     if ($length < 2){
         if ($length === 2){
             if (strcmp($nom[0], $nom[1]) === 0) {
-                echo "ES capicúa";
+                return " ES capicua";
             }
         else { 
-            echo "NO es capicúa";
+            return " NO es capicua";
         }
     }
     else {
@@ -87,19 +91,41 @@ else {
     }
 
     if (in_array(1, $a) === true) {
-         return " NO es capicua";
+         return " NO es capicuaa";
     }
     else {
         return " ES capicuaa";
     }
  }
 }
-    
+    echo "<br> TEST SOLO: ".checkCapicua(200);
+
 $_SESSION['num'] = $nem;
 echo "<br>El numero: ".$_SESSION['num'] . checkCapicua($nem);
-session_destroy();
-session_unset();
-?>
+echo checkCapicua($nem);
+echo "<br>".checkCapicua($nem) ."QUIERO VER EL TEST";
+echo "<br> TEST SOLO: ".checkCapicua(200);
+    for ($i = 0; $i < $nem; $i++) {
+    if (checkCapicua($nem) === ' ES capicuaa') {
+        
+        
+            echo "<br> Testeando checkcapicua i: ".checkCapicua($i);
+            echo "<br> Testeando valor de i:" . $i;
+                if (checkCapicua($i) === ' ES capicuaa') {
+                    echo '<br> El num '.$i.' es capicua';
+                }
+                else {
+                    // NO es capicua
+                }
+            
+        }
+    }
+        
+        
+        
+        
+        
+    ?>
     
 
 </body>

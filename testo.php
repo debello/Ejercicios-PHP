@@ -1,83 +1,75 @@
+
 <?php
-	
-		if (!empty($_PSOT['personas'])) {
-			$array = explode(",", $_POST['personas']);
-			$post = count($array);
-		}else{
-				$array = array();
-				$pos = 0;
-		}
-		if(!empty($_POST['nombre'])){
-			$nom = strtolower($_POST['nombre']);
-            $si=in_array($nom,$array);
-            $posi=array_search($nom,$array);
-			if(!empty($_POST['telefono'])){
-				$tel = $_POST['telefono'];
-				
-				if ($si || $si === 0){
-					$array[$posi+1] = $tel;
-					echo "<div class='altoDch1'><p>TELEFONO CAMBIADO</p></div>";
-				}else{
-					$array[$pos] = $nom;
-					$array[$pos+1] = $tel;
-                    echo"<div class='altoDchl'><p>se ha introducido un nuevo registro</p></div>";
-                }
-            }else{
-		echo"<div class='altoDchl'><p>se ha borrado el registro</p></div>";
-		unset($array[$posi]);
-		unset($array[$posi+1]);
-	}
+    echo "<br> TEST SOLO: el num 200 ".checkCapicua(200);
+
+    
+function checkCapicua($nom) {
+$length = strlen($nom);
+$length1 = strlen($nom) - 1; // Saber si es par o impar // Dividir por 100, 10...
+$len = strlen($nom) - 1;
+$a = [];
+    
+    if ($length < 2){
+        if ($length === 2){
+            if (strcmp($nom[0], $nom[1]) === 0) {
+                echo "ES capicúa";
+            }
+        else { 
+            echo "NO es capicúa";
+        }
+    }
+    else {
+        return "Introduzca un número con 2 o más cifras.";
+    }
 }
-print_r($_POST);
+else {
+    
+    
+    if ($length % 2 === 0) { // Si la cantidad del num es par [Probemos CAPI PARES]
+        for ($i = 0; $i < $length*0.5; $i++) { //Por cada(mitad) de cantidad
+            //si el [$i] el uiltimo y ultimo coincide
+            // $si segundo y penultimo coinciden( si existen...)
+            if (strcmp($nom[$i],$nom[$len]) != 0) { 
+                
+                $a[] = 1;
+                
+            }
+            else {
+                
+            }
+            
+            $len--;
+
+    }
+}
+                
+
+    if ($length % 2 != 0) { // si la cantidad de num es IMPAR
+        for ($i = 0; $i < $length*0.5-0.5; $i++) {
+            if (strcmp($nom[$i],$nom[$len]) != 0) { 
+                
+                $a[] = 1;
+            }
+            else {
+                
+            }
+            
+            $len--;
+        }
+    }
+
+    if (in_array(1, $a) === true) {
+         return " NO es capicua";
+    }
+    else {
+        return " ES capicuaa";
+    }
+ }
+}
+    
+$nem = 200;
+echo "<br>El numero: ". $nem . checkCapicua($nem);
+echo "<br> TEST SOLO: el num 200 ".checkCapicua(200);
+
+
 ?>
-
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title></title>
-    </head>
-
-<body>
-
-<!-- Creamos un formulario para enviar sus datos por POST a la misma página -->
-<form name="formulario" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-<table style="border: 0px;">
-<tr style="background-color: #8080ff;">Introduzca los datos a a&ntilde;adir al list&iacute;n
-<!-- Solicitamos el nombre de la persona -->
-<td>
-<fieldset>
-<legend>Nombre</legend>
-<input name="nombre" type="text" />
-</fieldset>
-</td>
-<!-- Solicitamos el número de teléfono -->
-<td>
-<fieldset>
-<legend>Tel&eacute;fono</legend>
-<input name="telefono" type="text" />
-</fieldset>
-</td>
-</tr>
-</table>
-    
-<?php
-    
-
-echo "<table style='border: 0px;'>";
-      echo "<tr>";
-      foreach ($array as $k => $v){
-          echo "<td>$k</td><td>$v</td>";
-      }
-      echo "</tr>";
-    echo "</table>";
-    
-  
-    
-?>
-<!-- Creamos un campo oculto para enviar los datos ya recogidos con anterioridad -->
-<input name="personas" type="hidden" value="<?php if (isset($array)) echo implode("," , $array) ?>" style="text-align:right;" />
-<!-- Enviamos los datos del formulario -->
-<input type="submit" value="Aplicar cambios" />
-
-</body>
-</html>
