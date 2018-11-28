@@ -32,22 +32,20 @@ $length1 = strlen($nem) - 1; // Saber si es par o impar // Dividir por 100, 10..
 $len = strlen($nem) - 1;
 
 echo $nem. ", " .$length;
-$pep = 200;
-    echo "<br> TEST SOLO: ".checkCapicua($pep);
-
 function checkCapicua($nom) {
-    $length = strlen($nom);
-    $length1 = strlen($nom) - 1; // Saber si es par o impar // Dividir por 100, 10...
-    $len = strlen($nom) - 1;
-    $a = [];
+$length = strlen($nom);
+$length1 = strlen($nom) - 1; // Saber si es par o impar // Dividir por 100, 10...
+$lon = $length*0.5-0.5;
+$len = strlen($nom) - 1;
+$a = [];
     
     if ($length < 2){
         if ($length === 2){
             if (strcmp($nom[0], $nom[1]) === 0) {
-                return " ES capicua";
+                echo "ES capicúa";
             }
         else { 
-            return " NO es capicua";
+            echo "NO es capicúa";
         }
     }
     else {
@@ -58,6 +56,7 @@ else {
     
     
     if ($length % 2 === 0) { // Si la cantidad del num es par [Probemos CAPI PARES]
+        
         for ($i = 0; $i < $length*0.5; $i++) { //Por cada(mitad) de cantidad
             //si el [$i] el uiltimo y ultimo coincide
             // $si segundo y penultimo coinciden( si existen...)
@@ -74,15 +73,19 @@ else {
 
     }
 }
-                
+
 
     if ($length % 2 != 0) { // si la cantidad de num es IMPAR
-        for ($i = 0; $i < $length*0.5-0.5; $i++) {
+        echo "<br>TEST SI LLEGA A B y ".$nom."y".$lon;
+        
+        for ($i = 0; $i < $lon; $i++) {
+                echo "<br>TEST SI LLEGA A ". $nom[$i];
+
             if (strcmp($nom[$i],$nom[$len]) != 0) { 
-                
                 $a[] = 1;
             }
             else {
+                echo "<br>TEST SI LLEGA A b2";
                 
             }
             
@@ -91,20 +94,22 @@ else {
     }
 
     if (in_array(1, $a) === true) {
-         return " NO es capicuaa";
+        echo "eeee";
+         return " NO es capicua";
     }
     else {
         return " ES capicuaa";
     }
  }
 }
-    echo "<br> TEST SOLO: ".checkCapicua(200);
+echo "<br> TEST CAPRI: ".checkCapicua(200);
+    //echo "<br> TEST SOLO: ".checkCapicua(200);
 
 $_SESSION['num'] = $nem;
 echo "<br>El numero: ".$_SESSION['num'] . checkCapicua($nem);
-echo checkCapicua($nem);
-echo "<br>".checkCapicua($nem) ."QUIERO VER EL TEST";
-echo "<br> TEST SOLO: ".checkCapicua(200);
+
+
+
     for ($i = 0; $i < $nem; $i++) {
     if (checkCapicua($nem) === ' ES capicuaa') {
         
