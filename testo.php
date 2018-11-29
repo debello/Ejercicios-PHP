@@ -1,92 +1,105 @@
 <?php
-/**
-    Insertar varios números. Enseñar la cantidad de números insertados, media de los pares y el mayor de los impares cuando introduzimos un número negativo, 0 o el formulario vacío.
-*/
+session_start();
 
-session_start(); // Iniciamos sesión para usar la var $_SESSION cuando deba
-
-// Si hemos introducido algún valor o algún valor ha sido introducido con anterioridad
-if (isset($_POST['hola']) || isset($_SESSION['sesionex'])){
-    // Si el valor introducido está vacío o es menor que 0 lo convertimos en 0
-    // (Así no contará para la media)
-    if (empty($_POST['hola'])  || $_POST['hola'] < 0 || $_POST['hola'] === '' || $_POST['hola'] === null || $_POST['hola'] === 0) {
-        $_POST['hola'] = 0;
-    } 
-    
-    // Contamos cuántos elementos (números introducidos) tiene nuestra variable
-    // de sesión
-    $pos = count($_SESSION['sesionex']);
-    $nom = $_POST['hola'];
-    // Cada elemento introducido irá a nuestra variable de sesión.
-    // Cuantos más elementos introducimos, mayor es la posición y así iremos asignándolos
-    $_SESSION['sesionex'][$pos] = $nom;
-    
-    // Mostramos el contenido de nuestra sesion, osea los num introducidos 
-    echo "<br> Los Números introducidos son: <br>";
-    foreach ($_SESSION['sesionex'] as $k) {
-        if ($k != 0){
-            echo $k . "<br>";
-        }
-    }
-    
-    $acumula = 0;
-    $pares = 0;
-    $impares = [];
-            
-    if (isset($_POST['hola'])){ // Si hemos introducido un valor
-        // Si este valor es 0 o está vacío (recordemos que los negativos también entran pues todo negativo se convierte en 0 arriba de este script)
-        if ($_POST['hola'] = 0 || $_POST['hola'] === '' || empty($_POST['hola']) || $_POST['hola'] === null) {
-            
-            
-            for ($i = 0; $i< $pos; $i++){
-               if ($_SESSION['sesionex'][$i] % 2 === 0) {
-                // Sumamos los números pares y los introducimos en una variable
-                $pares += $_SESSION['sesionex'][$i];
-                }
-                
-                else { // Introducimos los impares en un array para posteriormente obtener el mayor
-                    $impares[] = $_SESSION['sesionex'][$i];
-                }
-            }
-            // Limpiamos nuestra variable-sesión de ceros para que sumen como "numero introducido"
-            for ($i = 0; $i< $pos; $i++){
-                if ($_SESSION['sesionex'][$i] !=0){
-                    $clean[] = $_SESSION['sesionex'][$i];
-                }
-            }
-                
-        echo "<br>Se introdujeron ". count($clean) ." números. <br>";
-        echo "La media de pares es " . $pares / 2 . "<br>";
-        echo "El mayor de impares es " . max($impares)  . "<br>";
-        }            
-    }
-}
-    else { // Nada más entrar en el navegador declaramos variables para evitar avisos
-        $hola;
-        $_SESSION['sesionex'] = [];
-        
-    }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicio 001</title>  
+    <title>Ejercicio 006 - Capicúa</title>  
 </head>
 <body>
-
+    <p>Inserte un número para saber se é ou non capicúa:</p>
     <form action="" method="POST">
-        
-    <p>Inserte un número</p>
-    <input type="number" name="hola"  /><br>
-    <input type="hidden" name="oculto" value="
-                          <?php  
-                    // Con HTML creamos la variable de sesión sesionex y la mantenemos a lo largo de un sólo fichero gracias al input hidden                 
-                            if(isset($_SESSION['sesionex'])) 
-                            echo implode(", ", $_SESSION['sesionex'])  ?>" /> <br>
+        <input type='number' name='num'/>
+        <input type='submit'/>
+    </form>
+<?php
 
-    <input type="submit"/>
+    
+function checkCapicua($nom) {
+    $nom = (string)$nom; //Convertimos en string todo num. insertado para manejar cada cifra por separado
+    $length = strlen($nom); // Cantidad de cifras del num, contando desde 1
+    $len = strlen($nom) - 1; // Lo mismo contando desde 0
+    $a = [];
+    
+    
+    if ($length < 2 || $_POST['num'] < 0){ // devolvemos error si se introduce...
+            return " es incorrecto. Introduzca un número más de dos cifras o mayor que cero.";
+        }
+    
+    else {
+        if ($length % 2 === 0) { // Si la cantidad del num es par 
+            for ($i = 0; $i < $length*0.5; $i++) { //Por cada(mitad) de cantidad de cifras
+                //Por ejemplo si un num tiene 6 cifras queremos compararlo 3 veces
+                // (Primero con ultimo, segundo con penultimo...)
+                
+                // si el [$i] primero y el ultimo coinciden...
+                // si segundo y penultimo coinciden( si existen...)
+                if (strcmp($nom[$i],$nom[$len]) != 0) { 
+                    $a[] = 1; // Almacenamos un 1 en un array
+                }
+
+                $len--; // En cada repetición disminuímos la clave del último elemento, así comparamos el primer elemento con el ultimo, segundo con penultimo, tercero con antepenúltimo...
+            }       
+        }
+        if ($length % 2 != 0) { // si la cantidad de num es IMPAR
+            for ($i = 0; $i < $length*0.5-0.5; $i++) { // Buscamos comparar como hicimos anteriormente pero el -0.5 servirá para comparar todos los números menos el impar "del medio", para que éste no produzca ningún error
+                
+                if (strcmp($nom[$i],$nom[$len]) != 0) { 
+                    $a[] = 1;
+                }
+                else {
+                }
+                $len--;
+            }
+        }
+        if (in_array(1, $a) === true) { // Si acabamos con un 1 en nuestro array, no es capicua
+             return " NO es capicua";
+        }
+        else { // Si estamos limpios de 1 (todas las comparaciones han dado TRUE), es capicua
+            return " ES capicua";
+        }
+    }
+}
+    
+    
+if (isset($_POST['num']) && !empty($_POST['num']) && $_POST['num'] != '' && $_POST['num'] != null){ // Comprobamos que hemos hecho un input para que no de error
+    $_SESSION['num'] = $_POST['num'];
+    echo "<br><strong>El numero: ".$_SESSION['num'] . checkCapicua($_SESSION['num']) ."</strong><br>";
+}
+else { // De dejar vacío el formulario no imprimiremos nada
+    
+}
+
+$suma = 0;
+// Ahora hallaremos las capicúas menores que la introducida y las sumaremos
+if (isset($_SESSION['num'])){
+    for ($i = 0; $i < $_SESSION['num']; $i++) {
+        if (checkCapicua($_SESSION['num']) === ' ES capicua') { // Si hemos introducido una capicúa      
+            if (checkCapicua($i) === ' ES capicua') {
+            // Si, desde 0 hasta el num introducido hallamos una capicua
+            // La mostramos y la sumamos a la variable $suma
+                echo '<br> El num '.$i.' es capicua';
+                $suma += $i;
+            }
+            else {
+                // NO es capicua
+            }     
+        }
+    } // Imprimimos el restultado
+    if ((checkCapicua($_SESSION['num']) === ' ES capicua') && $_POST['num'] > 0){
+        echo "<br><br><strong>La suma de los anteriores números es:</strong>" . $suma;
+    }
+    if ((checkCapicua($_SESSION['num']) != ' ES capicua') && $_POST['num'] > 9){
+        echo "<br><br<strong>Introduzca un número capicúa por favor</strong>";
+    }
+}
+
+
+
         
+?>
 </body>
 </html>

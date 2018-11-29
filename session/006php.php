@@ -1,14 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['num'])){
-    
-    //$_SESSION['num'] = $_POST['num'];
-}
-else {
-    
-   // echo "test: No está la session declarada?";
-   
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,80 +16,63 @@ else {
         <input type='submit'/>
     </form>
 <?php
-$nem = $_POST['num'];
-
-
-
-    echo "<br> TEST SOLO: el num 200 ".checkCapicua(200);
 
     
 function checkCapicua($nom) {
-$nom = (string)$nom;
-$length = strlen($nom);
-$length1 = strlen($nom) - 1; // Saber si es par o impar // Dividir por 100, 10...
-$len = strlen($nom) - 1;
-$a = [];
+    $nom = (string)$nom; //Convertimos en string todo num. insertado para manejar cada cifra por separado
+    $length = strlen($nom); // Cantidad de cifras del num, contando desde 1
+    $len = strlen($nom) - 1; // Lo mismo contando desde 0
+    $a = [];
+
+    if ($length < 2 || $_POST['num'] < 0){ // devolvemos error si se introduce...
+            return " es incorrecto. Introduzca un número más de dos cifras o mayor que cero.";
+        }
     
-    if ($length < 2){
-        if ($length === 2){
-            if (strcmp($nom[0], $nom[1]) === 0) {
-                echo "ES capicúa";
+    else {
+        if ($length % 2 === 0) { // Si la cantidad del num es par 
+            for ($i = 0; $i < $length*0.5; $i++) { //Por cada(mitad) de cantidad de cifras
+                //Por ejemplo si un num tiene 6 cifras queremos compararlo 3 veces
+                // (Primero con ultimo, segundo con penultimo...)
+                
+                // si el [$i] primero y el ultimo coinciden...
+                // si segundo y penultimo coinciden( si existen...)
+                if (strcmp($nom[$i],$nom[$len]) != 0) { 
+                    $a[] = 1; // Almacenamos un 1 en un array
+                }
+
+                $len--; // En cada repetición disminuímos la clave del último elemento, así comparamos el primer elemento con el ultimo, segundo con penultimo, tercero con antepenúltimo...
+            }       
+        }
+        if ($length % 2 != 0) { // si la cantidad de num es IMPAR
+            for ($i = 0; $i < $length*0.5-0.5; $i++) { // Buscamos comparar como hicimos anteriormente pero el -0.5 servirá para comparar todos los números menos el impar "del medio", para que éste no produzca ningún error
+                
+                if (strcmp($nom[$i],$nom[$len]) != 0) { 
+                    $a[] = 1;
+                }
+                else {
+                }
+                $len--;
             }
-        else { 
-            echo "NO es capicúa";
+        }
+        if (in_array(1, $a) === true) { // Si acabamos con un 1 en nuestro array, no es capicua
+             return " NO es capicua";
+        }
+        else { // Si estamos limpios de 1 (todas las comparaciones han dado TRUE), es capicua
+            return " ES capicua";
         }
     }
-    else {
-        return "Introduzca un número con 2 o más cifras.";
-    }
+}
+    
+    
+if (isset($_POST['num'])){ // Comprobamos que hemos hecho un input para que no de error
+    $_SESSION['num'] = $_POST['num'];
+    echo "<br>El numero: ".$_SESSION['num'] . checkCapicua($_SESSION['num']);
 }
 else {
     
-    
-    if ($length % 2 === 0) { // Si la cantidad del num es par [Probemos CAPI PARES]
-        for ($i = 0; $i < $length*0.5; $i++) { //Por cada(mitad) de cantidad
-            //si el [$i] el uiltimo y ultimo coincide
-            // $si segundo y penultimo coinciden( si existen...)
-            if (strcmp($nom[$i],$nom[$len]) != 0) { 
-                
-                $a[] = 1;
-                
-            }
-            else {
-                
-            }
-            
-            $len--;
-
-    }
-}
-                
-
-    if ($length % 2 != 0) { // si la cantidad de num es IMPAR
-        for ($i = 0; $i < $length*0.5-0.5; $i++) {
-            if (strcmp($nom[$i],$nom[$len]) != 0) { 
-                
-                $a[] = 1;
-            }
-            else {
-                
-            }
-            
-            $len--;
-        }
-    }
-
-    if (in_array(1, $a) === true) {
-         return " NO es capicua";
-    }
-    else {
-        return " ES capicuaa";
-    }
- }
 }
     
-$_SESSION['num'] = $nem;
-echo "<br>El numero: ".$_SESSION['num'] . checkCapicua($nem);
+
 session_destroy();
 session_unset();
 ?>
