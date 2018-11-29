@@ -29,9 +29,7 @@ else {
     <input type='radio' name="Ach" value="<?php ?>" />
     <input type='radio' name="Ach" value="<?php ?>" />
     
-    <input type='radio' name="Bpos" value="" />
-    <input type='radio' name="Bneg" value="" />
-    <input type='radio' name="Bcero" value="" />
+
     
     <input type='submit'/>
         
