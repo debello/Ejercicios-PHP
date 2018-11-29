@@ -1,5 +1,8 @@
 <?php
-
+if (isset($_SESSION)){ // Si por alguna razón al redirigir a ésta página se mantiene una sesión, la destruímos
+session_destroy();
+session_unset();
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +17,7 @@
         
     <p>Nombre y contraseña: Carlos 123456</p>
     <input type="text" name="nombre"  /><br>
-    <input type="password" name="pass" />
+    <input type="password" name="pass" /><br>
     
     <input type="submit"/>
         

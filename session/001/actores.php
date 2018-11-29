@@ -1,10 +1,23 @@
 <?php
-if (isset($_POST['actor']) && !empty($_POST['actor'])){
+
+/**
+    Google Chrome - 
+        Configuración > Configuración avanzada (Debajo de todo) > Privadidad & Seguridad > Configuración de contenido > Cookies > Ver todas las cookies > Escribimos 'localhost' y borramos
+        
+    Mozilla Firefox - 
+        Opciones > Privacidad & Seguridad > Cookies y datos > Administrar datos > Escribimos 'localhost' > Eliminamos las cookies > Guardamos cambios.
+
+*/
+
+// Si hemos insertado ambos datos (actor y actriz)
+if (isset($_POST['actor']) && !empty($_POST['actor']) && isset($_POST['actriz']) && !empty($_POST['actriz'])){
+    // Creamos dos cookies con el valor que hayamos insertado (actor y actriz)
     setcookie("galleta", $_POST['actor'], time() + (86400 * 30), "/");
     setcookie("galleta2", $_POST['actriz'], time() + (86400 * 30), "/");
 
-        setcookie("prueba", "erayo");
-}
+        
+} 
+// Si no, simplemente declaramos las variables necesarias para evitar errores y avisos (justo cuando entramoe en la página por primera vez)
 else {
     $actor;
     $actriz;
@@ -24,26 +37,31 @@ else {
             <p>Inserte actor</p>
             <input type='text' name='actor' />
             <p>Inserte actriz</p>
-            <input type='text' name='actriz' />
+            <input type='text' name='actriz' /><br>
             <input type='submit' />
     
 <?php
+// Si hemos introducido un actor y una actriz
 if (!empty($_POST['actor']) && !empty($_POST['actriz'])){
-$actor = $_POST['actor'];
+$actor = $_POST['actor']; // Los pasamos a una variable
 $actriz = $_POST['actriz'];
 }
 
+// Si hemos declarado ambas cookies, vemos su valor
 if (isset($_COOKIE['galleta']) && isset($_COOKIE['galleta2'])){
-echo "<br>Su actor favorito es:" . $_COOKIE['galleta'] ."<br> su actriz favorita es:". $_COOKIE['galleta2'];
+echo "<br><br>Su actor favorito es: " . $_COOKIE['galleta'] ."<br> Su actriz favorita es:". $_COOKIE['galleta2'];
     }
-if (!isset($_COOKIE['galleta']) && !isset($_COOKIE['galleta2'])){
-    echo "Por favor recargue la página";
+// Si no hemos declarado ninguna cookie y hemos introducido valores en el formulario, ponemos un aviso para recargar la página
+// (Las cookies funcionan en la 'siguiente' o en la misma página tras ser recargada, no en el mismo momento que se declaran)
+if (!isset($_COOKIE['galleta']) && !isset($_COOKIE['galleta2']) && isset($_POST['actor']) && isset($_POST['actriz']) &&
+$_COOKIE['galleta'] != $_POST['actor'] && $_COOKIE['galleta2'] != $_POST['actriz']){
+    echo "<b><br><p>Por favor recargue la página</p>";
+}
+else { // Ponemos un aviso, igualmente, para recordar que se necesita cargar la página para que se vea el valor de las cookies
+    echo "<p><br>Si no se muestran los datos introducidos, recargue la página por favor.</p>";
 }
 
-//<img src="/images/image1.png" width="280" height="125" alt="actor" />
-  //  <img src="/images/image1.png" width="280" height="125" alt="actriz" />
 
- 
     
 ?>
     
