@@ -3,7 +3,7 @@
 // Los dos primeros números de la serie es 0 y 1, los asignamos a "a" y "b" respectivamente
 $a = 0;
 $b = 1;
-$n = $_GET['n'];
+$n = 4;
 
 // Si el número introducido es "0" o menor imprimimos un mensaje de error.
 if ($n <= 0){
