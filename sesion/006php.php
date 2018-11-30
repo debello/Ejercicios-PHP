@@ -1,4 +1,5 @@
 <?php
+// Implemente un algoritmo que solicite un número e nos diga si é capicúa.
 session_start();
 
 ?>

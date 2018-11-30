@@ -1,4 +1,8 @@
 <?php
+/** Unha pantalla na que temos dúas variables a e b que podemos incrementar, decrementar ou poñer a cero. O valor
+desas variable gardase nunha sesión.
+*/
+
 session_start();
 if (!isset($_SESSION['A'])){
     if (!isset($_POST['Apos'])) {
@@ -59,19 +63,19 @@ if (isset($_POST['Ach'])){
     
     // Repetimos lo mismo para B    
     if (($_POST['Ach']) === "Bpos"){
-        $_SESSION['B'] = $_SESSION['A'] + 1;
+        $_SESSION['B'] = $_SESSION['B'] + 1;
     }
 
     if (($_POST['Ach']) === "Bneg"){
-        $_SESSION['B'] = $_SESSION['A'] - 1;  
+        $_SESSION['B'] = $_SESSION['B'] - 1;  
     }
 
     if (($_POST['Ach']) === "Bcero"){
         $_SESSION['B'] = 0;  
     } 
 }
-    echo "<p>El valor de A es: " . $_SESSION['A'] . "</p><br>";
-    echo "<p>El valor de B es: " . $_SESSION['B'] . "</p><br>";
+echo "<p>El valor de A es: " . $_SESSION['A'] . "</p><br>";
+echo "<p>El valor de B es: " . $_SESSION['B'] . "</p><br>";
         
 ?>
     

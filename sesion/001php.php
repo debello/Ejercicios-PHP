@@ -1,11 +1,21 @@
 <?php
+/**
+Mostre a nosa actriz e o noso actor favorito.  Podemos cambiar as nosas preferencias de tal xeito que a información permanece no disco, e así consérvanse os datos aínda que se reinicie o navegador, ou se apague e volva a acender o equipo
+
+Proba o exercicio en Chrome, Firefox e Edge, e amosa no navegador onde se pode visualizar a cookie.
+*/
+
+
 
 /**
     Google Chrome - 
-        Configuración > Configuración avanzada (Debajo de todo) > Privadidad & Seguridad > Configuración de contenido > Cookies > Ver todas las cookies > Escribimos 'localhost' y borramos
+        Configuración > Configuración avanzada (Debajo de todo) > Privadidad & Seguridad > Configuración de contenido > Cookies > Ver todas las cookies > Escribimos 'localhost'
         
     Mozilla Firefox - 
-        Opciones > Privacidad & Seguridad > Cookies y datos > Administrar datos > Escribimos 'localhost' > Eliminamos las cookies > Guardamos cambios.
+        Opciones > Privacidad & Seguridad > Cookies y datos > Administrar datos > Escribimos 'localhost' 
+    
+    Microsoft Edge -
+        F12 > Depurador > Click en cookies 
 
 */
 

@@ -1,4 +1,7 @@
 <?php
+// Implemente o sistema de autenticación que vimos nos vídeos na clase
+
+
 if (isset($_SESSION)){ // Si por alguna razón al redirigir a ésta página se mantiene una sesión, la destruímos
 session_destroy();
 session_unset();

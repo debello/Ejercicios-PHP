@@ -1,5 +1,6 @@
 <?php
 session_start();
+//Implemente un programa que solicite un número de DNI completo e nos diga si é un DNI correcto ou non. Un dni é correcto si a letra de control se corresponde co número
 
 ?>
 

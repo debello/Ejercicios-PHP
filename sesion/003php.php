@@ -34,10 +34,10 @@ $acumula = 0;
 $pares = 0;
 $impares = [];
 
-$countNum = count($_SESSION['sesionex']);
+$countNum = count($_SESSION['sesionex']) - 1;
 
             
-if (isset($_POST['hola'])){ // Si hemos introducido un valor
+
         // Si este valor es 0 o está vacío (recordemos que los negativos también entran pues todo negativo se convierte en 0 arriba de este script)
     if ($_POST['hola'] = 0 || $_POST['hola'] === '' || empty($_POST['hola']) || $_POST['hola'] === null) {
         for ($i = 0; $i< $countNum; $i++){
@@ -45,30 +45,37 @@ if (isset($_POST['hola'])){ // Si hemos introducido un valor
                 $pares += $_SESSION['sesionex'][$i];
             }
             else {
-                if( $_SESSION['sesionex'][$i] != 0){}
-                $impares[] = $_SESSION['sesionex'][$i]; // Introducimos impares en el array $impares
+                if( $_SESSION['sesionex'][$i] != 0){
+                    $impares[] = $_SESSION['sesionex'][$i]; // Introducimos impares en el array $impares
                 }   
             }
                 if($_SESSION['sesionex'][$i] != 0){ // Creamos un array de números introducidos SIN ceros (para que no cuenten como número introducido)
-                $sessionSinCeros[] = $_SESSION['sesionex'][$i];
+                    $sessionSinCeros[] = $_SESSION['sesionex'][$i];
             }
-        }
-
+        }        // Quitamos los 0 en $impares
+                 foreach ($impares as $v){
+                     if($v != 0){
+                         $imparesSinCeros[] = $v;
+                     }
+                }
+    
+///////////////////////
         echo "<br><b>Se introdujeron</b> ". count($sessionSinCeros) ." números. <br>";
         echo "<b>La media</b> de pares es " . $pares / 2 . "<br>";
 
-        if(is_array($sessionSinCeros)){ // Limpia error si ponemos uno o menos impares
-            echo "<b>El mayor</b> de impares es " . max($sessionSinCeros)  . "<br>";     
+        if(is_array($imparesSinCeros)){ // Limpia error si ponemos uno o menos impares
+            echo "<b>El mayor</b> de impares es " . max($imparesSinCeros)  . "<br>";     
         }
         else {
             echo "<b>AVISO</b>: No hay dos o más números impares para compararlos<br>";
         }
-        } 
-    }   
+         
+    }
 }
     else { // Nada más entrar en el navegador declaramos variables para evitar avisos
         $hola;
         $_SESSION['sesionex'] = [];
+        $sessionSinCeros = [];
         
     }
 ?>

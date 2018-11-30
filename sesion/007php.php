@@ -1,5 +1,8 @@
 <?php
 session_start();
+/**
+Implemente un algoritmo que solicite un número N e nos visualice a suma de todos os números capicúa menores que N
+*/
 
 ?>
 
@@ -7,10 +10,10 @@ session_start();
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicio 006 - Capicúa</title>  
+    <title>Ejercicio 007 - Capicúa</title>  
 </head>
 <body>
-    <p>Inserte un número para saber se é ou non capicúa:</p>
+    <p>Inserte un número capicúa para saber a suma dos números anteriores capicúas:</p>
     <form action="" method="POST">
         <input type='number' name='num'/>
         <input type='submit'/>
@@ -75,7 +78,7 @@ else { // De dejar vacío el formulario no imprimiremos nada
 
 $suma = 0;
 // Ahora hallaremos las capicúas menores que la introducida y las sumaremos
-if (isset($_SESSION['num'])){
+if (isset($_SESSION['num']) && $_POST['num']){
     for ($i = 0; $i < $_SESSION['num']; $i++) {
         if (checkCapicua($_SESSION['num']) === ' ES capicua') { // Si hemos introducido una capicúa      
             if (checkCapicua($i) === ' ES capicua') {

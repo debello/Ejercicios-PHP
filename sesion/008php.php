@@ -4,8 +4,9 @@ session_start();
 if (!isset($_POST['num'])){
     $nem;
     $_POST['num'] = '';   
-    
+    $suma;
 }
+
 
 ?>
 
@@ -22,6 +23,7 @@ if (!isset($_POST['num'])){
         <input type='submit'/>
     </form>
 <?php
+$suma = 0;
 $nem = $_POST['num']; // En lugar de $num podríamos usar $_SESSION[] 
         
    for ($i = 2; $i <= $nem; $i++) { // Evitamos 1 y 2 pues no son primos
@@ -41,8 +43,14 @@ $nem = $_POST['num']; // En lugar de $num podríamos usar $_SESSION[]
         }
        if ($c === $i){ // Si un num es primo $c equivaldrá a él (todas sus divisiones dará: 1, su propio numero y numeros con decimales(float))
            echo "$i es primo <br>";
+           $suma += $i; // Sumamos dicho primo en una variable donde se sumarán el resto de primos
        }
    }
+        
+    if(isset($_POST['num']) && !empty($suma)){
+        echo "<br><b>La suma de los números primos anteriores es </b>$suma";
+    }
+       
 session_destroy();
 session_unset();
         
