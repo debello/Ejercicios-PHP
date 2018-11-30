@@ -1,5 +1,6 @@
 <?php
 session_start();
+//Implemente un algoritmo que solicite un número N e visualice a suma de todos os números primos menores ou iguais que N.
 
 if (!isset($_POST['num'])){
     $nem;
