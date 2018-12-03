@@ -6,7 +6,7 @@ Exemplo de entrada : 'A galiña azul salta sobre o seu niño' --> Comprobas se c
 */
 
 $maxicadena = "A galiña azul salta sobre o seu niño";
-$minicadena = "A";
+$minicadena = "azul";
 
 // Pasamos las variables anteriores a una función. Esto es para evitar 'Warnings' más adelante
 function check ($maxicadena, $minicadena) {
@@ -29,7 +29,7 @@ else {
     if (@check($maxicadena, $minicadena) > 0) {
         echo "<strong>Si</strong>. Concretamente en la posición " . check($maxicadena, $minicadena);
     }
-    if (@check($maxicadena, $minicadena) === 0) { // Si el valor equivale a 0
+    else if (@check($maxicadena, $minicadena) === 0) { // Si el valor equivale a 0
         echo "<strong>Si</strong>. Concretamente en la posición " . check($maxicadena, $minicadena);
     }
     

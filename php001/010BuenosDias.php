@@ -8,12 +8,17 @@
 
 // Obtenemos la hora sin minutos mediante el formulario
     $hora = $_GET['a'];
-    
-   
-switch ($hora) {
+
+switch ($hora) { // Igual que el último CASE pero incluyendo a 0
+    case ($hora === 0):
+        echo "La hora está entre las 20pm y las 5am <br>";
+        echo "Son la(s) " . date("$hora:i:") . "<br> "; 
+        echo "Buenas noches!";
+    break;
 
 // Si la hora introducida es mayor que 5 pero menor que 12...
     case ($hora > 5) && ($hora < 12):
+        $hora = 00;
         echo "La hora está entre las 6am y las 11am <br>";
 // Introducimos la hora escrita $hora y de forma automática los minutos :i:
         echo "Son la(s) " . date("$hora:i:") . "<br> "; 
@@ -27,7 +32,7 @@ switch ($hora) {
     break;
 
 // Si la hora es mayor que 19, menos que 24 OR mayor o igual que 00 y menor que 6
-    case ($hora > 19) && ($hora < 24) || ($hora >= 00) && ($hora < 6):
+    case ($hora > 19) && ($hora < 24) || ($hora >= 00) && ($hora < 6) :
         echo "La hora está entre las 20pm y las 5am <br>";
         echo "Son la(s) " . date("$hora:i:") . "<br> "; 
         echo "Buenas noches!";

@@ -19,10 +19,28 @@
     // $a > $b > $c
     // $a > $c > $b
     // $b > $a > $c
+    
     // $b > $c > $a
     // $c > $a > $b
     // $c > $b > $a
+
     
+    
+/**
+Si A > B
+    si B > C  - a b c
+        else a c b
+        
+Si B > A 
+    si A > C - b a c
+        else b c a
+        
+Si C > A
+    si A > B - c a b
+        else c b a
+
+*/
+
 echo "<strong> De mayor a menor:</strong> <br>";
     
 // Si alguna casilla está vacía... imprimimos el mensaje de "inténtelo de nuevo"    

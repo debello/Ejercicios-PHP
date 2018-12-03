@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<style> 
+    .body {
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+<body>
+
 <?php
 
 /** EJERCICIO 8:
@@ -159,3 +171,6 @@ print_r(array_merge($animales, $coches, $asignaturas));
         
         
 ?>
+    
+</body>
+</html>
