@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+    <h3> SELECT - Artigo</h3>
+    
+    <input type="button" onclick="location.href='index.html';" value="INDEX"/>
+    <input type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
+    <input type="button" onclick="location.href='UnoDELETE.php';" value="DELETE"/>
+
+    
+    
+<form action="UnoSELECT.php" target="_blank" method="GET">
+    <p>Escribe asterisco para verlo todo: <input type="text" name="consulta">
+    <input type="submit" value="Enviar"></p>
+</form>
+
+
 <?php
 
 $servername = "localhost";
@@ -20,7 +40,7 @@ else {
 }
 
 if (isset($_GET['consulta'])) {
-    if ($_GET['consulta'] != '*' || $_GET['consulta'] === '' || $_GET['consulta'] === is_null || empty($_GET['consulta'])) {
+    if ($_GET['consulta'] != '*' || $_GET['consulta'] === '' || is_null($_GET['consulta']) === TRUE || empty($_GET['consulta'])) {
         "No se ha escrito un asterisco";
         header('Location: Formu.html');
         exit;
@@ -57,7 +77,9 @@ if (isset($_GET['consulta'])) {
             mysqli_free_result($result);
     }
 }
-
+else {
+    echo "<br>No se ha escrito nada";
+}
 
 /**
 
@@ -91,5 +113,6 @@ if (isset($_GET['consulta'])) {
             mysqli_free_result($result);
      
 */
-else {echo "<br>no se ha escrito un asterisco";}
+
+
 ?>
