@@ -12,7 +12,7 @@
 
     
     
-<form action="UnoSELECT.php" target="_blank" method="GET">
+<form action="UnoSELECT.php" method="GET">
     <p>Escribe asterisco para verlo todo: <input type="text" name="consulta">
     <input type="submit" value="Enviar"></p>
 </form>
@@ -42,7 +42,7 @@ else {
 if (isset($_GET['consulta'])) {
     if ($_GET['consulta'] != '*' || $_GET['consulta'] === '' || is_null($_GET['consulta']) === TRUE || empty($_GET['consulta'])) {
         "No se ha escrito un asterisco";
-        header('Location: Formu.html');
+        header('Location: UnoSELECT.php');
         exit;
 
     }
@@ -75,6 +75,16 @@ if (isset($_GET['consulta'])) {
             echo "</table>";
                 // Free result set
             mysqli_free_result($result);
+   for ($i = 0; $i < $row.lenght; $i++){
+        
+    
+        echo "<table>
+                    <tr>
+                        <td><button name='del'>DEL</button></td>
+                    </tr>
+                <table>
+        ";
+        }
     }
 }
 else {

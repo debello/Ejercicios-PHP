@@ -43,6 +43,27 @@ if (isset($_GET['enviado'])) {
     $description = $_GET['consulta2'];
     $prezo = $_GET['consulta3'];
     $categoria = $_GET['consulta4'];
+
+    
+
+ 
+        // Insertamos query
+        $query = " INSERT INTO artigo (id_artigo, nome, descripcion, prezo, categoria) 
+                    VALUES ($id_artigo, '$nome', '$description', $prezo, '$categoria')";
+
+        $result = $conn -> query("$query");
+        //$conn -> close();
+            // mysqli_free_result($result);
+        
+        // Comprobamos si se ha borrado nuestra consulta seleccionada
+        if ($result = $conn -> query("$query") === true) {
+            echo "svvamos";
+            echo "<br>Consulta borrada con éxito";
+        }
+
+
+
+
 }
     
     
