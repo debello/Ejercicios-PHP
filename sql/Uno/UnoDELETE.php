@@ -1,3 +1,12 @@
+<?php
+///////////////////////////////////
+////////// OUTDATED ///////////////
+///////// ver UnoSELECT.php ///////
+///////////////////////////////////
+//////////////////////////////////
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +15,7 @@
 <body>
     <h3> DELETE - ARTIGO</h3>
     
-    <input type="button" onclick="location.href='Uno.php';" value="INDEX"/>
+    <input type="button" onclick="location.href='Index.html';" value="INDEX"/>
     <input type="button" onclick="location.href='UnoSELECT.php';" value="SELECT"/>
     <input type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
     

@@ -6,12 +6,12 @@
 <body>
     <h3> INSERT - ARTIGO</h3>
     
-    <input type="button" onclick="location.href='Uno.php';" value="INDEX"/>
-    <input type="button" onclick="location.href='UnoSELECT.php';" value="SELECT"/>
-    <input type="button" onclick="location.href='UnoDELETE.php';" value="DELETE"/>
+    <input type="button" onclick="location.href='index.html';" value="INDEX"/>
+    <input type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
+   
     
     <form action="UnoINSERT.php" method="GET">
-        <p>id_artigo:</p> <input type="number" name="consulta" />
+  
         <p>nome:</p> <input type="text" name="consulta1" />
         <p>descripcion:</p> <input type="text" name="consulta2" />
         <p>prezo:</p> <input type="number" name="consulta3" />
@@ -38,7 +38,7 @@
         echo "Connected successfully. <br>";
     }
 if (isset($_GET['enviado'])) {
-    $id_artigo = $_GET['consulta'];
+    
     $nome = $_GET['consulta1'];
     $description = $_GET['consulta2'];
     $prezo = $_GET['consulta3'];
@@ -48,8 +48,8 @@ if (isset($_GET['enviado'])) {
 
  
         // Insertamos query
-        $query = " INSERT INTO artigo (id_artigo, nome, descripcion, prezo, categoria) 
-                    VALUES ($id_artigo, '$nome', '$description', $prezo, '$categoria')";
+        $query = " INSERT INTO artigo (nome, descripcion, prezo, categoria) 
+                    VALUES ('$nome', '$description', $prezo, '$categoria')";
 
         $result = $conn -> query("$query");
         //$conn -> close();
@@ -58,7 +58,7 @@ if (isset($_GET['enviado'])) {
         // Comprobamos si se ha borrado nuestra consulta seleccionada
         if ($result = $conn -> query("$query") === true) {
             echo "svvamos";
-            echo "<br>Consulta borrada con éxito";
+            echo "<br>Consulta INSERTADA con éxito";
         }
 
 

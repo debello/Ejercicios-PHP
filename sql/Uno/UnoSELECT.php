@@ -1,5 +1,9 @@
 <?php
 
+/// => ADD BUTTON TO DROP ALL TABLE
+/// SHOW SECOND TABLE (categories) and link them w foreign KEY
+
+
 $servername = "localhost";
 // El usuario que uséis (este es el que trae por defecto, administrador)
 $username = "root";
@@ -47,10 +51,6 @@ if (isset($_GET['DEL'])){
     #buttons #per-button {
         position: relative;
         margin: -1px;
-
-     
-
-        
         
     }
     #per-button {
@@ -61,21 +61,24 @@ if (isset($_GET['DEL'])){
         position: relative;
         float: left;
     }
+    
+    #btn-index {
+        position: relative;
+        border-bottom; 5px;
+    }
 </style>
 </head>
 <body>
-    <h3> SELECT - Artigo</h3>
+    <h3> SELECT AND DELETE - Artigo</h3>
     
-    <input type="button" onclick="location.href='index.html';" value="INDEX"/>
-    <input type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
-    <input type="button" onclick="location.href='UnoDELETE.php';" value="DELETE"/>
+    <input id='btn-index' type="button" onclick="location.href='index.html';" value="INDEX"/>
+    <input id='btn-index' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
 
     
     
-<form action="UnoSELECT.php" method="GET">
-    <p>Escribe asterisco para verlo todo: <input type="text" name="consulta">
-    <input type="submit" value="Enviar"></p>
-</form>
+<div></div>
+    
+
 
 
 <?php
@@ -123,20 +126,7 @@ if (isset($_GET['consulta'])) {
                 echo "</tr>";
             }
         echo "</table>";
-        /* Number of rows
-        
-        $query2 = "SELECT COUNT(*) as total FROM artigo";
-        $result2 = $conn -> query("$query2");
-        $data = mysql_fetch_assoc($result2);
-        echo "<br> este es el resultado: " . $data['total'] ." <br>";
-        var_dump($result2);
-        
-        
-        
-        $result2 = mysql_query("SELECT count(*) as total from artigo", $conn);
-        $row = mysql_num_rows($result2);
-        echo "esto es num filas: $row ";
-             */
+
 
         
 
@@ -203,59 +193,27 @@ else {
     
 /**
 
-// Consulta para ver todo lo que hay en tienda
-    $query = " SELECT * FROM ARTIGO";
-
-    $result = $conn -> query("$query");
-    //$conn -> close();
+ 
+    // Insertar BACKUP tabla con contenidos
+    // Sin usar COLUMNA id (y convirtiéndola en primary key para el autoincrement)
 
 
-            echo "<table border=1>";
-                echo "<tr>";
-                    echo "<th>id_artigo</th>";
-                    echo "<th>nome</th>";
-                    echo "<th>descripcion</th>";
-                    echo "<th>prezo</th>";
-                    echo "<th>categoria</th>";
-                echo "</tr>";
+    INSERT INTO `artigo` (`nome`, `descripcion`, `prezo`, `categoria`) VALUES
+    ('Manzana', 'Pieza de fruta verde', 0, 'Alimentos'),
+    ('Silla', 'Cuatro patas con tabla', 15, 'Muebles'),
+    ('Mesa', 'Tabla de madera redonda', 26, 'Muebles'),
+    ('Aspiradora', 'Artefacto para limpiar suelos', 11, 'Electrodomésticos');
 
-            while($row = mysqli_fetch_array($result)){
-                echo "<tr>";
-                    echo "<td>" . $row['id_artigo'] . "</td>";
-                    echo "<td>" . $row['nome'] . "</td>";
-                    echo "<td>" . $row['descripcion'] . "</td>";
-                    echo "<td>" . $row['prezo'] . "</td>";
-                    echo "<td>" . $row['categoria'] . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-                // Free result set
-            mysqli_free_result($result);
-     
-     
-     
-     
-     
-// Insertar BACKUP tabla con contenidos
-// Sin usar COLUMNA id (y convirtiéndola en primary key para el autoincrement)
+    --
+    -- Índices para tablas volcadas
+    --
 
-
-INSERT INTO `artigo` (`nome`, `descripcion`, `prezo`, `categoria`) VALUES
-('Manzana', 'Pieza de fruta verde', 0, 'Alimentos'),
-('Silla', 'Cuatro patas con tabla', 15, 'Muebles'),
-('Mesa', 'Tabla de madera redonda', 26, 'Muebles'),
-('Aspiradora', 'Artefacto para limpiar suelos', 11, 'Electrodomésticos');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `artigo`
---
-ALTER TABLE `artigo`
-  ADD PRIMARY KEY (`id`);
-COMMIT;
+    --
+    -- Indices de la tabla `artigo`
+    --
+    ALTER TABLE `artigo`
+      ADD PRIMARY KEY (`id`);
+    COMMIT;
 
 */
 
