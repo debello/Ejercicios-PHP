@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-01-2019 a las 19:08:04
+-- Tiempo de generación: 14-01-2019 a las 15:37:22
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artigo` (
-  `id_artigo` int(11) NOT NULL,
+  `id` int(255) NOT NULL,
   `nome` varchar(30) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `prezo` int(6) DEFAULT NULL,
@@ -40,20 +40,13 @@ CREATE TABLE `artigo` (
 -- Volcado de datos para la tabla `artigo`
 --
 
-INSERT INTO `artigo` (`id_artigo`, `nome`, `descripcion`, `prezo`, `categoria`) VALUES
+INSERT INTO `artigo` (`id`, `nome`, `descripcion`, `prezo`, `categoria`) VALUES
 (1, 'Manzana', 'Pieza de fruta verde', 0, 'Alimentos'),
-(2, 'Mesa', 'Tabla de madera redonda', 26, 'Muebles');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `id_categoria` int(11) NOT NULL,
-  `nome` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(2, 'Silla', 'Cuatro patas con tabla', 15, 'Muebles'),
+(3, 'Manzana', 'Pieza de fruta verde', 0, 'Alimentos'),
+(4, 'Mesa', 'Tabla de madera redonda', 26, 'Muebles'),
+(5, 'Silla', 'Cuatro patas con tabla', 15, 'Muebles'),
+(6, 'Aspiradora', 'Artefacto para limpiar suelos', 11, 'Electrodomésticos');
 
 --
 -- Índices para tablas volcadas
@@ -63,29 +56,7 @@ CREATE TABLE `categoria` (
 -- Indices de la tabla `artigo`
 --
 ALTER TABLE `artigo`
-  ADD PRIMARY KEY (`id_artigo`);
-
---
--- Indices de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id_categoria`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `artigo`
---
-ALTER TABLE `artigo`
-  MODIFY `id_artigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

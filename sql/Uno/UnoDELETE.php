@@ -11,8 +11,8 @@
     <input type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
     
     <form action="UnoDELETE.php" method="GET">
-    <p>Escriba la columna (id, name o categoría): <input type="text" name="consulta">
-    <p>Escriba el valor a eliminar (01, Manzana o Fruta): <input type="text" name="consulta2">
+    <p>Escriba la columna (id_artigo, nome o categoría): <input type="text" name="consulta">
+    <p>Escriba el valor a eliminar (1, Manzana o Fruta): <input type="text" name="consulta2">
     <input type="submit" value="Enviar"></p>
 </form>
     
@@ -25,7 +25,7 @@ $username = "root";
 // Esta contraseña está vacía
 $pass = "";
 // Nombre de mi base de datos
-$database = "uno";
+$database = "Uno";
 
 // Create conection
 $conn = new mysqli($servername, $username, $pass, $database);
@@ -38,12 +38,15 @@ else {
     echo "Connected successfully. <br>";
 }
 
-$consulta = $_GET['consulta'];
-$consulta2 = $_GET['consulta2'];
     
     // Comprobamos consulta (columnas) y consulta2 (valores)
 if (isset($_GET['consulta']) && isset($_GET['consulta2']) ) {
     echo "sv1";
+    
+
+    $consulta = $_GET['consulta'];
+    $consulta2 = $_GET['consulta2'];
+    
     // Comprobamos que 'consulta' coincida con uno de los valores (id, nome, categoria)
     if ($_GET['consulta'] === 'id_artigo' || $_GET['consulta'] === 'nome' || $_GET['consulta'] === 'categoria') {
         echo "sv2";
