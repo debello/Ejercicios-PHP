@@ -2,29 +2,13 @@
 
 /// => ADD BUTTON TO DROP ALL TABLE
 /// SHOW SECOND TABLE (categories) and link them w foreign KEY
+// Añadir FLOAT al PRICE :> ALTER TABLE MOFIY COLUMN SDFKSIDFNMSAD
+
+include 'conection.php';
 
 
-$servername = "localhost";
-// El usuario que uséis (este es el que trae por defecto, administrador)
-$username = "root";
-// Esta contraseña está vacía
-$pass = "";
-// Nombre de mi base de datos
-$database = "uno";
-
-// Create conection
-$conn = new mysqli($servername, $username, $pass, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn -> connect_error);
-}
-else {
-    echo "Connected successfully. <br>";
-}
-
-if (isset($_GET['DEL'])){
-    $b1 = $_GET['DEL'];
+if (isset($_POST['DEL'])){
+    $b1 = $_POST['DEL'];
     echo "<br> $b1 <br>";
     
     $query = " DELETE FROM artigo
@@ -66,6 +50,23 @@ if (isset($_GET['DEL'])){
         position: relative;
         border-bottom; 5px;
     }
+    #price {
+        position:relative;
+       
+  
+        display: block;
+    }
+    
+    #p1 {
+        margin: 5px;
+    }
+    #p2 {
+        margin: 5px;
+    }
+    #p3 {
+        margin: 5px;
+    }
+    
 </style>
 </head>
 <body>
@@ -89,19 +90,28 @@ if (isset($_GET['DEL'])){
 //////////////////
 // Asignamos el asterisco a consulta para que cargue la página con todos los artículos//
     
-$_GET['consulta'] = "*";
-    
-if (isset($_GET['consulta'])) {
-    if ($_GET['consulta'] != '*' || $_GET['consulta'] === '' || is_null($_GET['consulta']) === TRUE || empty($_GET['consulta'])) {
-        "No se ha escrito un asterisco";
-        header('Location: UnoSELECT.php');
-        exit;
 
-    }
+   
 
-    else if ($_GET['consulta'] === '*') {
-        $query = " SELECT ".$_GET['consulta']. " FROM ARTIGO";
+        
+        if (isset($_POST['Prezo_DESC'])) {
+        $query = " SELECT * FROM artigo ORDER BY prezo DESC";
 
+        }
+        
+        else if (isset($_POST['Prezo_ASC'])) {
+        $query = " SELECT * FROM artigo ORDER BY prezo ASC";
+
+            
+        }
+        else (isset($_POST['Por_defecto'])) {{
+        $query = " SELECT * FROM ARTIGO";
+        }
+                                             
+
+        if (isset($_POST['drop-table'])) {
+            $query = ""
+        }
         $result = $conn -> query("$query");
         //$conn -> close();
 
@@ -126,22 +136,18 @@ if (isset($_GET['consulta'])) {
                 echo "</tr>";
             }
         echo "</table>";
+        
 
 
         
 
-       
- $query3 = " SELECT id FROM artigo LIMIT 1";
+       // Recoge todas las IDs de nuestra tabla
+        $query3 = " SELECT id FROM artigo LIMIT 1";
 
         $result = $conn -> query("$query");
         while($row = mysqli_fetch_array($result)){
         $test[] = $row['id'];
-        
-        
-        
         }
-    
-        
         
         // How many rows? $num
         $query2 = "SELECT * FROM artigo";
@@ -158,24 +164,50 @@ if (isset($_GET['consulta'])) {
         
     
         echo "
-                <form action='' method='GET'>
-                
+                <form action='' method='POST'>        
                     <tr>
                         <td><input id='per-button' type= 'submit'
                         name='DEL'  value='"
                             ."$test[$i]".            "' /></td>
-                    </tr>
-                
+                    </tr>    
                 </form>
         ";
         }
         echo "</table>";
-    }
-}
-else {
-    echo "<br>No se ha escrito nada";
-}
+    echo "<br>";
+       // if (isset($_POST['Prezo_DESC'])) {
+            echo "<div id='price'>";
+            echo "<form action='' method='POST'>
+                <input  type='submit' name='Prezo_ASC' value='Ordenar prezo ASC' />
+                </form></div>";
+       // }
+    
+       // else if (isset($_POST['Prezo_ASC'])) {
+            echo "<div id='price'>";
+            echo "<form action='' method='POST'>
+                <input  type='submit' name='Prezo_DESC' value='Ordenar prezo DESC' />
+                </form></div>";
+      //  }
 
+       // else {
+            echo "<div id='price'>";
+            echo "<form action='' method='POST'>
+                <input  type='submit' name='Prezo_Defecto' value='Por Defecto' />
+                </form></div>";
+    
+            echo "<form action='' method='POST'>
+                <input id='borrar' type='submit' name='drop-table' value='Borrar Tabla' />
+                </form>";
+            
+       // }
+    
+    
+
+
+
+    
+    
+ 
 // Asignar a cada botón (button1, button2) que borre
 // la id asignada (1, 2)
 //

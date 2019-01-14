@@ -1,32 +1,38 @@
 <?php
 include 'conection.php';
-
-if (isset($_POST['enviado'])) {
     
-    $nome = $_POST['consulta1'];
-    $description = $_POST['consulta2'];
-    $prezo = $_POST['consulta3'];
-    $categoria = $_POST['consulta4'];
+    
+    
+if (isset($_GET['enviado'])) {
+    
+    $nombre = $_GET['consulta'];
+    $columna = $_GET['consulta1'];
+    $valor = $_GET['consulta2'];
+if (!empty($nombre) && !empty($columna) && !empty($valor)) {
+   
+
+    echo "aqui tenemos el valor $valor";
 
     
-
- 
         // Insertamos query
-        $query = " INSERT INTO artigo (nome, descripcion, prezo, categoria) 
-                    VALUES ('$nome', '$description', $prezo, '$categoria')";
+        $query = " UPDATE artigo
+                    SET $columna = '$valor'
+                    WHERE nome = '$nombre'";
 
         $result = $conn -> query("$query");
         //$conn -> close();
             // mysqli_free_result($result);
         
         // Comprobamos si se ha borrado nuestra consulta seleccionada
-        if ($result === true) {
+        if ($result = $conn -> query("$query") === true) {
             echo "svvamos";
-            echo "<br>Consulta INSERTADA con éxito";
+            echo "<br>Consulta MODIFICADA con éxito";
         }
 
 
+}
 
+    else { echo "no has introducido todas las casillas";}
 
 }
 
@@ -39,27 +45,25 @@ if (isset($_POST['enviado'])) {
 <meta charset="UTF-8">
 </head>
 <body>
-    <h3> INSERT - ARTIGO</h3>
+    <h3> MODIFY - ARTIGO</h3>
     
     <input type="button" onclick="location.href='index.html';" value="INDEX"/>
     <input type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
+    <input type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
    
     
-    <form action="UnoINSERT.php" method="POST">
+    <form action="UnoMODIFY.php" method="GET">
   
-        <p>nome:</p> <input type="text" name="consulta1" />
-        <p>descripcion:</p> <input type="text" name="consulta2" />
-        <p>prezo:</p> <input type="number" name="consulta3" />
-        <p>categoria:</p> <input type="text" name="consulta4" />
+        <p>Nombre del artículo a modificar: </p> <input type="text" name="consulta" />
+        <p>Columna a modificar: </p> <input type="text" name="consulta1" />
+        <p>Nuevo valor:</p> <input type="text" name="consulta2" />
         <p><input type="submit" value="Enviar" name="enviado"></p>
     </form>
     
  <?php
-    
- 
 
     
-    $query = " SELECT * FROM ARTIGO ORDER BY prezo DESC";
+    $query = " SELECT * FROM ARTIGO";
 
         $result = $conn -> query("$query");
         //$conn -> close();
@@ -85,10 +89,6 @@ if (isset($_POST['enviado'])) {
                 echo "</tr>";
             }
         echo "</table>";
-
-    
-    
-
 
     
     
