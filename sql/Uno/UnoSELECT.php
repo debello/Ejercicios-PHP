@@ -104,14 +104,19 @@ if (isset($_POST['DEL'])){
 
             
         }
-        else (isset($_POST['Por_defecto'])) {{
+        else if (isset($_POST['Prezo_Defecto'])) {
         $query = " SELECT * FROM ARTIGO";
-        }
+            }
                                              
 
-        if (isset($_POST['drop-table'])) {
-            $query = ""
-        }
+        else if (isset($_POST['truncate-table'])) {
+            $query = "TRUNCATE TABLE artigo";
+            }
+    
+        else {
+            $query = " SELECT * FROM artigo";
+            }
+    
         $result = $conn -> query("$query");
         //$conn -> close();
 
@@ -196,7 +201,7 @@ if (isset($_POST['DEL'])){
                 </form></div>";
     
             echo "<form action='' method='POST'>
-                <input id='borrar' type='submit' name='drop-table' value='Borrar Tabla' />
+                <input id='borrar' type='submit' name='truncate-table' value='Borrar Tabla' />
                 </form>";
             
        // }

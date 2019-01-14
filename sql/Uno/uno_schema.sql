@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artigo` (
-  `id` int(255) NOT NULL,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(30) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
-  `prezo` int(6) DEFAULT NULL,
+  `prezo` FLOAT(10,2) DEFAULT NULL,
   `categoria` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
