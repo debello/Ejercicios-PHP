@@ -1,4 +1,6 @@
 <?php
+// https://www.figma.com/file/0vaS8KnENMueMCO1AO01hGHu/Untitled?node-id=0%3A1
+
 
 /// => ADD BUTTON TO DROP ALL TABLE
 /// SHOW SECOND TABLE (categories) and link them w foreign KEY
