@@ -41,12 +41,10 @@ CREATE TABLE `artigo` (
 --
 
 INSERT INTO `artigo` (`id`, `nome`, `descripcion`, `prezo`, `categoria`) VALUES
-(1, 'Manzana', 'Pieza de fruta verde', 0, 'Alimentos'),
+(1, 'Manzana', 'Pieza de fruta verde', 0.5, 'Alimentos'),
 (2, 'Silla', 'Cuatro patas con tabla', 15, 'Muebles'),
-(3, 'Manzana', 'Pieza de fruta verde', 0, 'Alimentos'),
-(4, 'Mesa', 'Tabla de madera redonda', 26, 'Muebles'),
-(5, 'Silla', 'Cuatro patas con tabla', 15, 'Muebles'),
-(6, 'Aspiradora', 'Artefacto para limpiar suelos', 11, 'Electrodomésticos');
+(3, 'Mesa', 'Tabla de madera redonda', 26, 'Muebles'),
+(4, 'Aspiradora', 'Artefacto para limpiar suelos', 11, 'Electrodomésticos');
 
 --
 -- Índices para tablas volcadas

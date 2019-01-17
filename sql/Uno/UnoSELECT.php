@@ -158,7 +158,14 @@ if (isset($_POST['DEL'])){
         
 
 
+        /**
         
+            Mirar SELECT, r3, 2 y porque no va la tabla
+
+
+
+
+*/
 
        // Recoge todas las IDs de nuestra tabla
         $query3 = " SELECT id FROM artigo LIMIT 1";
@@ -167,10 +174,10 @@ if (isset($_POST['DEL'])){
         while($row = mysqli_fetch_array($result)){
         $test[] = $row['id'];
         }
-        
+        //////////////////////////////////////////
         // How many rows? $num
         
-            $num = mysqli_num_rows($r2);
+        $num = mysqli_num_rows($r2);
  
         
         echo "<table id='buttons' border=1 >";
