@@ -113,13 +113,25 @@ if (isset($_POST['DEL'])){
 
         else if (isset($_POST['truncate-table'])) {
             $query = "TRUNCATE TABLE artigo";
+            header("Refresh:0");
             }
+    
+        else if (isset($_POST['insert-table'])) {
+            $query = "INSERT INTO `artigo` (`nome`, `descripcion`, `prezo`, `categoria`) VALUES
+                ( 'Manzana', 'Pieza de fruta verde', 0.5, 'Alimentos'),
+                ( 'Silla', 'Cuatro patas con tabla', 15, 'Muebles'),
+                ( 'Mesa', 'Tabla de madera redonda', 26, 'Muebles'),
+                ( 'Aspiradora', 'Artefacto para limpiar suelos', 11, 'Electrodomésticos')";
+            header("Refresh:0");
+        }
     
         else {
             $query = " SELECT * FROM artigo";
             }
     
         $result = $conn -> query("$query");
+        $r2 = $result;
+        $r3 = $result;
         //$conn -> close();
 
 
@@ -157,11 +169,10 @@ if (isset($_POST['DEL'])){
         }
         
         // How many rows? $num
-        $query2 = "SELECT * FROM artigo";
-        if ($result2 = mysqli_query($conn, $query2)){
-            $num = mysqli_num_rows($result2);
+        
+            $num = mysqli_num_rows($r2);
  
-        }
+        
         echo "<table id='buttons' border=1 >";
         echo "<tr><td>DELETE</td></td>";
         
@@ -182,6 +193,8 @@ if (isset($_POST['DEL'])){
         }
         echo "</table>";
     echo "<br>";
+    
+    
        // if (isset($_POST['Prezo_DESC'])) {
             echo "<div id='price'>";
             echo "<form action='' method='POST'>
@@ -190,20 +203,24 @@ if (isset($_POST['DEL'])){
        // }
     
        // else if (isset($_POST['Prezo_ASC'])) {
-            echo "<div id='price'>";
+        
             echo "<form action='' method='POST'>
                 <input  type='submit' name='Prezo_DESC' value='Ordenar prezo DESC' />
-                </form></div>";
+                </form>";
       //  }
 
        // else {
-            echo "<div id='price'>";
+        
             echo "<form action='' method='POST'>
                 <input  type='submit' name='Prezo_Defecto' value='Por Defecto' />
-                </form></div>";
+                </form>";
     
             echo "<form action='' method='POST'>
                 <input id='borrar' type='submit' name='truncate-table' value='Borrar Tabla' />
+                </form>";
+    
+            echo "<form action='' method='POST'>
+                <input id='borrar' type='submit' name='insert-table' value='Insertar Tabla' />
                 </form>";
             
        // }
