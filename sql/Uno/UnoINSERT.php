@@ -7,27 +7,17 @@ if (isset($_POST['enviado'])) {
     $description = $_POST['consulta2'];
     $prezo = $_POST['consulta3'];
     $categoria = $_POST['consulta4'];
-
-    
-
  
-        // Insertamos query
-        $query = " INSERT INTO artigo (nome, descripcion, prezo, categoria) 
-                    VALUES ('$nome', '$description', $prezo, '$categoria')";
+    // Insertamos query
+    $query = " INSERT INTO artigo (nome, descripcion, prezo, categoria) 
+                VALUES ('$nome', '$description', $prezo, '$categoria')";
 
-        $result = $conn -> query("$query");
-        //$conn -> close();
-            // mysqli_free_result($result);
-        
-        // Comprobamos si se ha borrado nuestra consulta seleccionada
-        if ($result === true) {
-            echo "svvamos";
-            echo "<br>Consulta INSERTADA con éxito";
-        }
+    $result = $conn -> query("$query");
 
-
-
-
+    // Comprobamos si se ha borrado nuestra consulta seleccionada
+    if ($result === true) {   
+        echo "<br>Consulta INSERTADA con éxito";
+    }
 }
 
 ?>
@@ -43,8 +33,8 @@ if (isset($_POST['enviado'])) {
     
     <input type="button" onclick="location.href='index.html';" value="INDEX"/>
     <input type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
-   
-    
+    <input type="button" onclick="location.href='UnoMODIFY.php';" value="MODIFY"/>
+
     <form action="UnoINSERT.php" method="POST">
   
         <p>nome:</p> <input type="text" name="consulta1" />
@@ -56,40 +46,30 @@ if (isset($_POST['enviado'])) {
     
  <?php
     
- 
-
-    
+    // Imprimimos tabla
     $query = " SELECT * FROM ARTIGO ORDER BY prezo DESC";
 
-        $result = $conn -> query("$query");
-        //$conn -> close();
+    $result = $conn -> query("$query");
 
+    echo "<table id='all-table' border=1>";
+        echo "<tr>";
+            echo "<th>id</th>";
+            echo "<th>nome</th>";
+            echo "<th>descripcion</th>";
+            echo "<th>prezo</th>";
+            echo "<th>categoria</th>";
+        echo "</tr>";
 
-            echo "<table id='all-table' border=1>";
-                echo "<tr>";
-                    echo "<th>id</th>";
-                    echo "<th>nome</th>";
-                    echo "<th>descripcion</th>";
-                    echo "<th>prezo</th>";
-                    echo "<th>categoria</th>";
-                echo "</tr>";
-
-            while($row = mysqli_fetch_array($result)){
-                //$rows[] = mysqli_fetch_array($result);
-                echo "<tr>";
-                    echo "<td value='count_id'>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['nome'] . "</td>";
-                    echo "<td>" . $row['descripcion'] . "</td>";
-                    echo "<td>" . $row['prezo'] . "</td>";
-                    echo "<td>" . $row['categoria'] . "</td>";
-                echo "</tr>";
-            }
-        echo "</table>";
-
-    
-    
-
-
+    while($row = mysqli_fetch_array($result)){
+        echo "<tr>";
+            echo "<td value='count_id'>" . $row['id'] . "</td>";
+            echo "<td>" . $row['nome'] . "</td>";
+            echo "<td>" . $row['descripcion'] . "</td>";
+            echo "<td>" . $row['prezo'] . "</td>";
+            echo "<td>" . $row['categoria'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
     
     
 ?>

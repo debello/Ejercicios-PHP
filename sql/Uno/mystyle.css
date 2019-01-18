@@ -1,0 +1,41 @@
+#all-index {
+    
+    display: flex;
+    width: 200px;
+    height: 25px;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+#btn-index1 {
+    position: relative;
+    border-bottom: 5px;
+}
+
+#btn-del {
+    height: 50px;
+    
+}
+
+#btn-del #per-btn-del {
+    position: relative;
+    margin: -1px;
+}
+
+#per-btn-del {
+    height: 20.4px;
+    left: 33.33%;
+}
+
+#all-table {
+    position: relative;
+    float: left;
+}
+
+#change-btns {
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10px;
+}

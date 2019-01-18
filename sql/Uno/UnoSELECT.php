@@ -1,120 +1,62 @@
 <?php
 // https://www.figma.com/file/0vaS8KnENMueMCO1AO01hGHu/Untitled?node-id=0%3A1
 
-
-/// => ADD BUTTON TO DROP ALL TABLE
-/// SHOW SECOND TABLE (categories) and link them w foreign KEY
-// Añadir FLOAT al PRICE :> ALTER TABLE MOFIY COLUMN SDFKSIDFNMSAD
-
 include 'conection.php';
 
-
-if (isset($_POST['DEL'])){
-    $b1 = $_POST['DEL'];
-    echo "<br> $b1 <br>";
-    
-    $query = " DELETE FROM artigo
-                WHERE id = '$b1'";
-
-    $result4 = $conn -> query("$query");
-      
-    // Recargar la página cada vez que se pulse un botón
-    //  header("Refresh:0");
-
-    
-}
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<style>
-    
-    #buttons {
-        height: 50px;
-    }
-    #buttons #per-button {
-        position: relative;
-        margin: -1px;
-        
-    }
-    #per-button {
-        height: 20.4px;
-        left: 33.33%;
-    }
-    #all-table {
-        position: relative;
-        float: left;
-    }
-    
-    #btn-index {
-        position: relative;
-        border-bottom; 5px;
-    }
-    #price {
-        position:relative;
-       
-  
-        display: block;
-    }
-    
-    #p1 {
-        margin: 5px;
-    }
-    #p2 {
-        margin: 5px;
-    }
-    #p3 {
-        margin: 5px;
-    }
-    
-</style>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' type='text/css' href='mystyle.css'>
 </head>
 <body>
     <h3> SELECT AND DELETE - Artigo</h3>
-    
-    <input id='btn-index' type="button" onclick="location.href='index.html';" value="INDEX"/>
-    <input id='btn-index' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
-
-    
+    <div id='all-index'>
+        <input id='btn-index1' type="button" onclick="location.href='index.html';" value="INDEX"/>
+        <input id='btn-index2' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
+        <input id='btn-index3' type="button" onclick="location.href='UnoMODIFY.php';" value="MODIFY"/>
+    </div>
     
 <div></div>
     
-
-
-
 <?php
-
-
     
-///////////////////
-//////////////////
-// Asignamos el asterisco a consulta para que cargue la página con todos los artículos//
+    /******************* Comprobación de uso de botones *******************************/
     
+    
+        // isset comprueba si hemos pulsado los botones (los cuales están abajo de este .php)
+        // Botones de Borrado: Cuando pulsamos uno borramos la fila cuyo id coincida con el número del botón
+        if (isset($_POST['DEL'])){
+            $b1 = $_POST['DEL'];
+            $queryx = " DELETE FROM artigo
+                        WHERE id = '$b1'";
+            $result4 = $conn -> query("$queryx");
 
-   
-
-        
+        }
+    
+    
+    
+        // Si pulsamos el botón llamado Prezo_DESC creamos una consulta seleccionando el precio de forma Descendiente
         if (isset($_POST['Prezo_DESC'])) {
-        $query = " SELECT * FROM artigo ORDER BY prezo DESC";
-
+            $query = " SELECT * FROM artigo ORDER BY prezo DESC";
         }
         
         else if (isset($_POST['Prezo_ASC'])) {
-        $query = " SELECT * FROM artigo ORDER BY prezo ASC";
-
-            
+            $query = " SELECT * FROM artigo ORDER BY prezo ASC";
         }
+    
         else if (isset($_POST['Prezo_Defecto'])) {
-        $query = " SELECT * FROM ARTIGO";
-            }
-                                             
-
+            $query = " SELECT * FROM ARTIGO";
+        }
+        // Para eliminar el contenido de la tabla                                     
         else if (isset($_POST['truncate-table'])) {
             $query = "TRUNCATE TABLE artigo";
+            // Cuando borramos el contenido (o insertamos) la página no lo carga al instante así que necesitaremos recargarla
             header("Refresh:0");
-            }
+        }
     
         else if (isset($_POST['insert-table'])) {
             $query = "INSERT INTO `artigo` (`nome`, `descripcion`, `prezo`, `categoria`) VALUES
@@ -124,137 +66,110 @@ if (isset($_POST['DEL'])){
                 ( 'Aspiradora', 'Artefacto para limpiar suelos', 11, 'Electrodomésticos')";
             header("Refresh:0");
         }
-    
+        
         else {
             $query = " SELECT * FROM artigo";
-            }
-    
-        $result = $conn -> query("$query");
-        $r2 = $result;
-        $r3 = $result;
-        //$conn -> close();
-
-
-            echo "<table id='all-table' border=1>";
-                echo "<tr>";
-                    echo "<th>id_artigo</th>";
-                    echo "<th>nome</th>";
-                    echo "<th>descripcion</th>";
-                    echo "<th>prezo</th>";
-                    echo "<th>categoria</th>";
-                echo "</tr>";
-
-            while($row = mysqli_fetch_array($result)){
-                //$rows[] = mysqli_fetch_array($result);
-                echo "<tr>";
-                    echo "<td value='count_id'>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['nome'] . "</td>";
-                    echo "<td>" . $row['descripcion'] . "</td>";
-                    echo "<td>" . $row['prezo'] . "</td>";
-                    echo "<td>" . $row['categoria'] . "</td>";
-                echo "</tr>";
-            }
-        echo "</table>";
-        
-
-
-        /**
-        
-            Mirar SELECT, r3, 2 y porque no va la tabla
-
-
-
-
-*/
-
-       // Recoge todas las IDs de nuestra tabla
-        $query3 = " SELECT id FROM artigo LIMIT 1";
-
-        $result = $conn -> query("$query");
-        while($row = mysqli_fetch_array($result)){
-        $test[] = $row['id'];
         }
-        //////////////////////////////////////////
-        // How many rows? $num
+        // Insertamos nuestra consulta anterior en $result
+        $result = $conn -> query("$query"); 
+
+
+        echo "<table id='all-table' border=1>";
+            echo "<tr>";
+                echo "<th>id_artigo</th>";
+                echo "<th>nome</th>";
+                echo "<th>descripcion</th>";
+                echo "<th>prezo</th>";
+                echo "<th>categoria</th>";
+            echo "</tr>";
+    
+        // Generamos tabla y también........
+        while($row2 = mysqli_fetch_array($result)){
+            //$rows[] = mysqli_fetch_array($result);
+            echo "<tr>";
+                echo "<td value='count_id'>" . $row2['id'] . "</td>";
+                echo "<td>" . $row2['nome'] . "</td>";
+                echo "<td>" . $row2['descripcion'] . "</td>";
+                echo "<td>" . $row2['prezo'] . "</td>";
+                echo "<td>" . $row2['categoria'] . "</td>";
+            echo "</tr>";
+
+            // Insertamos las ids con su respectivo orden en una variable para usarla más tarde en la creación de la tabla para BORRAR
+            $test[] = $row2['id'];
+        }
         
-        $num = mysqli_num_rows($r2);
+        // Cuántas filas tenemos? Nos servirá para el bucle for para crear los botones de BORRAR
+        $num = mysqli_num_rows($result);
  
         
-        echo "<table id='buttons' border=1 >";
-        echo "<tr><td>DELETE</td></td>";
+        echo "<table id='btn-del' border=1 >";
+        echo "<tr><td>DELETE</td></tr>";
         
-        
-        // For each row ($num)
         for ($i = 0; $i < $num; $i++){
         
-    
-        echo "
-                <form action='' method='POST'>        
+        // Por cada fila creamos un botón cuyo nombre iguala a la id de la tabla (para saber qué producto borraremos)
+        echo "<form action='' method='POST'>        
                     <tr>
-                        <td><input id='per-button' type= 'submit'
+                        <td><input id='per-btn-del' type= 'submit'
                         name='DEL'  value='"
                             ."$test[$i]".            "' /></td>
                     </tr>    
-                </form>
-        ";
+                </form>";
         }
         echo "</table>";
-    echo "<br>";
     
     
-       // if (isset($_POST['Prezo_DESC'])) {
-            echo "<div id='price'>";
-            echo "<form action='' method='POST'>
+    
+            // Creamos botones
+            echo "<div id='change-btns'><form action='' method='POST'>
                 <input  type='submit' name='Prezo_ASC' value='Ordenar prezo ASC' />
-                </form></div>";
-       // }
-    
-       // else if (isset($_POST['Prezo_ASC'])) {
-        
+                </form>";
+
             echo "<form action='' method='POST'>
                 <input  type='submit' name='Prezo_DESC' value='Ordenar prezo DESC' />
                 </form>";
-      //  }
-
-       // else {
         
             echo "<form action='' method='POST'>
                 <input  type='submit' name='Prezo_Defecto' value='Por Defecto' />
                 </form>";
     
             echo "<form action='' method='POST'>
-                <input id='borrar' type='submit' name='truncate-table' value='Borrar Tabla' />
+                <input type='submit' name='truncate-table' value='Borrar Tabla' />
                 </form>";
     
             echo "<form action='' method='POST'>
-                <input id='borrar' type='submit' name='insert-table' value='Insertar Tabla' />
-                </form>";
-            
-       // }
-    
-    
-
-
-
-    
-    
- 
-// Asignar a cada botón (button1, button2) que borre
-// la id asignada (1, 2)
-//
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+                <input type='submit' name='insert-table' value='Insertar Tabla' />
+                </form></div>";
+                
     
 /**
+
+
+[Problema solucionado]
+    
+            while($row2 = mysqli_fetch_array($result)){
+                //$rows[] = mysqli_fetch_array($result);
+                echo "<tr>";
+                    echo "<td value='count_id'>" . $row2['id'] . "</td>";
+                    echo "<td>" . $row2['nome'] . "</td>";
+                    echo "<td>" . $row2['descripcion'] . "</td>";
+                    echo "<td>" . $row2['prezo'] . "</td>";
+                    echo "<td>" . $row2['categoria'] . "</td>";
+                echo "</tr>";
+             **************************   
+                $test[] = $row2['id'];
+              ***************************
+              
+              
+              
+            Si queremos obtener las ids usando $test y un while ($row2 = mysqli_fetch_array($result)
+            Necesitamos hacerlo de una sola vez (cuando imprimimos la tabla, por ejemplo)
+
+            1 consulta para 1 función mysli_fetch_array
+
+            y una vez obtengamos los datos mediante el while y mysli_fetch podemos crear otras tablas (la del delete por ejemplo)
+            }
+
 
  
     // Insertar BACKUP tabla con contenidos
