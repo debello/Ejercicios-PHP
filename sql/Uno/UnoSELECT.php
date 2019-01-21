@@ -77,7 +77,7 @@ include 'conection.php';
         }
         // Insertamos nuestra consulta anterior en $result
         $result = $conn -> query("$query"); 
-        echo "<div id='both-tables'><table id='all-table' border=1>";
+        echo "<div id='both-tables'><table id='all-table' class='both-tables-cl' border=1>";
             echo "<tr>";
                 echo "<th>id_artigo</th>";
                 echo "<th>nome</th>";
@@ -106,7 +106,7 @@ include 'conection.php';
         $num = mysqli_num_rows($result);
  
         
-        echo "<table id='btn-del' border=1 >";
+        echo "<table id='btn-del' class='both-tables-cl' border=1 >";
         echo "<tr><td>DELETE</td></tr>";
         
         for ($i = 0; $i < $num; $i++){
