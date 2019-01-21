@@ -122,24 +122,24 @@ include 'conection.php';
     
     
             // Creamos botones
-            echo "<div id='change-btns'><form action='' method='POST'>
-                <input  type='submit' name='Prezo_ASC' value='Ordenar prezo ASC' />
+            echo "<div id='change-btns1'><form action='' method='POST'>
+                <input  id='btn-select1' class='btn-select' type='submit' name='Prezo_ASC' value='Ordenar prezo ASC' />
                 </form>";
 
             echo "<form action='' method='POST'>
-                <input  type='submit' name='Prezo_DESC' value='Ordenar prezo DESC' />
+                <input id='btn-select2' class='btn-select' type='submit' name='Prezo_DESC' value='Ordenar prezo DESC' />
                 </form>";
         
             echo "<form action='' method='POST'>
-                <input  type='submit' name='Prezo_Defecto' value='Por Defecto' />
+                <input id='btn-select3' class='btn-select' type='submit' name='Prezo_Defecto' value='Por Defecto' />
+                </form></div>";
+    
+            echo "<div='change-btns2'><form action='' method='POST'>
+                <input id='btn-select4' class='btn-select' type='submit' name='truncate-table' value='Borrar Tabla' />
                 </form>";
     
             echo "<form action='' method='POST'>
-                <input type='submit' name='truncate-table' value='Borrar Tabla' />
-                </form>";
-    
-            echo "<form action='' method='POST'>
-                <input type='submit' name='insert-table' value='Insertar Tabla' />
+                <input id='btn-select5' class='btn-select' type='submit' name='insert-table' value='Insertar Tabla' />
                 </form></div>";
                 
     
