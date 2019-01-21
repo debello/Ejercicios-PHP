@@ -14,11 +14,12 @@ include 'conection.php';
 </head>
 <body>
     <h3> SELECT AND DELETE - Artigo</h3>
-    <div id='all-index'>
+    <div id = 'all-index'>
         <input id='btn-index1' type="button" onclick="location.href='index.html';" value="INDEX"/>
-        <input id='btn-index2' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
-        <input id='btn-index3' type="button" onclick="location.href='UnoMODIFY.php';" value="MODIFY"/>
-    </div>
+        <input id='btn-index2' type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
+        <input id='btn-index3' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
+        <input id='btn-index4' type="button" onclick="location.href='UnoMODIFY.php';" value="MODIFY"/>
+    </div> 
     
 <div></div>
     

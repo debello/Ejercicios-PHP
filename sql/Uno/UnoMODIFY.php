@@ -36,14 +36,17 @@ if (isset($_GET['enviado'])) {
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 </head>
 <body>
-    <h3> MODIFY - ARTIGO</h3>
-    
-    <input type="button" onclick="location.href='index.html';" value="INDEX"/>
-    <input type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
-    <input type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
-   
+    <h3> MODIFY - ARTIGO </h3>
+
+    <div id = 'all-index'>
+        <input id='btn-index1' type="button" onclick="location.href='index.html';" value="INDEX"/>
+        <input id='btn-index2' type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
+        <input id='btn-index3' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
+        <input id='btn-index4' type="button" onclick="location.href='UnoMODIFY.php';" value="MODIFY"/>
+    </div> 
     
     <form action="UnoMODIFY.php" method="GET">
         <p>Nombre del artículo a modificar: </p> <input type="text" name="consulta" />

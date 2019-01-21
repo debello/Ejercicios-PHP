@@ -11,13 +11,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 </head>
 <body>
     <h3> DELETE - ARTIGO</h3>
     
-    <input type="button" onclick="location.href='Index.html';" value="INDEX"/>
-    <input type="button" onclick="location.href='UnoSELECT.php';" value="SELECT"/>
-    <input type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
+    <div id = 'all-index'>
+        <input id='btn-index1' type="button" onclick="location.href='index.html';" value="INDEX"/>
+        <input id='btn-index2' type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
+        <input id='btn-index3' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
+        <input id='btn-index4' type="button" onclick="location.href='UnoMODIFY.php';" value="MODIFY"/>
+    </div> 
     
     <form action="UnoDELETE.php" method="GET">
     <p>Escriba la columna (id_artigo, nome o categoría): <input type="text" name="consulta">
