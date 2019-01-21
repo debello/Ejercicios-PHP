@@ -21,22 +21,22 @@ if (isset($_GET['enviado'])) {
         if ($result === true) {   
             echo "<br>Consulta MODIFICADA con éxito";
         }
-
-
     }
 
     else { echo "No has introducido todas las casillas";}
-
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel='stylesheet' type='text/css' href='mystylei.css'>
+	<meta charset="UTF-8">
+	<link rel='stylesheet' type='text/css' href='mystylei.css'>
+	<style>
+		#btn-index4 {
+			background-color: #FFA500;
+		}
+	</style>
 </head>
 <body>
     <h3> MODIFY - ARTIGO </h3>

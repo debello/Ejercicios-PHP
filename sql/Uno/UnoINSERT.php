@@ -26,8 +26,13 @@ if (isset($_POST['enviado'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel='stylesheet' type='text/css' href='mystylei.css'>
+	<meta charset="UTF-8">
+	<link rel='stylesheet' type='text/css' href='mystylei.css'>
+	<style>
+		#btn-index3 {
+			background-color: #FFA500;
+		}
+	</style>
 </head>
 <body>
     <h3> INSERT - ARTIGO</h3>

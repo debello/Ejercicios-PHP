@@ -7,10 +7,14 @@ include 'conection.php';
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <link rel='stylesheet' type='text/css' href='mystylei.css'>
+	<style>
+    #btn-index2 {
+        background-color: #FFA500;
+    }
+</style>
 </head>
 <body>
     <h3> SELECT AND DELETE - Artigo</h3>
@@ -73,9 +77,7 @@ include 'conection.php';
         }
         // Insertamos nuestra consulta anterior en $result
         $result = $conn -> query("$query"); 
-
-
-        echo "<table id='all-table' border=1>";
+        echo "<div id='both-tables'><table id='all-table' border=1>";
             echo "<tr>";
                 echo "<th>id_artigo</th>";
                 echo "<th>nome</th>";
@@ -86,6 +88,7 @@ include 'conection.php';
     
         // Generamos tabla y también........
         while($row2 = mysqli_fetch_array($result)){
+
             //$rows[] = mysqli_fetch_array($result);
             echo "<tr>";
                 echo "<td value='count_id'>" . $row2['id'] . "</td>";
@@ -117,7 +120,7 @@ include 'conection.php';
                     </tr>    
                 </form>";
         }
-        echo "</table>";
+        echo "</table></div>";
     
     
     
