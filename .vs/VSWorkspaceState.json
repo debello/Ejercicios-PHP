@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\php001",
-    "\\sql"
+    "\\sql",
+    "\\sql\\Uno"
   ],
-  "SelectedNode": "\\sql\\datos.php",
+  "SelectedNode": "\\sql\\Uno\\UnoSELECT.php",
   "PreviewInSolutionExplorer": false
 }
