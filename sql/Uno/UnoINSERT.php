@@ -27,7 +27,7 @@ if (isset($_POST['enviado'])) {
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<link rel='stylesheet' type='text/css' href='mystylei.css'>
 </head>
 <body>
     <h3> INSERT - ARTIGO</h3>

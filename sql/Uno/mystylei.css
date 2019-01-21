@@ -9,13 +9,17 @@
 #all-index {
     background-color: red;
     display: flex;
-    width: 300px;
+    width: 400px;
     height: 30px;
     justify-content: space-around;
     padding: 5px;
 }
 
 #btn-index1 #btn-index2 #btn-index3 #btn-index4 {
+    background-color: green;
+}
+
+#btn-index1 {
     background-color: green;
 }
 
