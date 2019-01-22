@@ -42,6 +42,7 @@ if (isset($_POST['enviado'])) {
         <input id='btn-index2' type="button" onclick="location.href='UnoSELECT.php';" value="SELECT AND DELETE"/>
         <input id='btn-index3' type="button" onclick="location.href='UnoINSERT.php';" value="INSERT"/>
         <input id='btn-index4' type="button" onclick="location.href='UnoMODIFY.php';" value="MODIFY"/>
+        <input id='btn-index5' type="button" onclick="location.href='UnoOPTION.php';" value="OPTION"/>
     </div> 
 
     <form action="UnoINSERT.php" method="POST">
