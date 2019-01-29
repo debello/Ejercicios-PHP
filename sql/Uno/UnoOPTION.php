@@ -7,6 +7,11 @@ http://form.guide/php-form/php-form-select.html
 
 %S^NvaRUZ5iX6LSrI!xM
 
+web final
+web anterior
+seo web anterior, meta, tags
+goog analytics puesto en final
+
 **/
 include 'conection.php';
 
