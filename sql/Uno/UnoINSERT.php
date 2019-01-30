@@ -1,4 +1,7 @@
 <?php
+
+// test para git desde pc clase 
+
 include 'conection.php';
 
 if (isset($_POST['enviado'])) {
