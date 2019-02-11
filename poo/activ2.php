@@ -39,13 +39,18 @@ abstract class Animal {
  }
 
 class Mamifero extends Animal {
+    public $numOjos = 2;
     
     public function __construct() {
         $this->alimentacion = 'Omnivoro';
     }
+
     public function getAlimentacion(){
-        return $this->alimentacion;
-       
+        return $this->alimentacion;  
+    }
+
+    public function getOjos() {
+        return $this->numOjos;
     }
     //public function getPluma(){
     //    return $this->tienePluma;
@@ -54,9 +59,7 @@ class Mamifero extends Animal {
 
 $n1 = new Mamifero();
 echo $n1->getAlimentacion() . "<br>";
-if ($n1->getAlimentacion() === 'Omnivoro') {
-    echo "tiene alimentacion";
-}
+echo $n1->getOjos() . "<br>";
 
 
 ?>
