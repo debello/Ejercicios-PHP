@@ -69,13 +69,12 @@
             $this -> nombre = $nom;
         }
 
-        public function getAltura($alt) {
+        public function getAltura() {
             return $this -> altura;
         }
         public function setAltura($alt) {
             $this -> altura = $alt;
         }
-
         public function getColor() {
             return $this -> color;
         }
@@ -89,16 +88,72 @@
         public function setGrito($gri) {
             $this -> grito = $gri;
         }
+        public function printTroll() {
+
+
+            /* Ojos y Boca */
+            echo "<div style='position:relative;
+                                width: 20px;
+                                height: 20px;
+                                background-color: black;
+                                left: 70px;
+                                top: 90px;
+                                z-index: 10;'></div>";
+
+            echo "<div style='position:relative;
+                                width: 20px;
+                                height: 20px;
+                                background-color: black;
+                                left: 120px;
+                                top: 90px;
+                                z-index: 10;'></div>";
+
+            echo "<div style='position:relative;
+                                width: 30px;
+                                height: 10px;
+                                background-color: black;
+                                left: 90px;
+                                top: 130px;
+                                z-index: 10;'></div>";
+
+            /* Cabeza y Cuerpo */
+            echo "<div style='position:relative;
+                                width: 100px;
+                                height: 100px;
+                                background-color: $this->color;
+                                left: 50px;'></div>";
+
+            echo "<div style='position: relative;
+                                width: 200px;
+                                height: 200px;
+                                background-color: $this->color;'></div>";
+
+            
+        }
     } 
 
     // Creamos un Troll
     $n1 = new Troll;
     $n1->cantarValores();
     // Creamos un Troll del Pantano con 3 parámetros. Se cambiamos el grito con un SETTER
-    $n2 = new TrollPantano('Troll del pantano', '299px', 'Negro');
+    $n2 = new TrollPantano('Troll del pantano', '299px', 'Green');
     $n2->setGrito('YEAAAAAA');
     $n2->cantarValores2();
+    echo $n2->getColor();
+    $n2->printTroll();
+
+    $n3 = new TrollPantano('Troll del pantano', '299px', 'Blue');
+    $n3->setGrito('OLAAAA');
+    $n3->cantarValores2();
+    $n3->printTroll();
+
+    
+    $n4 = new TrollPantano('Troll del pantano', '299px', 'Red');
+    $n4->setGrito('OLAAAA');
+    $n4->cantarValores2();
+    $n4->printTroll();
 
 ?>
+
 </body>
 </html>
