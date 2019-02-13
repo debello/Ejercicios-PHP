@@ -3,10 +3,11 @@
 /** Crea objetos y clases sobre algún tema 
  * 
  * to-do: 
- *  revisar propiedades de Animal
- *  poner alguna en MAmifero?? optional
- *  hacer canario y lagarto 
- *  Reestructurar cómo quiero extender las propiedades de Mamífero a X
+ *  x revisar propiedades de Animal
+ *  x poner alguna en MAmifero?? optional
+ *  x hacer canario 
+ *  hacer lagarto 
+ *  x Reestructurar cómo quiero extender las propiedades de Mamífero a X
  * 
  * **/
 
