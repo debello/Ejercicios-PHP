@@ -16,22 +16,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .table2, th, td {
-            border: 1px solid black;
-            padding: 5px;
-            
-        }
-    </style>
 </head>
 <body>
     
 <?php 
 
 /**
- * Crear Animal, Mamífero, Ave, Gato, Perro, Canario, Pinguino, Lagarto
- * 2 métodos en cada una de las clases
- * 
+ *      Clase Animal
  */
 
 class Animal {
@@ -62,6 +53,10 @@ class Animal {
     }
 }
 
+/**
+ *      Clase Mamifero
+ */
+
 class Mamifero extends Animal {
     public $animalColor;
     public $huevo;
@@ -82,6 +77,9 @@ class Mamifero extends Animal {
 
 }
 
+/**
+ *      Clase Gato
+ */
 
 class Gato extends Mamifero {
     public $animalColor;
@@ -110,6 +108,10 @@ class Gato extends Mamifero {
 
 }
 
+/**
+ *      Clase Canario
+ */
+
 class Canario extends Mamifero {
     public $animalColor;
 
@@ -130,6 +132,11 @@ class Canario extends Mamifero {
 }
 
 
+
+/**
+ *      Imprimiendo y comprobando propiedades de las clases
+ */
+
 $n1 = new Animal();
 echo $n1->getMovimiento();
 $n2 = new Gato('azul');
@@ -139,25 +146,7 @@ $n3 = new Canario('amarillo');
 echo $n3->getCaracteristicasCanario();
 
 
-/*
-$n1 = new Mamifero();
-echo $n1->getAlimentacion() . "<br>";
-echo $n1->getOjos() . "<br>";
-if ($n1->tienePatas === TRUE ) {
-    echo "El mamífero \$n1 tiene patas <br><br>";
-}
 
-$n2 = new Gato();
-echo 'El gato es de color ' . $n2->getColor();
-if ($n2->usanInternet === TRUE ) {
-    echo "<br>Los gatos de \$n2 usan Internet<br>";
-}
-$n2->setColor('azul');
-echo 'Ahora el gato es un gato triste y de color ' . $n2->getColor();
-echo '<br> En cuanto a alimentación, este gato es ' . $n2->alimentacion;
-$n3 = new Gato('negro');
-echo '<br> Hemos creado un nuevo gato \$n3 de color ' . $n3->animalColor;
-*/
 
 
 ?>
