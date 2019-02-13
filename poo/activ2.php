@@ -179,9 +179,6 @@
     echo $n3->getCaracteristicasCanario();
 
 
-
-
-
 ?>
 
 </body>
