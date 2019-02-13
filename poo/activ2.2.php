@@ -44,21 +44,18 @@
         // Crea metodo tira que genera un valor aleatorio
         public function tira() {
             $arrayDado = [$this->c1, $this->c2, $this->c3, $this->c4, $this->c5, $this->c6];
-            return $this->nombreFigura = $arrayDado[rand(0, count($arrayDado) - 1)] . "<br>"; 
+            $this->nombreFigura = $arrayDado[rand(0, count($arrayDado) - 1)] . "<br>"; 
         }
         // Crea nombreFigura que dice qué figura salió en el dado
         public function ultimaTirada() {
             return $this->nombreFigura;
         } 
-        
-
     }
-
     
     $dado1 = new DadoPoker();
     $dado1->tira(); // Tiramos el dado una vez
     echo '<br>Esta es la tirada hecha: ' . $dado1->ultimaTirada();
-
+    echo '<br>';
 
     /* Creamos una clase hija donde 'manejaremos el dado' (lo tiraremos 5 veces) */ 
     class manejarDado extends DadoPoker {
@@ -70,20 +67,22 @@
                 echo 'Vamos a tirar cinco veces: ' . $this->ultimaTirada();
             }
         }
-
-        // Tirar el dado X veces y contarlas(((())))
+        
         // Crea getTiradasTotales que cuente el num tota lde tiradas
-        /**
-         * WIP
-         */
-
+        public function variasTiradas(){
+            $numTiradas = rand(1, 15); // Tiramos el dado x veces (entre 0 y 15 veces)
+            for ($a = 0; $a < $numTiradas; $a++) {
+                $this->tira();
+                echo 'Tiramos el dado! ' . $this->ultimaTirada();
+            }
+            echo '<br> Se ha tirado el dado: ' . $numTiradas . ' veces';
+        }
     }
     $dadoTirar = new manejarDado();
     $dadoTirar->tira();
     $dadoTirar->cincoVeces();
-
-
-
+    echo '<br>';
+    $dadoTirar->variasTiradas();
 
 ?>
 
