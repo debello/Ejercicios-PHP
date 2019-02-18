@@ -20,6 +20,12 @@ Confeccionar una clase Menu. Permitir añadir la cantidad de opciones que necesi
         private $opcion = []; // producto a añadir
         private $direccion; // h horizontal o v vertical
 
+        function __construct() {
+        
+        }
+
+        set
+
         function cargarOpcion($opcion) {
             $this->opcion[] = $opcion;
         }
@@ -73,7 +79,8 @@ Confeccionar una clase Menu. Permitir añadir la cantidad de opciones que necesi
     $e2->cargarDireccion('v');
 
     $e2->posicion();
-
+    
+    unset($e2);
 
 
 
