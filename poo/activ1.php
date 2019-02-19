@@ -46,12 +46,7 @@
             $this->altura=$alt;
             $this->color=$col;
         }
-        /* Función para destruír el objeto
-        private function __destruct() {
-            echo "<br>El objeto TrollPantano ha sido destruído! <br>";
-        }
-         */
-
+ 
         function cantarValores2() {
             echo "Este troll tiene de nombre $this->nombre, altura $this->altura, 
             color $this->color y su grito es $this->grito <br>";
@@ -75,6 +70,7 @@
         public function setAltura($alt) {
             $this -> altura = $alt;
         }
+
         public function getColor() {
             return $this -> color;
         }
@@ -88,6 +84,7 @@
         public function setGrito($gri) {
             $this -> grito = $gri;
         }
+
         public function printTroll() {
 
 
@@ -105,7 +102,7 @@
                                 height: 20px;
                                 background-color: black;
                                 left: 120px;
-                                top: 90px;
+                                top: 80px;
                                 z-index: 10;'></div>";
 
             echo "<div style='position:relative;
@@ -142,14 +139,14 @@
     echo $n2->getColor();
     $n2->printTroll();
 
-    $n3 = new TrollPantano('Troll del pantano', '299px', 'Blue');
+    $n3 = new TrollPantano('Troll del pantano2', '100px', 'Blue');
     $n3->setGrito('OLAAAA');
     $n3->cantarValores2();
     $n3->printTroll();
 
     
-    $n4 = new TrollPantano('Troll del pantano', '299px', 'Red');
-    $n4->setGrito('OLAAAA');
+    $n4 = new TrollPantano('Troll del pantano3', '10000px', 'Red');
+    $n4->setGrito('Buenas.');
     $n4->cantarValores2();
     $n4->printTroll();
 

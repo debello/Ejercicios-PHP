@@ -1,19 +1,3 @@
-<?php
-
-/** Crea objetos y clases sobre algún tema 
- * 
- * to-do: 
- *  x revisar propiedades de Animal
- *  x poner alguna en MAmifero?? optional
- *  x hacer canario 
- *  hacer lagarto 
- *  x Reestructurar cómo quiero extender las propiedades de Mamífero a X
- * 
- * **/
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,13 +13,13 @@
     class Animal {
         public $movimiento;
         public $respiracion;
-        
-        public function __construct( $mov = TRUE, $res = TRUE) {
+        // Los animales se Mueven y Respiran
+        public function __construct( $mov = TRUE, $res = TRUE) { 
             $this->movimiento = $mov;
             $this->respiracion = $res;
         }
 
-        public function getMovimiento(){
+        public function getMovimiento(){ // Si el Movimiento es TRUE (cierto), lo mencionamos
             if ($this->movimiento === TRUE) {
                 return ' se mueve, ';
             }
@@ -44,7 +28,7 @@
             }
         }
 
-        public function getRespiracion(){
+        public function getRespiracion(){ // Igual que el Movimiento
             if ($this->respiracion === TRUE) {
                 return ' respira, ';
             }
@@ -62,9 +46,9 @@
         public $animalColor;
         public $huevo;
         public $leche;
-        public $numPatas; // Lo declaramos cuando creamos un animal específico
-        public $puedenVolar; // Lo declaramos cuando creamos un animal específico
-        public $sonido; // Lo declaramos cuando creamos un animal específico
+        public $numPatas; // Lo declaramos para cuando creemos un animal específico
+        public $puedenVolar; // Lo declaramos para cuando creemos un animal específico
+        public $sonido; // Lo declaramos para cuando creemos un animal específico
         
         public function __construct() {
             
@@ -72,7 +56,7 @@
             $this->leche = ' producen leche, ';
         }
 
-        public function getCaracteristicas(){
+        public function getCaracteristicas(){ // Vemos las características del mamífero
             return $this->huevo . $this->leche;  
         }
 
@@ -86,22 +70,21 @@
         public $animalColor;
         
         public function __construct($animalCol = 'naranja') {
-            parent::__construct();
+            parent::__construct(); // Heredamos los atributos de la clase Mamífero: $huevo y $leche
             $this->animalColor = $animalCol;
             $this->Internet = ' pueden usar Internet, ';
             $this->numPatas = ' tienen 4 patas, ';
             $this->puedenVolar = ' no pueden volar, ';
             $this->sonido = ' hacen "Miauuu", ';
-            
         }
 
         public function setColor($animalCol){
             $this->animalColor = $animalCol;
         }
-
         public function getColor(){
             return $this->animalColor;
         }
+
         public function getCaracteristicasGato(){
             return '<br>Los gatos'. $this->huevo . $this->leche . $this->Internet
                 . $this->numPatas . $this->puedenVolar . $this->sonido . 'y son de color ' .$this->getColor();
@@ -125,8 +108,18 @@
             $this->tienenPico = ' tienen pico, ';
         }
 
+        public function getHuevo() { // Cambiamos el atributo padre $huevo
+            $this->huevo = ' SI nacen de un nuevo, ';
+            return $this->huevo;
+        }
+
+        public function getLeche() { // Cambiamos el atributo padre $leche
+            $this->leche = ' NO producen leche, ';
+            return $this->leche;
+        }
+
         public function getCaracteristicasCanario(){
-            return '<br>Los canarios'. $this->huevo . $this->leche . 
+            return '<br>Los canarios'. $this->getHuevo() . $this->getLeche() . 
             $this->numPatas . $this->puedenVolar . $this->sonido . 
             'y son de color ' .$this->animalColor;
         }
@@ -138,7 +131,7 @@
 
     class Lagarto extends Mamifero{
         public $animalColor;
-        public $escamas;
+        public $escamas; // Característica propia del Lagarto
 
         public function __construct($animalCol = 'negro'){
             parent::__construct();
@@ -162,9 +155,7 @@
         }
     }
 
-    $lag1 = new Lagarto('azul');
-    echo $lag1->getEscamas();
-    echo $lag1->getCaractLagarto();
+
 
     /**
      *      Imprimiendo y comprobando propiedades de las clases
@@ -177,6 +168,10 @@
 
     $n3 = new Canario('amarillo');
     echo $n3->getCaracteristicasCanario();
+
+    $lag1 = new Lagarto('azul');
+    echo $lag1->getEscamas();
+    echo $lag1->getCaractLagarto();
 
 
 ?>
