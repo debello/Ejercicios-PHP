@@ -1,3 +1,7 @@
+<?php 
+/* Una tabla muy grande...*/
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
