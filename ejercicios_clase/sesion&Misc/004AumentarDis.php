@@ -1,5 +1,6 @@
 <?php
-/** Unha pantalla na que temos dúas variables a e b que podemos incrementar, decrementar ou poñer a cero. O valor
+/** 
+ * Unha pantalla na que temos dúas variables a e b que podemos incrementar, decrementar ou poñer a cero. O valor
 desas variable gardase nunha sesión.
 */
 

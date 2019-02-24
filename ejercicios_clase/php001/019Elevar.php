@@ -1,6 +1,8 @@
 ﻿<?php
-
+//
 // Recogemos los 20 números escogidos por el cliente desde el html
+// Obtenemos su cuadrado y su cubo
+
 $a1 = $_GET['a1'];
 $a2 = $_GET['a2'];
 $a3 = $_GET['a3'];

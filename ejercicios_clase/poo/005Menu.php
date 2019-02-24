@@ -24,7 +24,7 @@ Confeccionar una clase Menu. Permitir añadir la cantidad de opciones que necesi
         
         }
 
-        set
+        
 
         function cargarOpcion($opcion) {
             $this->opcion[] = $opcion;
