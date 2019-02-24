@@ -1,5 +1,15 @@
 <?php
 /** 
+ * 
+ *         Modo de uso
+ *       
+ *       Escribir Nombre y Teléfono
+ *       Para borrar un nombre escríbalo
+ *       Para sustituír vuelva a escribir todo
+ *       Si se dejan vacías o sólo se rellena Telf, da error
+        
+        
+
 
 AGENDA para Insertar contactos - Nombre y Teléfono
 
@@ -128,7 +138,11 @@ $postNombres = array_unique($postNombres);
         <input type="submit"/>
 
 
+
+
 </div>        
+
+
 <?php
         
 
@@ -214,6 +228,7 @@ echo "</table>";
     
     
     </form>
+ 
 
 
 <?php

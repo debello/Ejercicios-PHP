@@ -1,5 +1,10 @@
 /* BODY - CELDAS: Encabezado, cuerpo y celdas del cuerpo. */
 
+.instrucciones {
+    position: relative;
+    top: 400px;
+}
+
 body {
 
     background-color: aqua;
