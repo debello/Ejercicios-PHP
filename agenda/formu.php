@@ -115,7 +115,6 @@ $postNombres = array_unique($postNombres);
         text-align: center;
         margin-right: auto;
         margin-left: auto;
-
         width: 700px;
         height: 300px;
         position: relative;
@@ -125,7 +124,6 @@ $postNombres = array_unique($postNombres);
     .todo {
         /* background-color: red; */
         position: relative;
-        
         width: 600px;
         height: 300px;
         bottom: 12%;
@@ -200,9 +198,7 @@ $postNombres = array_unique($postNombres);
 
     /* MANUAL */
     .manual {
-        position: relative;
-        left: 10%;
-        font-size: 15px;
+        font-size: 15px;      
     }
 
 
