@@ -40,7 +40,16 @@ if (isset($_POST['nombre'])) { // Si hemos introducido un valor en la casilla...
  Nos interesa que esta cifra aumente de 1 en 1 cada vez que insertemos datos
  Originalmente aumenta de 2 en 2 así que lo multiplicamos por la mitad
  Para que aumente de 1 en 1  */
-$numGets = (count($_POST)) * 0.5;  
+$numGets = (count($_POST)) * 0.5; 
+        
+    
+// Si no introducimos un Nombre, creamos una advertencia.
+if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
+            echo "<div id='adv'>
+            <p id='error'>Error:
+            <p id='datos'>Datos no introducidos.</p></div>";
+}   
+    
     
     // Pasamos Nombres y Teléfonos a arrays diferentes
     foreach ($postV as $k => $v) { 
@@ -99,7 +108,6 @@ $postNombres = array_unique($postNombres);
         $postV = [];
         $postNombres;
         $numGets;
-        $nombre;
 }
         
 ?>
@@ -109,143 +117,25 @@ $postNombres = array_unique($postNombres);
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-    .super-todo {
-        background-color: #ffd280;
-        text-align: center;
-        margin-right: auto;
-        margin-left: auto;
-
-        width: 700px;
-        height: 300px;
-        position: relative;
-        border-radius: 0.3rem;
-                
-    }
-    .todo {
-        /* background-color: red; */
-        position: relative;
-        
-        width: 600px;
-        height: 300px;
-        bottom: 12%;
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: 5%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 40px 100px;
-        grid-template-areas: 
-            "1 2"
-            "1 3";
-        align-content: center;
-        justify-content: space-around;
-
-    }
-
-    /* FORMULARIO */
-    .Formu-container {
-        
-        /*background-color: blue;*/
-        grid-area: "1";
-        display: grid;
-        grid-template-columns: 100px 1fr;
-        grid-template-areas:
-        "Introduzca" "Texto";
-    }
-
-    .Introduzca {
-        background-color: orange;
-        border-radius: 0.3rem;
-        grid-area: "Introduzca";
-    }
-
-    .Texto {
-        grid-area: "Texto";
-    }
-    .Texto input {
-        position: relative;
-        top: 35px;
-        margin-bottom: 20px;
-    }
-
-    /* TABLA NOMBRE TELEFONO */
-    .tabla {
-        border-radius: 0.3rem;
-        
-    }
-    .encabezado {
-    
-        background-color: yellow;
-        border-radius: 0.3rem;
-        grid-area: "2";
-    }
-    .cuerpo {
-        background-color: orange;
-        grid-area: "3";
-    }
-    .celda {
-        
-    }
-
-    /* ERROR */
-    #adv {
-        position: relative;
-        top: 60%;
-        color: red;
-        font-size: 20px;
-        z-index: 1;
-
-    } 
-
-    /* MANUAL */
-    .manual {
-        position: relative;
-        left: 10%;
-        font-size: 15px;
-    }
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
-    <div class='manual'>
-        <p>Instrucciones:</p>
-            <ul>
-                <li><strong>Guardar</strong>: Rellenar ambos campos</li>
-                <li><strong>Borrar</strong>: Escribir sólo el nombre de un contacto ya guardado</li>
-                <li><strong>Modificar</strong>: Escribir el nombre y el nuevo teléfono del contacto guardado</li>
-                <li><strong>Error</strong>: Pulsar Enviar con las casillas vacías o sólo el Teléfono</li>
-                
-
-    </div>
     
 
-   <div class=super-todo>
-    <div class="todo">
+    <div id = "cuadrado"></div>
+    
     <div class="formu">
-
-    <?php
-
-
-    ?>
-    
+    <h3 id='agenda'>Agenda</h3>
     
     
 
     <form action="" method="POST">
 
-        <?php 
-        echo "<div class='Formu-container'><div class='Introduzca'>
-                <p>Introduzca Nombre:</p>
-                <p>Introduzca Teléfono:</p></div>"; 
-        ?>
-        <?php
-        echo "<div class='Texto'><input type='text' name='nombre'/><br>
-        <input type='text' name='telf'/><br>
-        <input type='submit'/></div></div>";
-        ?>
-
+        <p>Introduzca Nombre:</p>
+        <input type="text" name="nombre"/><br>
+        <p>Introduzca Teléfono:</p>
+        <input type="text" name="telf"/><br>
+        <input type="submit"/>
 
 
 
@@ -307,15 +197,13 @@ $postNombres = array_unique($postNombres);
 
 
 
-?>
-</form>
-<?php
+
     
 
-echo "<table class='tabla'>";
-echo "<tr class='encabezado'>
-        <th >Nombre</th>
-        <th>Telefono</th>
+echo "<table id='test'>";
+echo "<tr id='encabezado'>
+        <th id='nombre'>Nombre</th>
+        <th id='telefono'>Telefono</th>
       <tr>";
 
     
@@ -329,25 +217,18 @@ echo "<tr class='encabezado'>
         // Realmente nunca llegamos a "borrar" ni "sustituír" nombres ni teléfonos 
         
        if (!empty($postNombres[$i]) && $postNombres[$i] != '' && $postTelfs[$i] != ''){
-         echo "<tr class='cuerpo' ><td class='celda'>$postNombres[$i]</td><td class='celda'>$postTelfs[$i]</td></tr>";
+         echo "<tr id='cuerpo' ><td class='celda'>$postNombres[$i]</td><td class='celda'>$postTelfs[$i]</td></tr>";
     }
 }  
 
 echo "</table>";
 
-// Si no introducimos un Nombre, creamos una advertencia.
-if (isset($_POST['nombre'])) {
-  if ($_POST['nombre'] === '' || $_POST['nombre'] === null || empty($_POST['nombre'])) {
-      echo "<div id='adv'>
-      <p>Error: <strong>Datos no introducidos.</strong></p></div>";
-  }   
-}
         
         ?>
     
     
-</div></div>
-
+    </form>
+ 
 
 
 <?php
