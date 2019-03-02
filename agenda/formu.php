@@ -110,6 +110,7 @@ $postNombres = array_unique($postNombres);
 <head>
 <meta charset="UTF-8">
 <style>
+
     .super-todo {
         background-color: #ffd280;
         text-align: center;
@@ -119,6 +120,7 @@ $postNombres = array_unique($postNombres);
         height: 300px;
         position: relative;
         border-radius: 0.3rem;
+        border: 2px solid black;
                 
     }
     .todo {
@@ -153,9 +155,12 @@ $postNombres = array_unique($postNombres);
     }
 
     .Introduzca {
+        grid-area: "Introduzca";
+    }
+    .Introduzca p {
+        border: 2px solid black;
         background-color: orange;
         border-radius: 0.3rem;
-        grid-area: "Introduzca";
     }
 
     .Texto {
@@ -166,6 +171,14 @@ $postNombres = array_unique($postNombres);
         top: 35px;
         margin-bottom: 20px;
     }
+    input[type=submit] {
+        background-color: #FF7F50 ;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+}
 
     /* TABLA NOMBRE TELEFONO */
     .tabla {
@@ -178,6 +191,10 @@ $postNombres = array_unique($postNombres);
         border-radius: 0.3rem;
         grid-area: "2";
     }
+    .encabezado th {
+        border: 2px solid black;
+    }
+
     .cuerpo {
         background-color: orange;
         grid-area: "3";
@@ -198,7 +215,11 @@ $postNombres = array_unique($postNombres);
 
     /* MANUAL */
     .manual {
-        font-size: 15px;      
+        width: 200px;
+        position: relative;
+        font-size: 15px;
+        display: left;
+
     }
 
 
