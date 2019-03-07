@@ -4,6 +4,9 @@
  * $ex = [1 => 2, 3 => 4, 5 => 2]
  * en
  * $ex2 = [2 => (1, 5), 3 => 4];
+ * 
+ * To-Do: Insertar las keys respectivas de sus valores
+ * line 50
  */
 
 $ex = [1 => 2, 3 => 4, 5 => 2];
